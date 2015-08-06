@@ -27,7 +27,7 @@ srp_create_database <- function(database_path){
 }
 
 #tests
-database_path<-"H:\\R\\staz sejm\\database_diet.sql"
+database_path<-"H:\\R\\staz sejm\\database_diet.sqlite"
 srp_create_database(database_path)
 database_diet <- dbConnect(SQLite(), dbname = database_path)
 dbListTables(database_diet)
