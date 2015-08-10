@@ -1,4 +1,25 @@
-library("RPostgreSQL")
+#' Creating database
+#'
+#' Function \code{srp_create_database} creates database with three empty
+#' tables: deputies, votings, votes.
+#'
+#' @details
+#' // to do
+#'
+#' @usage srp_create_database(dbname,user,password,host)
+#'
+#' @param dbname name of database
+#' @param user name of user
+#' @param password password of database
+#' @param host name of host
+#'
+#' @return invisible NULL
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 srp_create_database <- function(dbname,user,password,host){
   #connecting to database
@@ -26,23 +47,3 @@ srp_create_database <- function(dbname,user,password,host){
   suppressWarnings(dbDisconnect(database_diet))
   return(invisible(NULL))
 }
-
-#tests
-dbname<-"sejmrp"
-user<-"sejmrp"
-password<-"pQwZ99Kj65x"
-host<-"services.mini.pw.edu.pl"
-
-database_path<-"H:\\R\\staz sejm\\database_diet.sqlite"
-srp_create_database(database_path)
-database_diet <- dbConnect(SQLite(), dbname = database_path)
-dbListTables(database_diet)
-dbReadTable(database_diet,"deputies")
-dbReadTable(database_diet,"votings")
-dbReadTable(database_diet,"votes")
-dbSendQuery(database_diet,"INSERT INTO deputies VALUES ('001','Jan Kowalski')")
-dbSendQuery(database_diet,"INSERT INTO deputies VALUES (2,'Jan Kowalski')") #error, ze nieunikalny
-dbReadTable(database_diet,"deputies")
-dbSendQuery(database_diet,"DELETE FROM deputies WHERE id_deputy='001'")
-dbReadTable(database_diet,"deputies")
-suppressWarnings(dbDisconnect(database_diet))
