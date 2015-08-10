@@ -1,3 +1,9 @@
 import(RPostgreSQL)
 import(rvest)
 import(stringi)
+
+export(create_database)
+export(deputies_add_new)
+export(deputies_get_data)
+export(deputies_create_table)
+export(deputies_update_table)

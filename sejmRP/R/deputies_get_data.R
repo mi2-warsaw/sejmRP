@@ -1,11 +1,11 @@
 #' Getting data about deputies
 #'
-#' Function \code{srp_deputies_data} gets data about deputies.
+#' Function \code{deputies_get_data} gets data about deputies.
 #'
 #' @details
 #' // to do
 #'
-#' @usage srp_deputies_data(type)
+#' @usage deputies_get_data(type)
 #'
 #' @param type type of deputies which be add to table with deputies: active, inactive
 #'
@@ -17,7 +17,9 @@
 #' @author Piotr Smuda
 #'
 
-srp_deputies_data <- function(type){
+deputies_get_data <- function(type="active"){
+  
+  stopifnot(type=="active"||type=="inactive")
   
   #choosing proper page of deputies
   if(type=="active"){

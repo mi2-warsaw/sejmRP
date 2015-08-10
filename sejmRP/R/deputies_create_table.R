@@ -1,11 +1,11 @@
 #' Creating table with deputies
 #'
-#' Function \code{srp_deputies_table_create} creates table with deputies.
+#' Function \code{deputies_create_table} creates table with deputies.
 #'
 #' @details
 #' // to do
 #'
-#' @usage srp_deputies_table_create(dbname,user,password,host)
+#' @usage deputies_create_table(dbname,user,password,host)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -20,13 +20,13 @@
 #' @author Piotr Smuda
 #'
 
-srp_deputies_table_create <- function(dbname,user,password,host){
+deputies_create_table <- function(dbname,user,password,host){
 
   #getting data from page with active deputies
-  deputies_active <- srp_deputies_data("active")
+  deputies_active <- deputies_get_data("active")
 
   #getting data from page with inactive deputies
-  deputies_inactive <- srp_deputies_data("inactive")
+  deputies_inactive <- deputies_get_data("inactive")
 
   #merging ids, names and surnames of active and inactive deputies
   id_deputies <- c(deputies_active[,1],deputies_inactive[,1])

@@ -1,12 +1,12 @@
 #' Creating database
 #'
-#' Function \code{srp_create_database} creates database with three empty
+#' Function \code{create_database} creates database with three empty
 #' tables: deputies, votings, votes.
 #'
 #' @details
 #' // to do
 #'
-#' @usage srp_create_database(dbname,user,password,host)
+#' @usage create_database(dbname,user,password,host)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -21,7 +21,7 @@
 #' @author Piotr Smuda
 #'
 
-srp_create_database <- function(dbname,user,password,host){
+create_database <- function(dbname,user,password,host){
   #connecting to database
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)

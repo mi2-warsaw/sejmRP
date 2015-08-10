@@ -1,11 +1,11 @@
 #' Adding new deputies to table
 #'
-#' Function \code{srp_deputies_add_new} adds new deputies to table with deputies.
+#' Function \code{deputies_add_new} adds new deputies to table with deputies.
 #'
 #' @details
 #' // to do
 #'
-#' @usage srp_deputies_add_new(dbname,user,password,host,type,id)
+#' @usage deputies_add_new(dbname,user,password,host,type,id)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -22,10 +22,10 @@
 #' @author Piotr Smuda
 #'
 
-srp_deputies_add_new <- function(dbname,user,password,host,type,id){
+deputies_add_new <- function(dbname,user,password,host,type,id){
   
   #getting data from page with deputies
-  deputies <- srp_deputies_data(type)
+  deputies <- deputies_data(type)
   
   #finding maximum id of deputies
   max_id <- max(deputies[,1])

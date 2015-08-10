@@ -1,11 +1,11 @@
 #' Updating table with deputies
 #'
-#' Function \code{srp_deputies_table_update} updates table with deputies.
+#' Function \code{deputies_update_table} updates table with deputies.
 #'
 #' @details
 #' // to do
 #'
-#' @usage srp_deputies_table_update(dbname,user,password,host)
+#' @usage deputies_update_table(dbname,user,password,host)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -20,7 +20,7 @@
 #' @author Piotr Smuda
 #'
 
-srp_deputies_table_update <- function(dbname,user,password,host){
+deputies_update_table <- function(dbname,user,password,host){
 
   #checking last id of deputies
   drv <- dbDriver("PostgreSQL")
@@ -30,8 +30,8 @@ srp_deputies_table_update <- function(dbname,user,password,host){
   suppressWarnings(dbDisconnect(database_diet))
 
   #adding new deputies to database
-  srp_deputies_add_new(dbname,user,password,host,"active",last_id)
-  srp_deputies_add_new(dbname,user,password,host,"inactive",last_id)
+  deputies_add_new(dbname,user,password,host,"active",last_id)
+  deputies_add_new(dbname,user,password,host,"inactive",last_id)
 
   return(invisible(NULL))
 }
