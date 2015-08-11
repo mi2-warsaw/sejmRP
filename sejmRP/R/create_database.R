@@ -22,6 +22,9 @@
 #'
 
 create_database <- function(dbname,user,password,host){
+  stopifnot(is.character(dbname),is.character(user),is.character(password),
+            is.character(host))
+  
   #connecting to database
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)

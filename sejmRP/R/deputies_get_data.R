@@ -19,7 +19,7 @@
 
 deputies_get_data <- function(type="active"){
   
-  stopifnot(type=="active"||type=="inactive")
+  stopifnot(is.character(type),type=="active"||type=="inactive")
   
   #choosing proper page of deputies
   if(type=="active"){

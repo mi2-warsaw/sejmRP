@@ -21,6 +21,8 @@
 #'
 
 deputies_create_table <- function(dbname,user,password,host){
+  stopifnot(is.character(dbname),is.character(user),is.character(password),
+            is.character(host))
 
   #getting data from page with active deputies
   deputies_active <- deputies_get_data("active")
