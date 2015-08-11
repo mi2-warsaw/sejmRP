@@ -28,7 +28,7 @@ deputies_add_new <- function(dbname,user,password,host,type,id){
             is.character(id),as.numeric(id)%%1==0)
   
   #getting data from page with deputies
-  deputies <- deputies_data(type)
+  deputies <- deputies_get_data(type)
   
   #finding maximum id of deputies
   max_id <- max(deputies[,1])
