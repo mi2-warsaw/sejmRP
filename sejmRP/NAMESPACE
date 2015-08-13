@@ -1,4 +1,5 @@
 import(RPostgreSQL)
+import(XML)
 import(rvest)
 import(stringi)
 
