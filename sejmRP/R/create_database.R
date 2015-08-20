@@ -45,6 +45,12 @@ create_database <- function(dbname,user,password,host){
       id_deputy varchar(4) NOT NULL, id_voting int NOT NULL, vote varchar(20) NOT NULL,
       club varchar(50), FOREIGN KEY (id_deputy) REFERENCES Deputies(id_deputy),
       FOREIGN KEY (id_voting) REFERENCES Votings(id_voting))")
+  
+  #creating table with statements data
+  dbSendQuery(database_diet, "CREATE TABLE statements (id_statement int NOT NULL PRIMARY KEY,
+              surname_name varchar(50) NOT NULL, nr_meeting int NOT NULL, day_meeting int NOT NULL,  
+              statement text NOT NULL, FOREIGN KEY (surname_name) REFERENCES deputies(surname_name),
+              FOREIGN KEY (nr_meeting) REFERENCES votings(nr_meeting))")
 
   #disconnecting to database
   suppressWarnings(dbDisconnect(database_diet))
