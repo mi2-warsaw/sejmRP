@@ -1,6 +1,6 @@
 #opis
 
-votings_get_meetings_table <- function(home_page,page){
+votings_get_meetings_table <- function(page){
   #stopifnoty
   
   #getting meetings table
