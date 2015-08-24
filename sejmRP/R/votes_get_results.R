@@ -1,7 +1,24 @@
-#opis
+#' Getting voting's results for each club
+#'
+#' Function \code{votes_get_results} gets voting's results for each club.
+#'
+#' @details
+#' // to do
+#'
+#' @usage votes_get_results(page)
+#'
+#' @param page club's voting's results page
+#' 
+#' @return data frame with two columns: deputy, vote
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 votes_get_results <- function(page){
-  #stopifnoty
+  stopifnot(is.character(page))
   
   #getting deputies and their votes
   votes_clubs_results <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]

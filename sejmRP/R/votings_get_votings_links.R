@@ -1,7 +1,25 @@
-#opis
+#' Getting votings' links
+#'
+#' Function \code{votings_get_votings_links} gets votings' links.
+#'
+#' @details
+#' // to do
+#'
+#' @usage votings_get_votings_links(home_page,page)
+#'
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param page meeting's page
+#'
+#' @return character vector
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 votings_get_votings_links <- function(home_page,page){
-  #stopifnoty
+  stopifnot(is.character(home_page),is.character(page))
   
   #getting votings links
   votings_links <- html_nodes(html(page), ".bold a")

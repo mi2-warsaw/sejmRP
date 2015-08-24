@@ -1,7 +1,30 @@
-#opis
+#' Updating table with votings
+#'
+#' Function \code{votings_update_table} updates table with votings.
+#'
+#' @details
+#' // to do
+#'
+#' @usage votings_update_table(dbname,user,password,host,home_page,page)
+#'
+#' @param dbname name of database
+#' @param user name of user
+#' @param password password of database
+#' @param host name of host
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param page page with votings in polish diet: http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
+#'
+#' @return invisible NULL
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 votings_update_table <- function(dbname,user,password,host,home_page,page){
-  #stopifnoty
+  stopifnot(is.character(dbname),is.character(user),is.character(password),
+            is.character(host),is.character(home_page),is.character(page))
   
   #checking last nr_meeting, removing records with that number and checking last id_voting
   drv <- dbDriver("PostgreSQL")

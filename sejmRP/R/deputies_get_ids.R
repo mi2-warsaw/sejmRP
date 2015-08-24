@@ -1,9 +1,29 @@
-#opis
+#' Getting deputies' ids
+#'
+#' Function \code{deputies_get_ids} gets deputies' ids.
+#'
+#' @details
+#' // to do
+#'
+#' @usage deputies_get_ids(dbname,user,password,host,windows)
+#'
+#' @param dbname name of database
+#' @param user name of user
+#' @param password password of database
+#' @param host name of host
+#' @param windows information of used operation system; default: TRUE
+#' 
+#' @return named character vector
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 deputies_get_ids <- function(dbname,user,password,host,windows=TRUE){
-  #stopifnoty
-  
-  #jesli windows to zmieniamy kodowanie
+  stopifnot(is.character(dbname),is.character(user),is.character(password),
+            is.character(host),is.logical(windows))
   
   #getting deputies' ids
   drv <- dbDriver("PostgreSQL")

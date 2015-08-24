@@ -1,7 +1,25 @@
-#opis
+#' Getting links with voting's results for each club
+#'
+#' Function \code{votes_get_clubs_links} gets links with voting's results for each club.
+#'
+#' @details
+#' // to do
+#'
+#' @usage votes_get_clubs_links(home_page,page)
+#'
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param page voting's page
+#' 
+#' @return data frame with two columns: club, links
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 votes_get_clubs_links <- function(home_page,page){
-  #stopifnoty
+  stopifnot(is.character(home_page),is.character(page))
   
   #getting clubs
   results_page <- html(page)

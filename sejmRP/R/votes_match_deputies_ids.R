@@ -1,7 +1,30 @@
-#opis
+#' Matching deputies to theirs' ids
+#'
+#' Function \code{votes_match_deputies_ids} matches deputies to theirs' ids.
+#'
+#' @details
+#' // to do
+#'
+#' @usage votes_match_deputies_ids(dbname,user,password,host,page,windows=TRUE)
+#'
+#' @param dbname name of database
+#' @param user name of user
+#' @param password password of database
+#' @param host name of host
+#' @param page club's voting's results page
+#' @param windows information of used operation system; default: TRUE
+#' 
+#' @return invisible NULL
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 votes_match_deputies_ids <- function(dbname,user,password,host,page,windows=TRUE){
-  #stopifnoty
+  stopifnot(is.character(dbname),is.character(user),is.character(password),
+            is.character(host),is.character(page),is.logical(windows))
   
   #getting all of deputies' ids
   deputies_whole_ids <- deputies_get_ids(dbname,user,password,host,windows)

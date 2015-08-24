@@ -1,7 +1,30 @@
-#opis
+#' Updating table with votes
+#'
+#' Function \code{votes_update_table} updates table with votes.
+#'
+#' @details
+#' // to do
+#'
+#' @usage votes_update_table(dbname,user,password,host,home_page,windows=TRUE)
+#'
+#' @param dbname name of database
+#' @param user name of user
+#' @param password password of database
+#' @param host name of host
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param windows information of used operation system; default: TRUE
+#' 
+#' @return invisible NULL
+#'
+#' @examples
+#' // to do
+#'
+#' @author Piotr Smuda
+#'
 
 votes_update_table <- function(dbname,user,password,host,home_page,windows=TRUE){
-  #stopifnoty
+  stopifnot(is.character(dbname),is.character(user),is.character(password),
+            is.character(host),is.character(home_page),is.logical(windows))
   
   #checking last nr_meeting, removing records with that number and checking last id_voting
   drv <- dbDriver("PostgreSQL")
