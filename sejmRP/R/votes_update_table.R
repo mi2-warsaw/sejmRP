@@ -1,9 +1,6 @@
 #' Updating table with votes
 #'
-#' Function \code{votes_update_table} updates table with votes.
-#'
-#' @details
-#' // to do
+#' Function \code{votes_update_table} updates a table with votes.
 #'
 #' @usage votes_update_table(dbname,user,password,host,home_page,windows=TRUE)
 #'
@@ -17,8 +14,18 @@
 #' @return invisible NULL
 #'
 #' @examples
-#' // to do
-#'
+#' \dontrun{
+#' home_page <- http://www.sejm.gov.pl/Sejm7.nsf/
+#' votes_update_table(dbname,user,password,host,home_page,TRUE)
+#' votes_update_table(dbname,user,password,host,home_page,FALSE)}
+#' 
+#' @note
+#' There is a possibility that someone's voice reader broke during voting
+#' and this situation is treated like this deputy was absent. Even if deputy
+#' made a decision, he's/she's vote is "Nieobecny".
+#' 
+#' All information is stored in PostgreSQL database.
+#' 
 #' @author Piotr Smuda
 #'
 
@@ -29,14 +36,14 @@ votes_update_table <- function(dbname,user,password,host,home_page,windows=TRUE)
   #checking last nr_meeting, removing records with that number and checking last id_voting
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
-  last_id_voting <- fetch(dbSendQuery(database_diet, "SELECT max(id_voting) FROM votes"))
+  last_id_voting <- dbGetQuery(database_diet, "SELECT max(id_voting) FROM votes")
   last_id_voting <- as.integer(last_id_voting)
-  dbSendQuery(database_diet,paste0("DELETE FROM votes WHERE id_voting=",last_id_voting))
-  last_id_vote <- fetch(dbSendQuery(database_diet, "SELECT max(id_vote) FROM votes"))
+  dbSendQuery(database_diet,paste0("DELETE FROM votes WHERE id_voting>=",last_id_voting))
+  last_id_vote <- dbGetQuery(database_diet, "SELECT max(id_vote) FROM votes")
   last_id_vote <- as.integer(last_id_vote)
   
   #getting voting_id and results links
-  votings_ids_links <- dbReadTable(database_diet,"votings")[,c(1,6)]
+  votings_ids_links <- dbGetQuery(database_diet,"SELECT * FROM votings ORDER BY id_voting")[,c(1,6)]
   suppressWarnings(dbDisconnect(database_diet))
   
   #choosing the place from where we start update table
@@ -49,6 +56,11 @@ votes_update_table <- function(dbname,user,password,host,home_page,windows=TRUE)
   for(i in seq_len(nrow(votings_ids_links))){
     #getting clubs and links from voting
     votes_get_clubs <- votes_get_clubs_links(home_page,votings_ids_links[i,2])
+    
+    #if there isn't table with results
+    if(is.null(votes_get_clubs)){
+      next
+    }
     
     for(j in seq_len(nrow(votes_get_clubs))){
       #getting deputies id, vote and club

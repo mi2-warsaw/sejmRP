@@ -2,9 +2,6 @@
 #'
 #' Function \code{votings_get_meetings_links} gets meetings' links.
 #'
-#' @details
-#' // to do
-#'
 #' @usage votings_get_meetings_links(home_page,page)
 #'
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
@@ -13,7 +10,13 @@
 #' @return character vector
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
+#' votings_get_meetings_links(home_page,page)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

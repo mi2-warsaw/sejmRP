@@ -1,9 +1,12 @@
 #' Getting deputies' ids
 #'
-#' Function \code{deputies_get_ids} gets deputies' ids.
+#' Function \code{deputies_get_ids} gets deputies' ids from \emph{deputies} table.
 #'
 #' @details
-#' // to do
+#' Function \code{deputies_get_ids} gets deputies' ids from \emph{deputies} table.
+#' As result of this function you get named character vector with ids, where their
+#' names are names and surnames of deputies. Because of encoding issue on Windows
+#' operation system, you need to select if you use Windows.
 #'
 #' @usage deputies_get_ids(dbname,user,password,host,windows)
 #'
@@ -16,7 +19,12 @@
 #' @return named character vector
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' deputies_get_ids(dbname,user,password,host,TRUE)
+#' deputies_get_ids(dbname,user,password,host,FALSE)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

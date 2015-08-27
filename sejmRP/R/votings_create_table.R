@@ -1,10 +1,7 @@
 #' Creating table with votings
 #'
-#' Function \code{votings_create_table} creates table with votings.
-#'
-#' @details
-#' // to do
-#'
+#' Function \code{votings_create_table} creates a table with votings.
+#' 
 #' @usage votings_create_table(dbname,user,password,host,home_page,page)
 #'
 #' @param dbname name of database
@@ -17,7 +14,16 @@
 #' @return invisible NULL
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
+#' votings_create_table(dbname,user,password,host,home_page,page)}
+#' 
+#' @note
+#' Use only this function for first time, when the \emph{votings} table
+#' is empty. Then use \code{votings_update_table}.
+#' 
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

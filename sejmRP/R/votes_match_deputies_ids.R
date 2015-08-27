@@ -1,9 +1,15 @@
 #' Matching deputies to theirs' ids
 #'
-#' Function \code{votes_match_deputies_ids} matches deputies to theirs' ids.
+#' Function \code{votes_match_deputies_ids} matches deputies from voting's results
+#' page to theirs' ids from \emph{deputies} table.
 #'
 #' @details
-#' // to do
+#' Function \code{votes_match_deputies_ids} matches deputies from voting's results
+#' page to theirs' ids from \emph{deputies} table. The result of this function is
+#' a data frame with deputies' data, ids and votes. Because of encoding issue
+#' on Windows operation system, you need to select if you use Windows.
+#' Example of page with voting's results of PO club: 
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PO
 #'
 #' @usage votes_match_deputies_ids(dbname,user,password,host,page,windows=TRUE)
 #'
@@ -14,11 +20,17 @@
 #' @param page club's voting's results page
 #' @param windows information of used operation system; default: TRUE
 #' 
-#' @return invisible NULL
+#' @return data frame with three columns: deputy, vote, id
 #'
 #' @examples
-#' // to do
-#'
+#' \dontrun{
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PO"
+#' votes_match_deputies_ids(dbname,user,password,host,page,TRUE)
+#' votes_match_deputies_ids(dbname,user,password,host,page,FALSE)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
+#' 
 #' @author Piotr Smuda
 #'
 

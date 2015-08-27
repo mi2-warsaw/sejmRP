@@ -23,13 +23,20 @@ votes_update_table(dbname,user,password,host,home_page,windows=TRUE)
 invisible NULL
 }
 \description{
-Function \code{votes_update_table} updates table with votes.
+Function \code{votes_update_table} updates a table with votes.
 }
-\details{
-// to do
+\note{
+There is a possibility that someone's voice reader broke during voting
+and this situation is treated like this deputy was absent. Even if deputy
+made a decision, he's/she's vote is "Nieobecny".
+
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+home_page <- http://www.sejm.gov.pl/Sejm7.nsf/
+votes_update_table(dbname,user,password,host,home_page,TRUE)
+votes_update_table(dbname,user,password,host,home_page,FALSE)}
 }
 \author{
 Piotr Smuda

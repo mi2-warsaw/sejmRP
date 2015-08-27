@@ -1,9 +1,11 @@
 #' Getting votings' links
 #'
-#' Function \code{votings_get_votings_links} gets votings' links.
+#' Function \code{votings_get_votings_links} gets votings' links from
+#' meeting's page.
 #'
 #' @details
-#' // to do
+#' Example of a meeting's page: 
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179
 #'
 #' @usage votings_get_votings_links(home_page,page)
 #'
@@ -13,7 +15,13 @@
 #' @return character vector
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179"
+#' votings_get_votings_links(home_page,page)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

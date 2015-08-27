@@ -3,7 +3,10 @@
 #' Function \code{votings_get_meetings_table} gets meetings' table.
 #'
 #' @details
-#' // to do
+#' Function \code{votings_get_meetings_table} gets meetings' table. The
+#' result of this function is a data frame with three columns, where
+#' the first includes numbers of meetings, the second theirs' dates in
+#' Polish and the third is with numbers of votings on each meeting.
 #'
 #' @usage votings_get_meetings_table(page)
 #'
@@ -12,7 +15,12 @@
 #' @return data frame with three unnamed columns
 #'
 #' @examples
-#' // to do
+#' #' \dontrun{
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
+#' votings_get_meetings_table(page)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

@@ -19,14 +19,35 @@ create_database(dbname,user,password,host)
 invisible NULL
 }
 \description{
-Function \code{create_database} creates database with three empty
+Function \code{create_database} creates a database with three empty
 tables: deputies, votings, votes.
 }
 \details{
-// to do
+\preformatted{
+Created tables:
+1. deputies with columns:
+    1) id_deputy - deputy's id,
+    2) surname_name - deputy's names and surnames,
+2. votings with columns:
+    1) id_voting - voting's id,
+    2) nr_meeting - meeting's number,
+    3) date_meeting - meeting's date,
+    4) nr_voting - voting's number,
+    5) topic_voting - voting's topic,
+    6) link_results - link with voting's results,
+3. votes with columns:
+    1) id_vote - vote's id,
+    2) id_deputy - deputy's id,
+    3) id_voting - voting's id,
+    4) vote - deputy's vote, one of: "Za","Przeciw","Wstrzymal sie","Nieobecny",
+    5) club - deputy's club.}
+}
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+create_database(dbname,user,password,host)}
 }
 \author{
 Piotr Smuda

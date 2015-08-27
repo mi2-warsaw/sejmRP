@@ -1,10 +1,10 @@
 Package: sejmRP
-Title: An information about deputies and votings in Polish diet
+Title: Information about deputies and votings in Polish diet
 Version: 0.1
 Date: 2015-08-06
 Author: person("Piotr","Smuda","piotrsmuda@gmail.com",role=("aut","cre"))
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: Set of functions that access information about deputies and votings in Polish diet from webpage http://www.sejm.gov.pl/.
+Maintainer: Piotr Smuda <piotrsmuda@gmail.com>
+Description: Set of functions that access information about deputies and votings in Polish diet from webpage http://www.sejm.gov.pl/. All information is stored in PostgreSQL database.
 Depends: R (>= 3.1.0)
 License: GPL-2
 LazyData: true

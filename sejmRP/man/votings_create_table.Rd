@@ -23,13 +23,19 @@ votings_create_table(dbname,user,password,host,home_page,page)
 invisible NULL
 }
 \description{
-Function \code{votings_create_table} creates table with votings.
+Function \code{votings_create_table} creates a table with votings.
 }
-\details{
-// to do
+\note{
+Use only this function for first time, when the \emph{votings} table
+is empty. Then use \code{votings_update_table}.
+
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
+votings_create_table(dbname,user,password,host,home_page,page)}
 }
 \author{
 Piotr Smuda

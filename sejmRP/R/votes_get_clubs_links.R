@@ -1,9 +1,12 @@
 #' Getting links with voting's results for each club
 #'
-#' Function \code{votes_get_clubs_links} gets links with voting's results for each club.
+#' Function \code{votes_get_clubs_links} gets links with voting's results for each club
+#' from voting's page.
 #'
 #' @details
-#' // to do
+#' Function \code{votes_get_clubs_links} gets links with voting's results for each club
+#' from voting's page. Example of a voting's page: 
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1
 #'
 #' @usage votes_get_clubs_links(home_page,page)
 #'
@@ -13,8 +16,14 @@
 #' @return data frame with two columns: club, links
 #'
 #' @examples
-#' // to do
-#'
+#' \dontrun{
+#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1"
+#' votes_get_clubs_links(home_page,page)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
+#' 
 #' @author Piotr Smuda
 #'
 
@@ -25,6 +34,22 @@ votes_get_clubs_links <- function(home_page,page){
   results_page <- html(page)
   votes_info <- html_nodes(results_page, ".center .right")
   votes_clubs <- html_text(votes_info)
+  
+  #if there is comment in table 
+  comments <- stri_detect_regex(votes_clubs,"Uwaga|\\s")
+  votes_clubs <- votes_clubs[!comments]
+
+  #recznie poprawic potem rekordy dla strony 
+  #http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=70&NrGlosowania=2
+  #id_voting to 3568
+  #
+  #http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=71&NrGlosowania=62
+  #id_voting to 3640
+    
+  #if there isn't table with results
+  if(length(votes_clubs)==0){
+    return(invisible(NULL))
+  }
   
   #getting links
   votes_links <- html_nodes(votes_info, "a")

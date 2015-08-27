@@ -16,10 +16,17 @@ data frame with two columns: id_deputy, surname_name
 Function \code{deputies_get_data} gets data about deputies.
 }
 \details{
-// to do
+Function \code{deputies_get_data} gets deputies' ids and personal data like
+name and surname. Also there is a choice between types of deputies, because
+on the page of Polish diet deputies are splitted into \emph{active} and \emph{inactive}.
+}
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+deputies_get_data("active")
+deputies_get_data("inactive")}
 }
 \author{
 Piotr Smuda

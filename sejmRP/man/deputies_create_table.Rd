@@ -19,13 +19,17 @@ deputies_create_table(dbname,user,password,host)
 invisible NULL
 }
 \description{
-Function \code{deputies_create_table} creates table with deputies.
+Function \code{deputies_create_table} creates a table with deputies.
 }
-\details{
-// to do
+\note{
+Use only this function for first time, when the \emph{deputies} table
+is empty. Then use \code{deputies_update_table}.
+
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+deputies_create_table(dbname,user,password,host)}
 }
 \author{
 Piotr Smuda

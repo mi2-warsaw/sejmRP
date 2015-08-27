@@ -17,11 +17,14 @@ character vector
 \description{
 Function \code{votings_get_meetings_links} gets meetings' links.
 }
-\details{
-// to do
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
+votings_get_meetings_links(home_page,page)}
 }
 \author{
 Piotr Smuda

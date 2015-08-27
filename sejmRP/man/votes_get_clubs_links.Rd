@@ -15,13 +15,22 @@ votes_get_clubs_links(home_page,page)
 data frame with two columns: club, links
 }
 \description{
-Function \code{votes_get_clubs_links} gets links with voting's results for each club.
+Function \code{votes_get_clubs_links} gets links with voting's results for each club
+from voting's page.
 }
 \details{
-// to do
+Function \code{votes_get_clubs_links} gets links with voting's results for each club
+from voting's page. Example of a voting's page:
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1
+}
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1"
+votes_get_clubs_links(home_page,page)}
 }
 \author{
 Piotr Smuda

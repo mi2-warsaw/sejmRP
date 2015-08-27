@@ -1,9 +1,12 @@
 #' Adding new deputies to table
 #'
-#' Function \code{deputies_add_new} adds new deputies to table with deputies.
+#' Function \code{deputies_add_new} adds new deputies to a table with deputies.
 #'
 #' @details
-#' // to do
+#' Function \code{deputies_add_new} adds new deputies to a table with deputies.
+#' Also there is a choice between types of deputies, because on the page 
+#' of Polish diet deputies are splitted into \emph{active} and \emph{inactive}.
+#' In addition id of the last added deputy in \emph{deputies} table is needed.
 #'
 #' @usage deputies_add_new(dbname,user,password,host,type,id)
 #'
@@ -17,7 +20,12 @@
 #' @return invisible NULL
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' deputies_add_new(dbname,user,password,host,"active",id)
+#' deputies_add_new(dbname,user,password,host,"inactive",id)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

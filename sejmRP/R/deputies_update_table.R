@@ -1,9 +1,6 @@
 #' Updating table with deputies
 #'
-#' Function \code{deputies_update_table} updates table with deputies.
-#'
-#' @details
-#' // to do
+#' Function \code{deputies_update_table} updates a table with deputies.
 #'
 #' @usage deputies_update_table(dbname,user,password,host)
 #'
@@ -15,7 +12,11 @@
 #' @return invisible NULL
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' deputies_update_table(dbname,user,password,host)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

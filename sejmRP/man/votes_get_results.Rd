@@ -16,10 +16,18 @@ data frame with two columns: deputy, vote
 Function \code{votes_get_results} gets voting's results for each club.
 }
 \details{
-// to do
+Function \code{votes_get_results} gets voting's results for each club.
+Example of page with voting's results of PO club:
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PO
+}
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PO"
+votes_get_results(page)
+votes_get_results(page)}
 }
 \author{
 Piotr Smuda

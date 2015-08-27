@@ -2,9 +2,6 @@
 #'
 #' Function \code{votings_update_table} updates table with votings.
 #'
-#' @details
-#' // to do
-#'
 #' @usage votings_update_table(dbname,user,password,host,home_page,page)
 #'
 #' @param dbname name of database
@@ -17,7 +14,13 @@
 #' @return invisible NULL
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
+#' votings_update_table(dbname,user,password,host,home_page,page)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'
@@ -29,10 +32,10 @@ votings_update_table <- function(dbname,user,password,host,home_page,page){
   #checking last nr_meeting, removing records with that number and checking last id_voting
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
-  last_nr_meeting <- fetch(dbSendQuery(database_diet, "SELECT max(nr_meeting) FROM votings"))
+  last_nr_meeting <- dbGetQuery(database_diet, "SELECT max(nr_meeting) FROM votings")
   last_nr_meeting <- as.integer(last_nr_meeting)
   dbSendQuery(database_diet,paste0("DELETE FROM votings WHERE nr_meeting=",last_nr_meeting))
-  last_id_voting <- fetch(dbSendQuery(database_diet, "SELECT max(id_voting) FROM votings"))
+  last_id_voting <- dbGetQuery(database_diet, "SELECT max(id_voting) FROM votings")
   last_id_voting <- as.integer(last_id_voting)
   suppressWarnings(dbDisconnect(database_diet))
   

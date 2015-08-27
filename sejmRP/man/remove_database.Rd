@@ -19,13 +19,14 @@ remove_database(dbname,user,password,host)
 invisible NULL
 }
 \description{
-Function \code{remove_database} remove whole database
+Function \code{remove_database} remove whole database.
 }
-\details{
-// to do
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+remove_database(dbname,user,password,host)}
 }
 \author{
 Piotr Smuda

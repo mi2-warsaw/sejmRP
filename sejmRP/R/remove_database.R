@@ -1,9 +1,6 @@
 #' Removing database
 #'
-#' Function \code{remove_database} remove whole database
-#'
-#' @details
-#' // to do
+#' Function \code{remove_database} remove whole database.
 #'
 #' @usage remove_database(dbname,user,password,host)
 #'
@@ -15,7 +12,11 @@
 #' @return invisible NULL
 #'
 #' @examples
-#' // to do
+#' \dontrun{
+#' remove_database(dbname,user,password,host)}
+#' 
+#' @note
+#' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'

@@ -19,13 +19,14 @@ deputies_update_table(dbname,user,password,host)
 invisible NULL
 }
 \description{
-Function \code{deputies_update_table} updates table with deputies.
+Function \code{deputies_update_table} updates a table with deputies.
 }
-\details{
-// to do
+\note{
+All information is stored in PostgreSQL database.
 }
 \examples{
-// to do
+\dontrun{
+deputies_update_table(dbname,user,password,host)}
 }
 \author{
 Piotr Smuda
