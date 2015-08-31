@@ -39,7 +39,7 @@ votes_get_clubs_links <- function(home_page,page){
   comments <- stri_detect_regex(votes_clubs,"Uwaga|\\s")
   votes_clubs <- votes_clubs[!comments]
 
-  #recznie poprawic potem rekordy dla strony 
+  # TODO: recznie poprawic potem rekordy dla strony 
   #http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=70&NrGlosowania=2
   #id_voting to 3568
   #
