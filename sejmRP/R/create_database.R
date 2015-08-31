@@ -67,6 +67,10 @@ create_database <- function(dbname,user,password,host){
       club varchar(50), FOREIGN KEY (id_deputy) REFERENCES deputies(id_deputy),
       FOREIGN KEY (id_voting) REFERENCES votings(id_voting))")
   
+  #creating table with counter data
+  dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,
+               date varchar(10) NOT NULL)")
+
   #creating table with statements data
 #   dbSendQuery(database_diet, "CREATE TABLE statements (id_statement int NOT NULL PRIMARY KEY,
 #               surname_name varchar(50) NOT NULL, nr_meeting int NOT NULL, day_meeting int NOT NULL,  
