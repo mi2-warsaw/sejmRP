@@ -72,10 +72,8 @@ create_database <- function(dbname,user,password,host){
                date varchar(10) NOT NULL)")
 
   #creating table with statements data
-#   dbSendQuery(database_diet, "CREATE TABLE statements (id_statement int NOT NULL PRIMARY KEY,
-#               surname_name varchar(50) NOT NULL, nr_meeting int NOT NULL, day_meeting int NOT NULL,  
-#               statement text NOT NULL, FOREIGN KEY (surname_name) REFERENCES deputies(surname_name),
-#               FOREIGN KEY (nr_meeting) REFERENCES votings(nr_meeting))")
+  dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
+            surname_name varchar(100) NOT NULL, statement text NOT NULL)")
 
   #disconnecting to database
   suppressWarnings(dbDisconnect(database_diet))
