@@ -46,8 +46,9 @@ Created tables:
     2) surname_name - author of statement,
     3) statement - content of statement,
 5. counter with columns:
-    1) what - type of new INSERT to the counter table,
-    2) date - date of new INSERT to the counter table.}
+    1) id - counter's id,
+    2) what - type of new INSERT to the counter table,
+    3) date - date of new INSERT to the counter table.}
 }
 \note{
 All information is stored in PostgreSQL database.

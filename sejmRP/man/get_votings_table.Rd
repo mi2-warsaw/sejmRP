@@ -5,7 +5,7 @@
 \title{Importing votings table from a database}
 \usage{
 get_votings_table(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
-host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE)
+host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE, windows = TRUE)
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -17,12 +17,19 @@ host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE)
 \item{host}{name of host; default: 'services.mini.pw.edu.pl'}
 
 \item{sorted_by_id}{information if table should be sorted by id; default: TRUE}
+
+\item{windows}{information of used operation system; default: TRUE}
 }
 \value{
 data frame
 }
 \description{
 Function \code{get_votings_table} imports votings table from a database.
+}
+\details{
+Function \code{get_votings_table} imports votings table from a database.
+The result of this function is a data frame with votings' data. Because of
+encoding issue on Windows operation system, you need to select if you use Windows.
 }
 \note{
 Default parameters use privilages of 'reader'. It can only SELECT data from database.

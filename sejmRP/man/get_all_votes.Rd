@@ -4,7 +4,8 @@
 \alias{get_all_votes}
 \title{Retrieve all votes from a database}
 \usage{
-get_all_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874', host = 'services.mini.pw.edu.pl')
+get_all_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
+host = 'services.mini.pw.edu.pl', windows = TRUE)
 }
 \arguments{
 \item{dbname}{name of database}
@@ -14,9 +15,11 @@ get_all_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874', host = 
 \item{password}{password of database}
 
 \item{host}{name of host}
+
+\item{windows}{information of used operation system; default: TRUE}
 }
 \value{
-a data.frame with NULL
+data frame with NULL
 }
 \description{
 Function \code{get_all_votes} reads all votes from a database.
