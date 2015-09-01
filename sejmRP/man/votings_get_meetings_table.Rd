@@ -4,10 +4,11 @@
 \alias{votings_get_meetings_table}
 \title{Getting meetings' table}
 \usage{
-votings_get_meetings_table(page)
+votings_get_meetings_table(page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 }
 \arguments{
-\item{page}{page with votings in polish diet: http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
+\item{page}{page with votings in polish diet:
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
 }
 \value{
 data frame with three unnamed columns
@@ -25,9 +26,8 @@ Polish and the third is with numbers of votings on each meeting.
 All information is stored in PostgreSQL database.
 }
 \examples{
-#' \dontrun{
-page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
-votings_get_meetings_table(page)}
+\dontrun{
+votings_get_meetings_table()}
 }
 \author{
 Piotr Smuda

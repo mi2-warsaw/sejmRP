@@ -4,7 +4,8 @@
 \alias{votings_update_table}
 \title{Updating table with votings}
 \usage{
-votings_update_table(dbname,user,password,host,home_page,page)
+votings_update_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 }
 \arguments{
 \item{dbname}{name of database}
@@ -17,7 +18,8 @@ votings_update_table(dbname,user,password,host,home_page,page)
 
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
-\item{page}{page with votings in polish diet: http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
+\item{page}{page with votings in polish diet:
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
 }
 \value{
 invisible NULL
@@ -30,9 +32,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
-votings_update_table(dbname,user,password,host,home_page,page)}
+votings_update_table(dbname,user,password,host)}
 }
 \author{
 Piotr Smuda

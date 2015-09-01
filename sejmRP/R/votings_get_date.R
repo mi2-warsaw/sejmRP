@@ -22,6 +22,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 votings_get_date <- function(page){
   stopifnot(is.character(page))

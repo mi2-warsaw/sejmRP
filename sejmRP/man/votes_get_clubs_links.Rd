@@ -4,7 +4,7 @@
 \alias{votes_get_clubs_links}
 \title{Getting links with voting's results for each club}
 \usage{
-votes_get_clubs_links(home_page,page)
+votes_get_clubs_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page)
 }
 \arguments{
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}

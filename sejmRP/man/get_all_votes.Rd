@@ -16,12 +16,16 @@ get_all_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874', host = 
 \item{host}{name of host}
 }
 \value{
-a data.frame with  NULL
+a data.frame with NULL
 }
 \description{
 Function \code{get_all_votes} reads all votes from a database.
+}
+\note{
 Default parameters use privilages of 'reader'. It can only SELECT data from database.
 Note that, due to data size (~150 MB) it may take few seconds / minutes to download all votes.
+
+All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{

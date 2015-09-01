@@ -2,22 +2,22 @@
 #'
 #' Function \code{votings_create_table} creates a table with votings.
 #' 
-#' @usage votings_create_table(dbname,user,password,host,home_page,page)
+#' @usage votings_create_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+#' page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
-#' @param page page with votings in polish diet: http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
+#' @param page page with votings in polish diet: 
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
 #'
 #' @return invisible NULL
 #'
 #' @examples
 #' \dontrun{
-#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
-#' votings_create_table(dbname,user,password,host,home_page,page)}
+#' votings_create_table(dbname,user,password,host)}
 #' 
 #' @note
 #' Use only this function for first time, when the \emph{votings} table
@@ -27,8 +27,11 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
-votings_create_table <- function(dbname,user,password,host,home_page,page){
+votings_create_table <- function(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+  page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page),is.character(page))
   

@@ -1,13 +1,14 @@
-#' Creating table with deputies' statements.
+#' Creating table with deputies' statements
 #'
 #' Function \code{statements_create_table} creates a table with deputies' statements.
 #'
-#' @usage statements_create_table(dbname,user,password,host)
+#' @usage statements_create_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #'
 #' @return invisible NULL
 #'
@@ -16,15 +17,17 @@
 #' statements_create_table(dbname,user,password,host)}
 #'
 #' @note
-#' Use only this function for first time, when the \emph{deputies} table
-#' is empty. Then use \code{deputies_update_table}.
+#' Use only this function for first time, when the \emph{statements} table
+#' is empty. Then use \code{statements_update_table}.
 #' 
 #' All information is stored in PostgreSQL database.
 #'
-#' @author Piotr Smuda, Tomasz Mikołajczyk
+#' @author Piotr Smuda, Tomasz Mikolajczyk
+#'
+#' @export
 #'
 
-statements_create_table <- function(dbname,user,password,host,home_page){
+statements_create_table <- function(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page))
    

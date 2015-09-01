@@ -27,6 +27,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 votings_get_votings_table <- function(page){
   stopifnot(is.character(page))

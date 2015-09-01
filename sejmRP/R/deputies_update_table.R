@@ -20,6 +20,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 deputies_update_table <- function(dbname,user,password,host){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
@@ -28,7 +30,7 @@ deputies_update_table <- function(dbname,user,password,host){
   #checking last id of deputies
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
-  last_id <- fetch(dbSendQuery(database_diet, "SELECT max(id_deputy) FROM deputies"))
+  last_id <- dbGetQuery(database_diet, "SELECT max(id_deputy) FROM deputies")
   last_id <- as.character(last_id)
   suppressWarnings(dbDisconnect(database_diet))
 

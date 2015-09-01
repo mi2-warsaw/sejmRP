@@ -28,6 +28,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 deputies_get_ids <- function(dbname,user,password,host,windows=TRUE){
   stopifnot(is.character(dbname),is.character(user),is.character(password),

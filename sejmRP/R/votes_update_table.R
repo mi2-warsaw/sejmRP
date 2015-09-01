@@ -2,7 +2,7 @@
 #'
 #' Function \code{votes_update_table} updates a table with votes.
 #'
-#' @usage votes_update_table(dbname,user,password,host,home_page,windows=TRUE)
+#' @usage votes_update_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -28,8 +28,10 @@
 #' 
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
-votes_update_table <- function(dbname,user,password,host,home_page,windows=TRUE){
+votes_update_table <- function(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page),is.logical(windows))
   

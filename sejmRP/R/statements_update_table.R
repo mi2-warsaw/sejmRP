@@ -1,17 +1,41 @@
-#tbd
+#' Updating table with deputies' statements
+#'
+#' Function \code{statements_update_table} updates a table with deputies' statements.
+#'
+#' @usage statements_update_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
+#'
+#' @param dbname name of database
+#' @param user name of user
+#' @param password password of database
+#' @param host name of host
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#'
+#' @return invisible NULL
+#'
+#' @examples
+#' \dontrun{
+#' statements_update_table(dbname,user,password,host)}
+#'
+#' @note 
+#' All information is stored in PostgreSQL database.
+#'
+#' @author Piotr Smuda, Tomasz Mikolajczyk
+#'
+#' @export
+#'
 
-statements_update_table <- function(dbname,user,password,host,home_page){
+statements_update_table <- function(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page))
   
   #checking last id of statements
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
-  last_id <- dbGetQuery(database_diet, "SELECT max(id_statement) FROM statements")
-  last_id <- as.character(last_id)
+  last_id <- dbGetQuery(database_diet,"SELECT SUBSTRING(id_statement, '[0-9]+\\.[0-9]+') FROM statements")
+  last_id <- max(as.numeric(last_id[,1]))
   ids_numbers <- unlist(stri_extract_all_regex(last_id,"[0-9]+"))
-  dbSendQuery(database_diet,paste0("DELETE FROM statements WHERE id_statement>'",ids_numbers[1],
-                                   ".",ids_numbers[2],"'"))
+  dbSendQuery(database_diet,paste0("DELETE FROM statements WHERE id_statement SIMILAR TO '",ids_numbers[1],
+                                   "\\.",ids_numbers[2],"\\.[0-9]{3,4}'"))
   suppressWarnings(dbDisconnect(database_diet))
   
   nr_meeting <- as.numeric(ids_numbers[1])

@@ -4,7 +4,7 @@
 \alias{votes_create_table}
 \title{Creating table with votes}
 \usage{
-votes_create_table(dbname,user,password,host,home_page,windows=TRUE)
+votes_create_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
 }
 \arguments{
 \item{dbname}{name of database}

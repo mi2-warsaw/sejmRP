@@ -33,6 +33,8 @@
 #' 
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 votes_match_deputies_ids <- function(dbname,user,password,host,page,windows=TRUE){
   stopifnot(is.character(dbname),is.character(user),is.character(password),

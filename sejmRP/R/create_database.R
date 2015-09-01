@@ -1,7 +1,7 @@
 #' Creating database
 #'
-#' Function \code{create_database} creates a database with three empty
-#' tables: deputies, votings, votes.
+#' Function \code{create_database} creates a database with five empty
+#' tables: deputies, votings, votes, statements, counter.
 #' 
 #' @details
 #' \preformatted{
@@ -21,7 +21,14 @@
 #'     2) id_deputy - deputy's id,
 #'     3) id_voting - voting's id,
 #'     4) vote - deputy's vote, one of: "Za","Przeciw","Wstrzymal sie","Nieobecny",
-#'     5) club - deputy's club.}
+#'     5) club - deputy's club,
+#' 4. statements with columns:
+#'     1) id_statement - statement's id,
+#'     2) surname_name - author of statement,
+#'     3) statement - content of statement,
+#' 5. counter with columns:
+#'     1) what - type of new INSERT to the counter table,
+#'     2) date - date of new INSERT to the counter table.}
 #' 
 #' @usage create_database(dbname,user,password,host)
 #'
@@ -40,6 +47,8 @@
 #' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
+#' 
+#' @export
 #'
 
 create_database <- function(dbname,user,password,host){
@@ -66,14 +75,14 @@ create_database <- function(dbname,user,password,host){
       id_deputy varchar(4) NOT NULL, id_voting int NOT NULL, vote varchar(20) NOT NULL,
       club varchar(50), FOREIGN KEY (id_deputy) REFERENCES deputies(id_deputy),
       FOREIGN KEY (id_voting) REFERENCES votings(id_voting))")
-  
-  #creating table with counter data
-  dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,
-               date varchar(10) NOT NULL)")
 
   #creating table with statements data
   dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
             surname_name varchar(100) NOT NULL, statement text NOT NULL)")
+  
+  #creating table with counter data
+  dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,
+               date varchar(10) NOT NULL)")
 
   #disconnecting to database
   suppressWarnings(dbDisconnect(database_diet))

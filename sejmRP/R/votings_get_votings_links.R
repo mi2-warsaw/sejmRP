@@ -7,7 +7,7 @@
 #' Example of a meeting's page: 
 #' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179
 #'
-#' @usage votings_get_votings_links(home_page,page)
+#' @usage votings_get_votings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page)
 #'
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #' @param page meeting's page
@@ -25,8 +25,10 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
-votings_get_votings_links <- function(home_page,page){
+votings_get_votings_links <- function(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page){
   stopifnot(is.character(home_page),is.character(page))
   
   #getting votings links

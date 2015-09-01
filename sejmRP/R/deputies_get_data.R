@@ -23,8 +23,10 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
-deputies_get_data <- function(type="active"){
+deputies_get_data <- function(type){
   
   stopifnot(is.character(type),type=="active"||type=="inactive")
   

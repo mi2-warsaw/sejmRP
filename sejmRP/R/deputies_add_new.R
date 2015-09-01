@@ -29,6 +29,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 deputies_add_new <- function(dbname,user,password,host,type,id){
   stopifnot(is.character(dbname),is.character(user),is.character(password),

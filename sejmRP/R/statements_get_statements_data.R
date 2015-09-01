@@ -1,5 +1,32 @@
-#' tbd
-
+#' Getting data about statements
+#'
+#' Function \code{statements_get_statements_data} gets data about statements.
+#' 
+#' @details
+#' Function \code{statements_get_statements_data} gets data about statements like
+#' author, page with content of statement and it's id.
+#'
+#' @usage statements_get_statements_data(statements_links)
+#'
+#' @param statements_links list of elements of XMLNodeSet class with statements' ids, links 
+#' and their's authors
+#'
+#' @return data frame with three columns: names, statements_links, ids
+#'
+#' @examples
+#' \dontrun{
+#' page <- html("http://www.sejm.gov.pl/Sejm7.nsf/wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=0")
+#' page <- html_nodes(page,".stenogram")
+#' statements_links <- html_nodes(page, "h2 a")
+#' statements_get_statements_data(statements_links)}
+#'
+#' @note
+#' All information is stored in PostgreSQL database.
+#'
+#' @author Piotr Smuda, Tomasz Mikolajczyk
+#'
+#' @export
+#'
 
 statements_get_statements_data <- function(statements_links){
   stopifnot(is.list(statements_links),length(statements_links)>0)

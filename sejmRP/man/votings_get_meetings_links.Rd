@@ -4,12 +4,14 @@
 \alias{votings_get_meetings_links}
 \title{Getting meetings' links}
 \usage{
-votings_get_meetings_links(home_page,page)
+votings_get_meetings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 }
 \arguments{
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
-\item{page}{page with votings in polish diet: http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
+\item{page}{page with votings in polish diet:
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
 }
 \value{
 character vector
@@ -22,9 +24,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
-votings_get_meetings_links(home_page,page)}
+votings_get_meetings_links()}
 }
 \author{
 Piotr Smuda

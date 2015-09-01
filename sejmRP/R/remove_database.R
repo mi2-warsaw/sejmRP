@@ -20,6 +20,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 remove_database <- function(dbname,user,password,host){
   stopifnot(is.character(dbname),is.character(user),is.character(password),

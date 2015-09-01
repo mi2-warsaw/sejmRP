@@ -1,8 +1,6 @@
 #' Retrieve all votes from a database
 #'
-#' Function \code{get_all_votes} reads all votes from a database.
-#' Default parameters use privilages of 'reader'. It can only SELECT data from database.
-#' Note that, due to data size (~150 MB) it may take few seconds / minutes to download all votes. 
+#' Function \code{get_all_votes} reads all votes from a database. 
 #' 
 #' @usage get_all_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874', host = 'services.mini.pw.edu.pl')
 #'
@@ -11,7 +9,7 @@
 #' @param password password of database
 #' @param host name of host
 #'
-#' @return a data.frame with  NULL
+#' @return a data.frame with NULL
 #'
 #' @examples
 #' \dontrun{
@@ -20,7 +18,13 @@
 #' # [1] 2741899       8
 #' object.size(all_votes)
 #' # 144287808 bytes}
-#'
+#' 
+#' @note
+#' Default parameters use privilages of 'reader'. It can only SELECT data from database.
+#' Note that, due to data size (~150 MB) it may take few seconds / minutes to download all votes.
+#' 
+#' All information is stored in PostgreSQL database.
+#' 
 #' @author Przemyslaw Biecek
 #' 
 #' @export

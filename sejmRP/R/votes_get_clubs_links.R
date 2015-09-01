@@ -8,7 +8,7 @@
 #' from voting's page. Example of a voting's page: 
 #' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1
 #'
-#' @usage votes_get_clubs_links(home_page,page)
+#' @usage votes_get_clubs_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page)
 #'
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #' @param page voting's page
@@ -26,8 +26,10 @@
 #' 
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
-votes_get_clubs_links <- function(home_page,page){
+votes_get_clubs_links <- function(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page){
   stopifnot(is.character(home_page),is.character(page))
   
   #getting clubs

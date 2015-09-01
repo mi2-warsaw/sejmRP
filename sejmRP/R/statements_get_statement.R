@@ -1,26 +1,29 @@
 #' Getting statements
 #'
-#' Function \code{statements_get_statement} gets statements.
-#'
+#' Function \code{statements_get_statement} gets statement's content.
+#' 
 #' @details
-#' Function \code{statements_get_statement} gets statements' content.
+#' Function \code{statements_get_statement} gets statement's content.
+#' Example of page with deputy's statement: 
+#' http://www.sejm.gov.pl/Sejm7.nsf/wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=008
 #'
-#' @usage statements_get_statement(type)
+#' @usage statements_get_statement(page)
 #'
-#' @param 
+#' @param page deputy's statement's page
 #'
-#' @return statements' content
+#' @return character vector
 #'
 #' @examples
 #' \dontrun{
-#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
 #' page <- "http://www.sejm.gov.pl/Sejm7.nsf/wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=008"
-#' statements_get_statement(home_page,page)}
+#' statements_get_statement(page)}
 #'
 #' @note
 #' All information is stored in PostgreSQL database.
 #'
-#' @author Piotr Smuda, Tomasz Mikołajczyk
+#' @author Piotr Smuda, Tomasz Mikolajczyk
+#'
+#' @export
 #'
 
 statements_get_statement <- function(page){

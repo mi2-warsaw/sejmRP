@@ -8,24 +8,26 @@
 #' the first includes numbers of meetings, the second theirs' dates in
 #' Polish and the third is with numbers of votings on each meeting.
 #'
-#' @usage votings_get_meetings_table(page)
+#' @usage votings_get_meetings_table(page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 #'
-#' @param page page with votings in polish diet: http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
+#' @param page page with votings in polish diet: 
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
 #'
 #' @return data frame with three unnamed columns
 #'
 #' @examples
-#' #' \dontrun{
-#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"
-#' votings_get_meetings_table(page)}
+#' \dontrun{
+#' votings_get_meetings_table()}
 #' 
 #' @note
 #' All information is stored in PostgreSQL database.
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
-votings_get_meetings_table <- function(page){
+votings_get_meetings_table <- function(page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7"){
   stopifnot(is.character(page))
   
   #getting meetings table

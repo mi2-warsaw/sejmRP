@@ -23,6 +23,8 @@
 #'
 #' @author Piotr Smuda
 #'
+#' @export
+#'
 
 deputies_create_table <- function(dbname,user,password,host){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
