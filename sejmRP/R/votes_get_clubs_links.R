@@ -40,13 +40,6 @@ votes_get_clubs_links <- function(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
   #if there is comment in table 
   comments <- stri_detect_regex(votes_clubs,"Uwaga|\\s")
   votes_clubs <- votes_clubs[!comments]
-
-  # TODO: recznie poprawic potem rekordy dla strony 
-  #http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=70&NrGlosowania=2
-  #id_voting to 3568
-  #
-  #http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=71&NrGlosowania=62
-  #id_voting to 3640
     
   #if there isn't table with results
   if(length(votes_clubs)==0){

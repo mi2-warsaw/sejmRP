@@ -6,10 +6,11 @@
 #' Function \code{statements_get_statements_data} gets data about statements like
 #' author, page with content of statement and it's id.
 #'
-#' @usage statements_get_statements_data(statements_links)
+#' @usage statements_get_statements_data(statements_links,home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
 #'
 #' @param statements_links list of elements of XMLNodeSet class with statements' ids, links 
 #' and their's authors
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #'
 #' @return data frame with three columns: names, statements_links, ids
 #'
@@ -18,7 +19,7 @@
 #' page <- html("http://www.sejm.gov.pl/Sejm7.nsf/wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=0")
 #' page <- html_nodes(page,".stenogram")
 #' statements_links <- html_nodes(page, "h2 a")
-#' statements_get_statements_data(statements_links)}
+#' statements_get_statements_data(statements_links,home_page="http://www.sejm.gov.pl/Sejm7.nsf/")}
 #'
 #' @note
 #' All information is stored in PostgreSQL database.
@@ -28,14 +29,14 @@
 #' @export
 #'
 
-statements_get_statements_data <- function(statements_links){
+statements_get_statements_data <- function(statements_links,home_page="http://www.sejm.gov.pl/Sejm7.nsf/"){
   stopifnot(is.list(statements_links),length(statements_links)>0)
   
   #Get speakers' names
   names <- html_text(statements_links)
   
   #Check whether the speaker is a deputy 
-  if_deputy <- stri_detect_regex(names,"Poseł |Minister |[p|P]rezes Rady Ministrów ")
+  if_deputy <- stri_detect_regex(names,"(Pose. )|(Minister )|([p|P]rezes Rady Ministr.w )")
   names <- names[if_deputy]
   
   #Get links to statements

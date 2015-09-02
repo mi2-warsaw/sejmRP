@@ -44,7 +44,8 @@ Created tables:
 4. statements with columns:
     1) id_statement - statement's id,
     2) surname_name - author of statement,
-    3) statement - content of statement,
+    3) date_statement - statement's date
+    4) statement - content of statement,
 5. counter with columns:
     1) id - counter's id,
     2) what - type of new INSERT to the counter table,

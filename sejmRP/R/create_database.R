@@ -25,7 +25,8 @@
 #' 4. statements with columns:
 #'     1) id_statement - statement's id,
 #'     2) surname_name - author of statement,
-#'     3) statement - content of statement,
+#'     3) date_statement - statement's date
+#'     4) statement - content of statement,
 #' 5. counter with columns:
 #'     1) id - counter's id,
 #'     2) what - type of new INSERT to the counter table,
@@ -51,6 +52,9 @@
 #' 
 #' @export
 #'
+#' @import RPostgreSQL rvest stringi
+#' @importFrom DBI dbDriver
+#' @importFrom XML readHTMLTable
 
 create_database <- function(dbname,user,password,host){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
@@ -79,7 +83,7 @@ create_database <- function(dbname,user,password,host){
 
   #creating table with statements data
   dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
-            surname_name varchar(100) NOT NULL, statement text NOT NULL)")
+            surname_name varchar(100) NOT NULL, date_statement date NOT NULL, statement text NOT NULL)")
   
   #creating table with counter data
   dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,

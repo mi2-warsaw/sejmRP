@@ -8,4 +8,9 @@ Description: Set of functions that access information about deputies and votings
 Depends: R (>= 3.1.0)
 License: GPL-2
 LazyData: true
-Imports: RPostgreSQL, XML, rvest, stringi
+Imports: 
+  RPostgreSQL,
+  DBI,
+  XML,
+  rvest, 
+  stringi

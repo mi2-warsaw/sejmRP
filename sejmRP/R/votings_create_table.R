@@ -68,5 +68,8 @@ votings_create_table <- function(dbname,user,password,host,home_page="http://www
     suppressWarnings(dbDisconnect(database_diet))
   }
   
+  #creating a flag file when creating votings table is finished
+  file.create("sejmRP_votings_flag")
+  
   return(invisible(NULL))
 }

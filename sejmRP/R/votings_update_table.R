@@ -32,18 +32,30 @@ votings_update_table <- function(dbname,user,password,host,home_page="http://www
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page),is.character(page))
   
-  #checking last nr_meeting, removing records with that number and checking last id_voting
+  #checking last nr_meeting, removing records with that number (if flag file
+  #doesn't exist) and checking last id_voting
   drv <- dbDriver("PostgreSQL")
   database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
   last_nr_meeting <- dbGetQuery(database_diet, "SELECT max(nr_meeting) FROM votings")
   last_nr_meeting <- as.integer(last_nr_meeting)
-  dbSendQuery(database_diet,paste0("DELETE FROM votings WHERE nr_meeting=",last_nr_meeting))
+  if(!file.exists("sejmRP_votings_flag")){
+    ids_to_remove <- dbGetQuery(database_diet,
+      paste0("SELECT id_voting FROM votings WHERE nr_meeting=",last_nr_meeting))
+    ids_to_remove <- min(ids_to_remove)
+    dbSendQuery(database_diet,paste0("DELETE FROM votes WHERE id_voting>=",ids_to_remove))
+    dbSendQuery(database_diet,paste0("DELETE FROM votings WHERE nr_meeting=",last_nr_meeting))
+  }
   last_id_voting <- dbGetQuery(database_diet, "SELECT max(id_voting) FROM votings")
   last_id_voting <- as.integer(last_id_voting)
   suppressWarnings(dbDisconnect(database_diet))
   
   #getting meetings table with meetings' numbers
   meetings_table <- votings_get_meetings_table(page)
+  
+  #checking if votings table is up-to-date
+  if(meetings_table[1,1]==last_nr_meeting & file.exists("sejmRP_votings_flag")){
+    return(invisible(NULL))
+  }
   
   #getting meetings links with votings
   meetings_links <- votings_get_meetings_links(home_page,page)
@@ -79,6 +91,9 @@ votings_update_table <- function(dbname,user,password,host,home_page="http://www
     }
     suppressWarnings(dbDisconnect(database_diet))
   }
+  
+  #creating a flag file when updating votings table is finished
+  file.create("sejmRP_votings_flag")
   
   return(invisible(NULL))
 }
