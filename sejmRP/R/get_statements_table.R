@@ -23,9 +23,9 @@
 #' \dontrun{
 #' statements <- get_statements_table()
 #' dim(statements)
-#' # [1] 12629     3
+#' # [1] 42169     4
 #' names(statements)
-#' # [1] "id_statement" "surname_name" "statement"}
+#' # [1] "id_statement" "surname_name" "date_statement" "statement"}
 #' 
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
