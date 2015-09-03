@@ -19,8 +19,8 @@ create_database(dbname,user,password,host)
 invisible NULL
 }
 \description{
-Function \code{create_database} creates a database with five empty
-tables: deputies, votings, votes, statements, counter.
+Function \code{create_database} creates a database with four empty
+tables: deputies, votings, votes, statements.
 }
 \details{
 \preformatted{
@@ -42,14 +42,11 @@ Created tables:
     4) vote - deputy's vote, one of: "Za","Przeciw","Wstrzymal sie","Nieobecny",
     5) club - deputy's club,
 4. statements with columns:
-    1) id_statement - statement's id,
+    1) id_statement - statement's id, like:
+    (meeting's number).(voting's number).(statement's number),
     2) surname_name - author of statement,
-    3) date_statement - statement's date
-    4) statement - content of statement,
-5. counter with columns:
-    1) id - counter's id,
-    2) what - type of new INSERT to the counter table,
-    3) date - date of new INSERT to the counter table.}
+    3) date_statement - statement's date,
+    4) statement - content of statement.}
 }
 \note{
 All information is stored in PostgreSQL database.

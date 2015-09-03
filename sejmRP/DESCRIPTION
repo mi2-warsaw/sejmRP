@@ -11,6 +11,7 @@ LazyData: true
 Imports: 
   RPostgreSQL,
   DBI,
+  dplyr,
   XML,
   rvest, 
   stringi
