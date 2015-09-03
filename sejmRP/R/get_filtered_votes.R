@@ -24,7 +24,7 @@
 #' as first and second element of vector.
 #' \item deputies - full names of deputies. This filter is a character vector with full
 #' names of deputies in format: "surname first_name second_name". If you are not sure
-#' if deputy about who you are interested has second name, try "surname first_name" or
+#' if the deputy you were thinking about has second name, try "surname first_name" or
 #' just "surname". There is high probability that proper deputy will be chosen. 
 #' It is possible to choose more than one deputy.
 #' \item topics - text patterns. This filter is a character vector with text patterns of
@@ -40,7 +40,7 @@
 #' Because of encoding issue on Windows operation system, you also need to select 
 #' if you use Windows.
 #' 
-#' @usage get_all_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
+#' @usage get_filtered_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
 #' host = 'services.mini.pw.edu.pl', windows = TRUE, clubs = character(0), dates = character(0),
 #' meetings = integer(0), votings = integer(0), deputies = character(0), topics = character(0))
 #'
