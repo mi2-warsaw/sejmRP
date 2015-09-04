@@ -83,6 +83,14 @@
 #' 
 #' @export
 #'
+#' @importFrom dplyr src_postgres
+#' @importFrom dplyr tbl
+#' @importFrom dplyr sql
+#' @importFrom dplyr filter
+#' @importFrom dplyr between
+#' @importFrom dplyr mutate
+#' @importFrom dplyr collect
+#' 
 
 get_filtered_votes <- function(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
   host = 'services.mini.pw.edu.pl', windows = TRUE, clubs = character(0), dates = character(0),

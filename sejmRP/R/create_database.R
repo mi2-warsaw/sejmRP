@@ -49,9 +49,10 @@
 #' 
 #' @export
 #'
-#' @import RPostgreSQL rvest stringi dplyr
+#' @import RPostgreSQL rvest stringi
 #' @importFrom DBI dbDriver
 #' @importFrom XML readHTMLTable
+#' 
 
 create_database <- function(dbname,user,password,host){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
