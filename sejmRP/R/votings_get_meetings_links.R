@@ -2,12 +2,14 @@
 #'
 #' Function \code{votings_get_meetings_links} gets meetings' links.
 #'
-#' @usage votings_get_meetings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
-#' page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+#' @usage votings_get_meetings_links(
+#'   home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page=
+#'   "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 #'
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #' @param page page with votings in polish diet: 
-#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
+#' symbol=posglos&NrKadencji=7
 #'
 #' @return character vector
 #'

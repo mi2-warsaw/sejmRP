@@ -2,8 +2,9 @@
 #'
 #' Function \code{votings_update_table} updates table with votings.
 #'
-#' @usage votings_update_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
-#' page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+#' @usage votings_update_table(dbname,user,password,host,
+#'   home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page=
+#'   "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -11,7 +12,8 @@
 #' @param host name of host
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #' @param page page with votings in polish diet: 
-#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
+#' symbol=posglos&NrKadencji=7
 #'
 #' @return invisible NULL
 #'

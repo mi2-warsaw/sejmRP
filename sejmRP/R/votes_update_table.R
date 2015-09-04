@@ -2,7 +2,8 @@
 #'
 #' Function \code{votes_update_table} updates a table with votes.
 #'
-#' @usage votes_update_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
+#' @usage votes_update_table(dbname,user,password,host,
+#'   home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
 #'
 #' @param dbname name of database
 #' @param user name of user

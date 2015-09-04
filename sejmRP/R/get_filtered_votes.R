@@ -40,9 +40,11 @@
 #' Because of encoding issue on Windows operation system, you also need to select 
 #' if you use Windows.
 #' 
-#' @usage get_filtered_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
-#' host = 'services.mini.pw.edu.pl', windows = TRUE, clubs = character(0), dates = character(0),
-#' meetings = integer(0), votings = integer(0), deputies = character(0), topics = character(0))
+#' @usage get_filtered_votes(dbname = 'sejmrp', user = 'reader',
+#'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
+#'   windows = TRUE, clubs = character(0), dates = character(0),
+#'   meetings = integer(0), votings = integer(0),
+#'   deputies = character(0), topics = character(0))
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
@@ -70,7 +72,8 @@
 #' dim(filtered_votes)
 #' # [1] 2741899       8
 #' names(filtered_votes)
-#' [1] "surname_name" "club" "vote" "id_voting" "nr_meeting" "nr_voting" "date_meeting" "topic_voting"
+#' [1] "surname_name" "club" "vote" "id_voting" "nr_meeting"
+#' [6] "nr_voting" "date_meeting" "topic_voting"
 #' object.size(filtered_votes)
 #' # 144250888 bytes}
 #' 
@@ -83,6 +86,14 @@
 #' 
 #' @export
 #'
+#' @importFrom dplyr src_postgres
+#' @importFrom dplyr tbl
+#' @importFrom dplyr sql
+#' @importFrom dplyr filter
+#' @importFrom dplyr between
+#' @importFrom dplyr mutate
+#' @importFrom dplyr collect
+#' 
 
 get_filtered_votes <- function(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
   host = 'services.mini.pw.edu.pl', windows = TRUE, clubs = character(0), dates = character(0),

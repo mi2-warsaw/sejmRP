@@ -4,9 +4,11 @@
 \alias{get_filtered_votes}
 \title{Retrieve filtered votes from a database}
 \usage{
-get_filtered_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
-host = 'services.mini.pw.edu.pl', windows = TRUE, clubs = character(0), dates = character(0),
-meetings = integer(0), votings = integer(0), deputies = character(0), topics = character(0))
+get_filtered_votes(dbname = 'sejmrp', user = 'reader',
+  password = 'qux94874', host = 'services.mini.pw.edu.pl',
+  windows = TRUE, clubs = character(0), dates = character(0),
+  meetings = integer(0), votings = integer(0),
+  deputies = character(0), topics = character(0))
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -92,7 +94,8 @@ filtered_votes <- get_filtered_votes()
 dim(filtered_votes)
 # [1] 2741899       8
 names(filtered_votes)
-[1] "surname_name" "club" "vote" "id_voting" "nr_meeting" "nr_voting" "date_meeting" "topic_voting"
+[1] "surname_name" "club" "vote" "id_voting" "nr_meeting"
+[6] "nr_voting" "date_meeting" "topic_voting"
 object.size(filtered_votes)
 # 144250888 bytes}
 }

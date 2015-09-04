@@ -7,8 +7,9 @@
 #' The result of this function is a data frame with statements' data. Because of
 #' encoding issue on Windows operation system, you need to select if you use Windows.
 #' 
-#' @usage get_statements_table(dbname = 'sejmrp', user = 'reader', password = 'qux94874', 
-#' host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE, windows = TRUE)
+#' @usage get_statements_table(dbname = 'sejmrp', user = 'reader',
+#'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
+#'   sorted_by_id = TRUE, windows = TRUE)
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
@@ -60,7 +61,8 @@ get_statements_table <- function(dbname = 'sejmrp', user = 'reader', password = 
   
   #encoding for windows
   if(windows){
-    statements[,3] <- iconv(statements[,3],from = "UTF-8", to = "Windows-1250")
+    statements[,2] <- iconv(statements[,2],from = "UTF-8", to = "Windows-1250")
+    statements[,4] <- iconv(statements[,4],from = "UTF-8", to = "Windows-1250")
   }
   
   suppressWarnings(dbDisconnect(database_diet))

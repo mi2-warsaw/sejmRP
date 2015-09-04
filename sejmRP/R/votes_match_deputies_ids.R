@@ -9,7 +9,8 @@
 #' a data frame with deputies' data, ids and votes. Because of encoding issue
 #' on Windows operation system, you need to select if you use Windows.
 #' Example of page with voting's results of PO club: 
-#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PO
+#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
+#' symbol=klubglos&IdGlosowania=37494&KodKlubu=PO
 #'
 #' @usage votes_match_deputies_ids(dbname,user,password,host,page,windows=TRUE)
 #'
@@ -24,7 +25,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PO"
+#' page <- paste0("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?",
+#'              "symbol=klubglos&IdGlosowania=37494&KodKlubu=PO")
 #' votes_match_deputies_ids(dbname,user,password,host,page,TRUE)
 #' votes_match_deputies_ids(dbname,user,password,host,page,FALSE)}
 #' 

@@ -4,8 +4,9 @@
 \alias{get_votings_table}
 \title{Importing votings table from a database}
 \usage{
-get_votings_table(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
-host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE, windows = TRUE)
+get_votings_table(dbname = 'sejmrp', user = 'reader',
+  password = 'qux94874', host = 'services.mini.pw.edu.pl',
+  sorted_by_id = TRUE, windows = TRUE)
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -42,7 +43,8 @@ votings <- get_votings_table()
 dim(votings)
 # [1] 5969    6
 names(votings)
-# [1] "id_voting"    "nr_meeting"   "date_meeting" "nr_voting"    "topic_voting" "link_results"}
+# [1] "id_voting"    "nr_meeting"   "date_meeting"
+# [4] "nr_voting"    "topic_voting" "link_results"}
 }
 \author{
 Piotr Smuda

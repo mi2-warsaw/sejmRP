@@ -4,7 +4,8 @@
 \alias{votes_get_clubs_links}
 \title{Getting links with voting's results for each club}
 \usage{
-votes_get_clubs_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page)
+votes_get_clubs_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+  page)
 }
 \arguments{
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
@@ -21,7 +22,8 @@ from voting's page.
 \details{
 Function \code{votes_get_clubs_links} gets links with voting's results for each club
 from voting's page. Example of a voting's page:
-http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&
+NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1
 }
 \note{
 All information is stored in PostgreSQL database.
@@ -29,7 +31,8 @@ All information is stored in PostgreSQL database.
 \examples{
 \dontrun{
 home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1"
+page <- paste0("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?",
+  "symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1")
 votes_get_clubs_links(home_page,page)}
 }
 \author{

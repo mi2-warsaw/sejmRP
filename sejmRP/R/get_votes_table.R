@@ -7,8 +7,9 @@
 #' The result of this function is a data frame with votes' data. Because of
 #' encoding issue on Windows operation system, you need to select if you use Windows.
 #' 
-#' @usage get_votes_table(dbname = 'sejmrp', user = 'reader', password = 'qux94874', 
-#' host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE, windows = TRUE)
+#' @usage get_votes_table(dbname = 'sejmrp', user = 'reader',
+#'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
+#'   sorted_by_id = TRUE, windows = TRUE)
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'

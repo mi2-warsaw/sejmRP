@@ -2,7 +2,8 @@
 #'
 #' Function \code{statements_create_table} creates a table with deputies' statements.
 #'
-#' @usage statements_create_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
+#' @usage statements_create_table(dbname,user,password,host,
+#'   home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
 #'
 #' @param dbname name of database
 #' @param user name of user

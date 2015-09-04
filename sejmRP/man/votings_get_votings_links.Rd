@@ -4,7 +4,8 @@
 \alias{votings_get_votings_links}
 \title{Getting votings' links}
 \usage{
-votings_get_votings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page)
+votings_get_votings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+  page)
 }
 \arguments{
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}

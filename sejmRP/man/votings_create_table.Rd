@@ -4,8 +4,9 @@
 \alias{votings_create_table}
 \title{Creating table with votings}
 \usage{
-votings_create_table(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
-page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+votings_create_table(dbname,user,password,host,
+  home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page=
+  "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 }
 \arguments{
 \item{dbname}{name of database}
@@ -19,7 +20,8 @@ page="http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
 \item{page}{page with votings in polish diet:
-http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7}
+http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
+symbol=posglos&NrKadencji=7}
 }
 \value{
 invisible NULL
