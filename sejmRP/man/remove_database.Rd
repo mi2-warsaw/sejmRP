@@ -4,7 +4,7 @@
 \alias{remove_database}
 \title{Removing database}
 \usage{
-remove_database(dbname,user,password,host)
+remove_database(dbname, user, password, host)
 }
 \arguments{
 \item{dbname}{name of database}
@@ -26,7 +26,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-remove_database(dbname,user,password,host)}
+remove_database(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda

@@ -6,7 +6,7 @@
 \usage{
 get_filtered_votes(dbname = 'sejmrp', user = 'reader',
   password = 'qux94874', host = 'services.mini.pw.edu.pl',
-  windows = .Platform$OS.type == "windows", clubs = character(0),
+  windows = .Platform$OS.type == 'windows', clubs = character(0),
   dates = character(0), meetings = integer(0), votings = integer(0),
   deputies = character(0), topics = character(0))
 }
@@ -19,7 +19,7 @@ get_filtered_votes(dbname = 'sejmrp', user = 'reader',
 
 \item{host}{name of host; default: 'services.mini.pw.edu.pl'}
 
-\item{windows}{information of used operation system; default: .Platform$OS.type == "windows"}
+\item{windows}{information of used operation system; default: .Platform$OS.type == 'windows'}
 
 \item{clubs}{names of clubs that will be taken to filter data from database;
 default: character(0)}
@@ -52,9 +52,9 @@ The result of this function is an invisible data frame with statements' data.
 Possible filters:
 \enumerate{
 \item clubs - names of clubs. This filter is a character vector with elements
-like for example: "PO", "PiS", "SLD". It is possible to choose more than one club.
+like for example: 'PO', 'PiS', 'SLD'. It is possible to choose more than one club.
 \item dates - period of time. This filter is a character vector with two elements
-in date format "YYYY-MM-DD", where the first describes left boundary of period and
+in date format 'YYYY-MM-DD', where the first describes left boundary of period and
 the second right boundary. It is possible to choose only one day, just try the same
 date as first and second element of vector.
 \item meetings - range of meetings' numbers. This filter is a integer vector with two
@@ -66,15 +66,15 @@ elements, where the first describes a left boundary of range and the second a ri
 boundary. It is possible to choose only one voting, just try the same number
 as first and second element of vector.
 \item deputies - full names of deputies. This filter is a character vector with full
-names of deputies in format: "surname first_name second_name". If you are not sure
-if the deputy you were thinking about has second name, try "surname first_name" or
-just "surname". There is high probability that proper deputy will be chosen.
+names of deputies in format: 'surname first_name second_name'. If you are not sure
+if the deputy you were thinking about has second name, try 'surname first_name' or
+just 'surname'. There is high probability that proper deputy will be chosen.
 It is possible to choose more than one deputy.
 \item topics - text patterns. This filter is a character vector with text patterns of
 topics that you are interested about. Note that the votings' topics are written like
 sentences, so remember about case inflection of nouns and adjectives and use stems of
 words as patterns. For example if you want to find votings about education (in Polish:
-szkolnictwo) try "szkolnictw". It is possible to choose more than one pattern.}
+szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.}
 
 If you did not choose any filter, the whole database will be downloaded.
 Note that, due to data size (<= ~150 MB) it may take few seconds / minutes
@@ -94,8 +94,8 @@ filtered_votes <- get_filtered_votes()
 dim(filtered_votes)
 # [1] 2741899       8
 names(filtered_votes)
-[1] "surname_name" "club" "vote" "id_voting" "nr_meeting"
-[6] "nr_voting" "date_meeting" "topic_voting"
+[1] 'surname_name' 'club' 'vote' 'id_voting' 'nr_meeting'
+[6] 'nr_voting' 'date_meeting' 'topic_voting'
 object.size(filtered_votes)
 # 144250888 bytes}
 }

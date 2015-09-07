@@ -25,8 +25,8 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-deputies_get_data("active")
-deputies_get_data("inactive")}
+deputies_get_data('active')
+deputies_get_data('inactive')}
 }
 \author{
 Piotr Smuda

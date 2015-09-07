@@ -4,8 +4,8 @@
 \alias{votings_get_meetings_table}
 \title{Getting meetings' table}
 \usage{
-votings_get_meetings_table(page=
-  "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+votings_get_meetings_table(page =
+  'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
 }
 \arguments{
 \item{page}{page with votings in polish diet:

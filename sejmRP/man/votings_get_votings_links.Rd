@@ -4,7 +4,7 @@
 \alias{votings_get_votings_links}
 \title{Getting votings' links}
 \usage{
-votings_get_votings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+votings_get_votings_links(home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
   page)
 }
 \arguments{
@@ -28,9 +28,9 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179"
-votings_get_votings_links(home_page,page)}
+home_page <- 'http://www.sejm.gov.pl/Sejm7.nsf/'
+page <- 'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179'
+votings_get_votings_links(home_page, page)}
 }
 \author{
 Piotr Smuda

@@ -6,7 +6,7 @@
 \usage{
 get_votings_table(dbname = 'sejmrp', user = 'reader',
   password = 'qux94874', host = 'services.mini.pw.edu.pl',
-  sorted_by_id = TRUE, windows = .Platform$OS.type == "windows")
+  sorted_by_id = TRUE, windows = .Platform$OS.type == 'windows')
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -20,7 +20,7 @@ get_votings_table(dbname = 'sejmrp', user = 'reader',
 \item{sorted_by_id}{information if table should be sorted by id; default: TRUE}
 
 \item{windows}{information of used operation system;
-default: .Platform$OS.type == "windows"}
+default: .Platform$OS.type == 'windows'}
 }
 \value{
 data frame
@@ -44,8 +44,8 @@ votings <- get_votings_table()
 dim(votings)
 # [1] 5969    6
 names(votings)
-# [1] "id_voting"    "nr_meeting"   "date_meeting"
-# [4] "nr_voting"    "topic_voting" "link_results"}
+# [1] 'id_voting'    'nr_meeting'   'date_meeting'
+# [4] 'nr_voting'    'topic_voting' 'link_results'}
 }
 \author{
 Piotr Smuda

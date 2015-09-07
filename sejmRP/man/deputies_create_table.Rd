@@ -4,7 +4,7 @@
 \alias{deputies_create_table}
 \title{Creating table with deputies}
 \usage{
-deputies_create_table(dbname,user,password,host)
+deputies_create_table(dbname, user, password, host)
 }
 \arguments{
 \item{dbname}{name of database}
@@ -29,7 +29,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-deputies_create_table(dbname,user,password,host)}
+deputies_create_table(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda

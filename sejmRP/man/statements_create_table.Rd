@@ -4,8 +4,8 @@
 \alias{statements_create_table}
 \title{Creating table with deputies' statements}
 \usage{
-statements_create_table(dbname,user,password,host,
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
+statements_create_table(dbname, user, password, host,
+  home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -32,7 +32,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-statements_create_table(dbname,user,password,host)}
+statements_create_table(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda, Tomasz Mikolajczyk

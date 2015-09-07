@@ -4,7 +4,7 @@
 \alias{deputies_add_new}
 \title{Adding new deputies to table}
 \usage{
-deputies_add_new(dbname,user,password,host,type,id)
+deputies_add_new(dbname, user, password, host, type, id)
 }
 \arguments{
 \item{dbname}{name of database}
@@ -36,8 +36,8 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-deputies_add_new(dbname,user,password,host,"active",id)
-deputies_add_new(dbname,user,password,host,"inactive",id)}
+deputies_add_new(dbname, user, password, host, 'active', id)
+deputies_add_new(dbname, user, password, host, 'inactive', id)}
 }
 \author{
 Piotr Smuda

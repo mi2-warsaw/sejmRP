@@ -4,9 +4,9 @@
 \alias{votes_update_table}
 \title{Updating table with votes}
 \usage{
-votes_update_table(dbname,user,password,host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
-  windows = .Platform$OS.type == "windows")
+votes_update_table(dbname, user, password, host,
+  home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
+  windows = .Platform$OS.type == 'windows')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -20,7 +20,7 @@ votes_update_table(dbname,user,password,host,
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
 \item{windows}{information of used operation system;
-default: .Platform$OS.type == "windows"}
+default: .Platform$OS.type == 'windows'}
 }
 \value{
 invisible NULL
@@ -31,15 +31,15 @@ Function \code{votes_update_table} updates a table with votes.
 \note{
 There is a possibility that someone's voice reader broke during voting
 and this situation is treated like this deputy was absent. Even if deputy
-made a decision, he's/she's vote is "Nieobecny".
+made a decision, he's/she's vote is 'Nieobecny'.
 
 All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
 home_page <- http://www.sejm.gov.pl/Sejm7.nsf/
-votes_update_table(dbname,user,password,host,home_page,TRUE)
-votes_update_table(dbname,user,password,host,home_page,FALSE)}
+votes_update_table(dbname, user, password, host, home_page, TRUE)
+votes_update_table(dbname, user, password, host, home_page, FALSE)}
 }
 \author{
 Piotr Smuda

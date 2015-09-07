@@ -4,8 +4,9 @@
 \alias{votes_create_table}
 \title{Creating table with votes}
 \usage{
-votes_create_table(dbname,user,password,host,
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
+votes_create_table(dbname, user, password, host,
+  home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
+  windows = .Platform$OS.type == 'windows')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -19,7 +20,7 @@ votes_create_table(dbname,user,password,host,
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
 \item{windows}{information of used operation system;
-default: .Platform$OS.type == "windows"}
+default: .Platform$OS.type == 'windows'}
 }
 \value{
 invisible NULL
@@ -33,15 +34,15 @@ is empty. Then use \code{votes_update_table}.
 
 There is a possibility that someone's voice reader broke during voting
 and this situation is treated like this deputy was absent. Even if deputy
-made a decision, he's/she's vote is "Nieobecny".
+made a decision, he's/she's vote is 'Nieobecny'.
 
 All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
 home_page <- http://www.sejm.gov.pl/Sejm7.nsf/
-votes_create_table(dbname,user,password,host,home_page,TRUE)
-votes_create_table(dbname,user,password,host,home_page,FALSE)}
+votes_create_table(dbname, user, password, host, home_page, TRUE)
+votes_create_table(dbname, user, password, host, home_page, FALSE)}
 }
 \author{
 Piotr Smuda

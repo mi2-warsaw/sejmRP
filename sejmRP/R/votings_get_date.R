@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179"
+#' page <- 'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179'
 #' votings_get_date(page)}
 #' 
 #' @note
@@ -25,14 +25,14 @@
 #' @export
 #'
 
-votings_get_date <- function(page){
-  stopifnot(is.character(page))
-  
-  #getting date
-  date <- html_nodes(html(page), "h1")
-  date <- html_text(date)
-  date <- unlist(stri_extract_all_regex(date,"[0-9]{2}-[0-9]{2}-[0-9]{4}"))
-  date <- as.character(strptime(date,"%d-%m-%Y"))
-  
-  return(date)
-}
+votings_get_date <- function(page) {
+    stopifnot(is.character(page))
+    
+    # getting date
+    date <- html_nodes(html(page), "h1")
+    date <- html_text(date)
+    date <- unlist(stri_extract_all_regex(date, "[0-9]{2}-[0-9]{2}-[0-9]{4}"))
+    date <- as.character(strptime(date, "%d-%m-%Y"))
+    
+    return(date)
+} 

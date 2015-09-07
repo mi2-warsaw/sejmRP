@@ -4,8 +4,8 @@
 \alias{deputies_get_ids}
 \title{Getting deputies' ids}
 \usage{
-deputies_get_ids(dbname,user,password,host,
-   windows = .Platform$OS.type == "windows")
+deputies_get_ids(dbname, user, password, host,
+   windows = .Platform$OS.type == 'windows')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -17,7 +17,7 @@ deputies_get_ids(dbname,user,password,host,
 \item{host}{name of host}
 
 \item{windows}{information of used operation system; default:
-.Platform$OS.type == "windows"}
+.Platform$OS.type == 'windows'}
 }
 \value{
 named character vector
@@ -36,8 +36,8 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-deputies_get_ids(dbname,user,password,host,TRUE)
-deputies_get_ids(dbname,user,password,host,FALSE)}
+deputies_get_ids(dbname, user, password, host, TRUE)
+deputies_get_ids(dbname, user, password, host, FALSE)}
 }
 \author{
 Piotr Smuda

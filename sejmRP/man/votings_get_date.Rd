@@ -24,7 +24,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179"
+page <- 'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179'
 votings_get_date(page)}
 }
 \author{

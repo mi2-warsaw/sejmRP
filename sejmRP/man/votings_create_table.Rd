@@ -4,9 +4,9 @@
 \alias{votings_create_table}
 \title{Creating table with votings}
 \usage{
-votings_create_table(dbname,user,password,host,
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page=
-  "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+votings_create_table(dbname, user, password, host,
+  home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/', page =
+  'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
 }
 \arguments{
 \item{dbname}{name of database}

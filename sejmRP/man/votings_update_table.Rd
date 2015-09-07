@@ -4,9 +4,9 @@
 \alias{votings_update_table}
 \title{Updating table with votings}
 \usage{
-votings_update_table(dbname,user,password,host,
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page=
-  "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+votings_update_table(dbname, user, password, host,
+  home_page='http://www.sejm.gov.pl/Sejm7.nsf/', page=
+  'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -34,7 +34,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-votings_update_table(dbname,user,password,host)}
+votings_update_table(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda

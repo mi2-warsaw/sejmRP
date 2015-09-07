@@ -5,8 +5,8 @@
 \title{Getting meetings' links}
 \usage{
 votings_get_meetings_links(
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page=
-  "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+  home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/', page =
+  'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
 }
 \arguments{
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}

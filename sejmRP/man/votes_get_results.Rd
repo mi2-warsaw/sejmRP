@@ -26,8 +26,8 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-page <- paste0("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?",
-           "symbol=klubglos&IdGlosowania=37494&KodKlubu=PO")
+page <- paste0('http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?',
+           'symbol=klubglos&IdGlosowania=37494&KodKlubu=PO')
 votes_get_results(page)
 votes_get_results(page)}
 }

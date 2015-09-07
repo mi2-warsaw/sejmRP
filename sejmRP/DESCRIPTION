@@ -3,14 +3,16 @@ Title: An information about deputies and votings in Polish diet
 Version: 0.1
 Date: 2015-08-06
 Author: 
-   Piotr Smuda [aut, cre]
+   Piotr Smuda [aut, cre],
+   Przemyslaw Biecek [aut],
    Tomasz Mikolajczyk [ctb]
 Authors@R: c(
    person("Piotr","Smuda",email="piotrsmuda@gmail.com",role=c("aut","cre")),
+   person("Przemyslaw","Biecek",email="przemyslaw.biecek@gmail.com",role="aut"),
    person("Tomasz","Mikolajczyk",email="t.mikolajczyk@gmail.com",role="ctb"))
 Maintainer: Piotr Smuda <piotrsmuda@gmail.com>
 Description: Set of functions that access information about deputies and votings in Polish diet from webpage http://www.sejm.gov.pl/.
-   The package was developed as a result of a probation in MI2 Group - http://mi2.mini.pw.edu.pl/.
+   The package was developed as a result of an internship in MI2 Group - http://mi2.mini.pw.edu.pl/, Faculty of Mathematics and Information Science, Warsaw University of Technology.
 Depends: R (>= 3.1.0)
 License: GPL-2
 LazyLoad: true

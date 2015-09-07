@@ -9,7 +9,7 @@
 #' 
 #' @usage get_votings_table(dbname = 'sejmrp', user = 'reader',
 #'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
-#'   sorted_by_id = TRUE, windows = .Platform$OS.type == "windows")
+#'   sorted_by_id = TRUE, windows = .Platform$OS.type == 'windows')
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
@@ -17,7 +17,7 @@
 #' @param host name of host; default: 'services.mini.pw.edu.pl'
 #' @param sorted_by_id information if table should be sorted by id; default: TRUE
 #' @param windows information of used operation system; 
-#' default: .Platform$OS.type == "windows"
+#' default: .Platform$OS.type == 'windows'
 #'
 #' @return data frame
 #'
@@ -27,8 +27,8 @@
 #' dim(votings)
 #' # [1] 5969    6
 #' names(votings)
-#' # [1] "id_voting"    "nr_meeting"   "date_meeting"
-#' # [4] "nr_voting"    "topic_voting" "link_results"}
+#' # [1] 'id_voting'    'nr_meeting'   'date_meeting'
+#' # [4] 'nr_voting'    'topic_voting' 'link_results'}
 #' 
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
@@ -40,32 +40,30 @@
 #' @export
 #'
 
-get_votings_table <- function(dbname = 'sejmrp', user = 'reader', password = 'qux94874', 
-  host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE, windows = .Platform$OS.type == "windows"){
-  stopifnot(is.character(dbname),is.character(user),is.character(password),
-            is.character(host),is.logical(sorted_by_id),is.logical(windows))
-  
-  #connecting to database
-  drv <- dbDriver("PostgreSQL")
-  database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
-  
-  # add information about new SELECT to the counter table
-  dbSendQuery(database_diet, 
-    paste0("INSERT INTO counter (what, date) VALUES ('votings','",Sys.Date(),"')"))
-  
-  #reading table
-  if(sorted_by_id){
-    votings <- dbGetQuery(database_diet,"SELECT * FROM votings ORDER BY id_voting")
-  }
-  else{
-    votings <- dbGetQuery(database_diet,"SELECT * FROM votings")
-  }
-  
-  #encoding for windows
-  if(windows){
-    votings[,5] <- iconv(votings[,5],from = "UTF-8", to = "Windows-1250")
-  }
-  
-  suppressWarnings(dbDisconnect(database_diet))
-  return(votings)
-}
+get_votings_table <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl", 
+                                sorted_by_id = TRUE, windows = .Platform$OS.type == "windows") {
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host),
+                is.logical(sorted_by_id), is.logical(windows))
+    
+    # connecting to database
+    drv <- dbDriver("PostgreSQL")
+    database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
+    
+    # add information about new SELECT to the counter table
+    dbSendQuery(database_diet, paste0("INSERT INTO counter (what, date) VALUES ('votings','", Sys.Date(), "')"))
+    
+    # reading table
+    if (sorted_by_id) {
+        votings <- dbGetQuery(database_diet, "SELECT * FROM votings ORDER BY id_voting")
+    } else {
+        votings <- dbGetQuery(database_diet, "SELECT * FROM votings")
+    }
+    
+    # encoding for windows
+    if (windows) {
+        votings[, 5] <- iconv(votings[, 5], from = "UTF-8", to = "Windows-1250")
+    }
+    
+    suppressWarnings(dbDisconnect(database_diet))
+    return(votings)
+} 

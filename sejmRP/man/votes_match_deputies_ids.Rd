@@ -4,8 +4,8 @@
 \alias{votes_match_deputies_ids}
 \title{Matching deputies to theirs' ids}
 \usage{
-votes_match_deputies_ids(dbname,user,password,host,page,
-   windows = .Platform$OS.type == "windows")
+votes_match_deputies_ids(dbname, user, password, host, page,
+   windows = .Platform$OS.type == 'windows')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -19,7 +19,7 @@ votes_match_deputies_ids(dbname,user,password,host,page,
 \item{page}{club's voting's results page}
 
 \item{windows}{information of used operation system;
-default: .Platform$OS.type == "windows"}
+default: .Platform$OS.type == 'windows'}
 }
 \value{
 data frame with three columns: deputy, vote, id
@@ -42,10 +42,10 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-page <- paste0("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?",
-             "symbol=klubglos&IdGlosowania=37494&KodKlubu=PO")
-votes_match_deputies_ids(dbname,user,password,host,page,TRUE)
-votes_match_deputies_ids(dbname,user,password,host,page,FALSE)}
+page <- paste0('http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?',
+             'symbol=klubglos&IdGlosowania=37494&KodKlubu=PO')
+votes_match_deputies_ids(dbname, user, password, host, page, TRUE)
+votes_match_deputies_ids(dbname, user, password, host, page, FALSE)}
 }
 \author{
 Piotr Smuda

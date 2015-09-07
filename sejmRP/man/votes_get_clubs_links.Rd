@@ -4,7 +4,7 @@
 \alias{votes_get_clubs_links}
 \title{Getting links with voting's results for each club}
 \usage{
-votes_get_clubs_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+votes_get_clubs_links(home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
   page)
 }
 \arguments{
@@ -30,10 +30,10 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-page <- paste0("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?",
-  "symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1")
-votes_get_clubs_links(home_page,page)}
+home_page <- 'http://www.sejm.gov.pl/Sejm7.nsf/'
+page <- paste0('http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?',
+  'symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1')
+votes_get_clubs_links(home_page, page)}
 }
 \author{
 Piotr Smuda

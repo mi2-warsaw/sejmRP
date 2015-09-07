@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179"
+#' page <- 'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179'
 #' votings_get_votings_table(page)}
 #' 
 #' @note
@@ -30,11 +30,11 @@
 #' @export
 #'
 
-votings_get_votings_table <- function(page){
-  stopifnot(is.character(page))
-  
-  #getting votings table
-  votings_table <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
-  
-  return(votings_table)
-}
+votings_get_votings_table <- function(page) {
+    stopifnot(is.character(page))
+    
+    # getting votings table
+    votings_table <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
+    
+    return(votings_table)
+} 

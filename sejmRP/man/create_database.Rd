@@ -4,7 +4,7 @@
 \alias{create_database}
 \title{Creating database}
 \usage{
-create_database(dbname,user,password,host)
+create_database(dbname, user, password, host)
 }
 \arguments{
 \item{dbname}{name of database}
@@ -39,8 +39,8 @@ Created tables:
     1) id_vote - vote's id,
     2) id_deputy - deputy's id,
     3) id_voting - voting's id,
-    4) vote - deputy's vote, one of: "Za","Przeciw",
-              "Wstrzymal sie","Nieobecny",
+    4) vote - deputy's vote, one of: 'Za','Przeciw',
+              'Wstrzymal sie','Nieobecny',
     5) club - deputy's club,
 4. statements with columns:
     1) id_statement - statement's id, like:
@@ -54,7 +54,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-create_database(dbname,user,password,host)}
+create_database(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda

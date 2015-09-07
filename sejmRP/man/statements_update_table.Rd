@@ -4,8 +4,8 @@
 \alias{statements_update_table}
 \title{Updating table with deputies' statements}
 \usage{
-statements_update_table(dbname,user,password,host,
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/")
+statements_update_table(dbname, user, password, host,
+  home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/')
 }
 \arguments{
 \item{dbname}{name of database}
@@ -29,7 +29,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-statements_update_table(dbname,user,password,host)}
+statements_update_table(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda, Tomasz Mikolajczyk

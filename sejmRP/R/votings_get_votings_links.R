@@ -7,7 +7,7 @@
 #' Example of a meeting's page: 
 #' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179
 #'
-#' @usage votings_get_votings_links(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",
+#' @usage votings_get_votings_links(home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
 #'   page)
 #'
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
@@ -17,9 +17,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' home_page <- "http://www.sejm.gov.pl/Sejm7.nsf/"
-#' page <- "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179"
-#' votings_get_votings_links(home_page,page)}
+#' home_page <- 'http://www.sejm.gov.pl/Sejm7.nsf/'
+#' page <- 'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179'
+#' votings_get_votings_links(home_page, page)}
 #' 
 #' @note
 #' All information is stored in PostgreSQL database.
@@ -29,18 +29,18 @@
 #' @export
 #'
 
-votings_get_votings_links <- function(home_page="http://www.sejm.gov.pl/Sejm7.nsf/",page){
-  stopifnot(is.character(home_page),is.character(page))
-  
-  #getting votings links
-  votings_links <- html_nodes(html(page), ".bold a")
-  votings_links <- unlist(html_attrs(votings_links), use.names=FALSE)
-  
-  #removing votings about positions
-  correct <- !stri_detect_regex(votings_links,"glosowaniaL")
-  
-  votings_links <- votings_links[correct]
-  votings_links <- paste0(home_page,votings_links)
-  
-  return(votings_links)
-}
+votings_get_votings_links <- function(home_page = "http://www.sejm.gov.pl/Sejm7.nsf/", page) {
+    stopifnot(is.character(home_page), is.character(page))
+    
+    # getting votings links
+    votings_links <- html_nodes(html(page), ".bold a")
+    votings_links <- unlist(html_attrs(votings_links), use.names = FALSE)
+    
+    # removing votings about positions
+    correct <- !stri_detect_regex(votings_links, "glosowaniaL")
+    
+    votings_links <- votings_links[correct]
+    votings_links <- paste0(home_page, votings_links)
+    
+    return(votings_links)
+} 

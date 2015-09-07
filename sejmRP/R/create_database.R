@@ -20,8 +20,8 @@
 #'     1) id_vote - vote's id,
 #'     2) id_deputy - deputy's id,
 #'     3) id_voting - voting's id,
-#'     4) vote - deputy's vote, one of: "Za","Przeciw",
-#'               "Wstrzymal sie","Nieobecny",
+#'     4) vote - deputy's vote, one of: 'Za','Przeciw',
+#'               'Wstrzymal sie','Nieobecny',
 #'     5) club - deputy's club,
 #' 4. statements with columns:
 #'     1) id_statement - statement's id, like: 
@@ -30,7 +30,7 @@
 #'     3) date_statement - statement's date,
 #'     4) statement - content of statement.}
 #' 
-#' @usage create_database(dbname,user,password,host)
+#' @usage create_database(dbname, user, password, host)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -41,7 +41,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' create_database(dbname,user,password,host)}
+#' create_database(dbname, user, password, host)}
 #' 
 #' @note
 #' All information is stored in PostgreSQL database.
@@ -55,40 +55,39 @@
 #' @importFrom XML readHTMLTable
 #' 
 
-create_database <- function(dbname,user,password,host){
-  stopifnot(is.character(dbname),is.character(user),is.character(password),
-            is.character(host))
-  
-  #connecting to database
-  drv <- dbDriver("PostgreSQL")
-  database_diet <- dbConnect(drv,dbname=dbname,user=user,password=password,host=host)
-
-  #creating table with deputies data
-  dbSendQuery(database_diet, "CREATE TABLE deputies (id_deputy varchar(4) NOT NULL PRIMARY KEY,
-               surname_name varchar(50) NOT NULL,
-               CONSTRAINT uq_surname_name UNIQUE (surname_name))")
-
-  #creating table with voting data
-  dbSendQuery(database_diet, "CREATE TABLE votings (id_voting int NOT NULL PRIMARY KEY,
-               nr_meeting int NOT NULL, date_meeting date NOT NULL,
-               nr_voting int NOT NULL, topic_voting text NOT NULL,
-               link_results varchar(200))")
-
-  #creating table with votes data
-  dbSendQuery(database_diet, "CREATE TABLE votes (id_vote int NOT NULL PRIMARY KEY,
-      id_deputy varchar(4) NOT NULL, id_voting int NOT NULL, vote varchar(20) NOT NULL,
-      club varchar(50), FOREIGN KEY (id_deputy) REFERENCES deputies(id_deputy),
-      FOREIGN KEY (id_voting) REFERENCES votings(id_voting))")
-
-  #creating table with statements data
-  dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
-            surname_name varchar(100) NOT NULL, date_statement date NOT NULL, statement text NOT NULL)")
-  
-  #creating table with counter data
-  dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,
-               date varchar(10) NOT NULL)")
-
-  #disconnecting to database
-  suppressWarnings(dbDisconnect(database_diet))
-  return(invisible(NULL))
-}
+create_database <- function(dbname, user, password, host) {
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host))
+    
+    # connecting to database
+    drv <- dbDriver("PostgreSQL")
+    database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
+    
+    # creating table with deputies data
+    dbSendQuery(database_diet, "CREATE TABLE deputies (id_deputy varchar(4) NOT NULL PRIMARY KEY,
+                     surname_name varchar(50) NOT NULL,
+                     CONSTRAINT uq_surname_name UNIQUE (surname_name))")
+    
+    # creating table with voting data
+    dbSendQuery(database_diet, "CREATE TABLE votings (id_voting int NOT NULL PRIMARY KEY,
+                     nr_meeting int NOT NULL, date_meeting date NOT NULL,
+                     nr_voting int NOT NULL, topic_voting text NOT NULL,
+                     link_results varchar(200))")
+    
+    # creating table with votes data
+    dbSendQuery(database_diet, "CREATE TABLE votes (id_vote int NOT NULL PRIMARY KEY,
+            id_deputy varchar(4) NOT NULL, id_voting int NOT NULL, vote varchar(20) NOT NULL,
+            club varchar(50), FOREIGN KEY (id_deputy) REFERENCES deputies(id_deputy),
+            FOREIGN KEY (id_voting) REFERENCES votings(id_voting))")
+    
+    # creating table with statements data
+    dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
+                  surname_name varchar(100) NOT NULL, date_statement date NOT NULL, statement text NOT NULL)")
+    
+    # creating table with counter data
+    dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,
+                     date varchar(10) NOT NULL)")
+    
+    # disconnecting to database
+    suppressWarnings(dbDisconnect(database_diet))
+    return(invisible(NULL))
+} 

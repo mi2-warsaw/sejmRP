@@ -4,7 +4,7 @@
 \alias{deputies_update_table}
 \title{Updating table with deputies}
 \usage{
-deputies_update_table(dbname,user,password,host)
+deputies_update_table(dbname, user, password, host)
 }
 \arguments{
 \item{dbname}{name of database}
@@ -26,7 +26,7 @@ All information is stored in PostgreSQL database.
 }
 \examples{
 \dontrun{
-deputies_update_table(dbname,user,password,host)}
+deputies_update_table(dbname, user, password, host)}
 }
 \author{
 Piotr Smuda

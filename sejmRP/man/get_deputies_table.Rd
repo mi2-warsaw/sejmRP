@@ -6,7 +6,7 @@
 \usage{
 get_deputies_table(dbname = 'sejmrp', user = 'reader',
   password = 'qux94874', host = 'services.mini.pw.edu.pl',
-  sorted_by_id = TRUE, windows = .Platform$OS.type == "windows")
+  sorted_by_id = TRUE, windows = .Platform$OS.type == 'windows')
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -19,7 +19,7 @@ get_deputies_table(dbname = 'sejmrp', user = 'reader',
 
 \item{sorted_by_id}{information if table should be sorted by id; default: TRUE}
 
-\item{windows}{information of used operation system; default: .Platform$OS.type == "windows"}
+\item{windows}{information of used operation system; default: .Platform$OS.type == 'windows'}
 }
 \value{
 data frame
@@ -43,7 +43,7 @@ deputies <- get_deputies_table()
 dim(deputies)
 # [1] 512   2
 names(deputies)
-# [1] "id_deputy"    "surname_name"}
+# [1] 'id_deputy'    'surname_name'}
 }
 \author{
 Piotr Smuda
