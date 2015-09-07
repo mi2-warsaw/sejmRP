@@ -10,7 +10,8 @@
 #' @param password password of database
 #' @param host name of host
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
-#' @param windows information of used operation system; default: TRUE
+#' @param windows information of used operation system; 
+#' default: .Platform$OS.type == "windows"
 #' 
 #' @return invisible NULL
 #'
@@ -35,7 +36,8 @@
 #' @export
 #'
 
-votes_create_table <- function(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE){
+votes_create_table <- function(dbname,user,password,host,home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
+                               windows = .Platform$OS.type == "windows"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page),is.logical(windows))
   

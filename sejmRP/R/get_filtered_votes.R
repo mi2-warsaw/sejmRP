@@ -42,15 +42,15 @@
 #' 
 #' @usage get_filtered_votes(dbname = 'sejmrp', user = 'reader',
 #'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
-#'   windows = TRUE, clubs = character(0), dates = character(0),
-#'   meetings = integer(0), votings = integer(0),
+#'   windows = .Platform$OS.type == "windows", clubs = character(0),
+#'   dates = character(0), meetings = integer(0), votings = integer(0),
 #'   deputies = character(0), topics = character(0))
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
 #' @param password password of database; default: 'qux94874'
 #' @param host name of host; default: 'services.mini.pw.edu.pl'
-#' @param windows information of used operation system; default: TRUE
+#' @param windows information of used operation system; default: .Platform$OS.type == "windows"
 #' @param clubs names of clubs that will be taken to filter data from database; 
 #' default: character(0)
 #' @param dates period of time that will be taken to filter data from database;
@@ -96,7 +96,8 @@
 #' 
 
 get_filtered_votes <- function(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
-  host = 'services.mini.pw.edu.pl', windows = TRUE, clubs = character(0), dates = character(0),
+  host = 'services.mini.pw.edu.pl', windows = .Platform$OS.type == "windows",
+  clubs = character(0), dates = character(0),
   meetings = integer(0), votings = integer(0), deputies = character(0), topics = character(0)){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
     is.character(host),is.logical(windows),is.character(clubs),is.character(dates),

@@ -18,7 +18,8 @@ votes_create_table(dbname,user,password,host,
 
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
-\item{windows}{information of used operation system; default: TRUE}
+\item{windows}{information of used operation system;
+default: .Platform$OS.type == "windows"}
 }
 \value{
 invisible NULL

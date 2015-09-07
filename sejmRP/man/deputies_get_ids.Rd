@@ -4,7 +4,8 @@
 \alias{deputies_get_ids}
 \title{Getting deputies' ids}
 \usage{
-deputies_get_ids(dbname,user,password,host,windows)
+deputies_get_ids(dbname,user,password,host,
+   windows = .Platform$OS.type == "windows")
 }
 \arguments{
 \item{dbname}{name of database}
@@ -15,7 +16,8 @@ deputies_get_ids(dbname,user,password,host,windows)
 
 \item{host}{name of host}
 
-\item{windows}{information of used operation system; default: TRUE}
+\item{windows}{information of used operation system; default:
+.Platform$OS.type == "windows"}
 }
 \value{
 named character vector

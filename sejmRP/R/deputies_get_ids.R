@@ -8,13 +8,15 @@
 #' names are names and surnames of deputies. Because of encoding issue on Windows
 #' operation system, you need to select if you use Windows.
 #'
-#' @usage deputies_get_ids(dbname,user,password,host,windows)
+#' @usage deputies_get_ids(dbname,user,password,host,
+#'    windows = .Platform$OS.type == "windows")
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
-#' @param windows information of used operation system; default: TRUE
+#' @param windows information of used operation system; default: 
+#' .Platform$OS.type == "windows"
 #' 
 #' @return named character vector
 #'
@@ -31,7 +33,8 @@
 #' @export
 #'
 
-deputies_get_ids <- function(dbname,user,password,host,windows=TRUE){
+deputies_get_ids <- function(dbname,user,password,host,
+                             windows = .Platform$OS.type == "windows"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.logical(windows))
   

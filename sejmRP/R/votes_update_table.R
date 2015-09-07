@@ -3,14 +3,16 @@
 #' Function \code{votes_update_table} updates a table with votes.
 #'
 #' @usage votes_update_table(dbname,user,password,host,
-#'   home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
+#'   home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
+#'   windows = .Platform$OS.type == "windows")
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
-#' @param windows information of used operation system; default: TRUE
+#' @param windows information of used operation system; 
+#' default: .Platform$OS.type == "windows"
 #' 
 #' @return invisible NULL
 #'
@@ -32,7 +34,8 @@
 #' @export
 #'
 
-votes_update_table <- function(dbname,user,password,host,home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE){
+votes_update_table <- function(dbname,user,password,host,home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
+                               windows = .Platform$OS.type == "windows"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(home_page),is.logical(windows))
   

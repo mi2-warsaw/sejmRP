@@ -9,14 +9,14 @@
 #' 
 #' @usage get_deputies_table(dbname = 'sejmrp', user = 'reader',
 #'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
-#'   sorted_by_id = TRUE, windows = TRUE)
+#'   sorted_by_id = TRUE, windows = .Platform$OS.type == "windows")
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
 #' @param password password of database; default: 'qux94874'
 #' @param host name of host; default: 'services.mini.pw.edu.pl'
 #' @param sorted_by_id information if table should be sorted by id; default: TRUE
-#' @param windows information of used operation system; default: TRUE
+#' @param windows information of used operation system; default: .Platform$OS.type == "windows"
 #'
 #' @return data frame
 #'
@@ -39,7 +39,8 @@
 #'
 
 get_deputies_table <- function(dbname = 'sejmrp', user = 'reader', password = 'qux94874', 
-  host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE, windows = TRUE){
+  host = 'services.mini.pw.edu.pl', sorted_by_id = TRUE,
+  windows = .Platform$OS.type == "windows"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.logical(sorted_by_id),is.logical(windows))
   

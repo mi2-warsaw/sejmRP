@@ -12,14 +12,16 @@
 #' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
 #' symbol=klubglos&IdGlosowania=37494&KodKlubu=PO
 #'
-#' @usage votes_match_deputies_ids(dbname,user,password,host,page,windows=TRUE)
+#' @usage votes_match_deputies_ids(dbname,user,password,host,page,
+#'    windows = .Platform$OS.type == "windows")
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
 #' @param page club's voting's results page
-#' @param windows information of used operation system; default: TRUE
+#' @param windows information of used operation system; 
+#' default: .Platform$OS.type == "windows"
 #' 
 #' @return data frame with three columns: deputy, vote, id
 #'
@@ -38,7 +40,8 @@
 #' @export
 #'
 
-votes_match_deputies_ids <- function(dbname,user,password,host,page,windows=TRUE){
+votes_match_deputies_ids <- function(dbname,user,password,host,page,
+                                     windows = .Platform$OS.type == "windows"){
   stopifnot(is.character(dbname),is.character(user),is.character(password),
             is.character(host),is.character(page),is.logical(windows))
   

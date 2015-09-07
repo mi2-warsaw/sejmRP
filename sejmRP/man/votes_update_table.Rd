@@ -5,7 +5,8 @@
 \title{Updating table with votes}
 \usage{
 votes_update_table(dbname,user,password,host,
-  home_page="http://www.sejm.gov.pl/Sejm7.nsf/",windows=TRUE)
+  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
+  windows = .Platform$OS.type == "windows")
 }
 \arguments{
 \item{dbname}{name of database}
@@ -18,7 +19,8 @@ votes_update_table(dbname,user,password,host,
 
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
 
-\item{windows}{information of used operation system; default: TRUE}
+\item{windows}{information of used operation system;
+default: .Platform$OS.type == "windows"}
 }
 \value{
 invisible NULL

@@ -4,7 +4,8 @@
 \alias{votes_match_deputies_ids}
 \title{Matching deputies to theirs' ids}
 \usage{
-votes_match_deputies_ids(dbname,user,password,host,page,windows=TRUE)
+votes_match_deputies_ids(dbname,user,password,host,page,
+   windows = .Platform$OS.type == "windows")
 }
 \arguments{
 \item{dbname}{name of database}
@@ -17,7 +18,8 @@ votes_match_deputies_ids(dbname,user,password,host,page,windows=TRUE)
 
 \item{page}{club's voting's results page}
 
-\item{windows}{information of used operation system; default: TRUE}
+\item{windows}{information of used operation system;
+default: .Platform$OS.type == "windows"}
 }
 \value{
 data frame with three columns: deputy, vote, id
