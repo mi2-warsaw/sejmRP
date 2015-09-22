@@ -41,7 +41,8 @@
 #'
 
 votes_match_deputies_ids <- function(dbname, user, password, host, page, windows = .Platform$OS.type == "windows") {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(page), is.logical(windows))
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
+              is.character(page), is.logical(windows))
     
     # getting all of deputies' ids
     deputies_whole_ids <- deputies_get_ids(dbname, user, password, host, windows)

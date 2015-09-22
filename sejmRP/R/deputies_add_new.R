@@ -33,8 +33,8 @@
 #'
 
 deputies_add_new <- function(dbname, user, password, host, type, id) {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(type), type == 
-        "active" || type == "inactive", is.character(id), as.numeric(id)%%1 == 0)
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(type), 
+              type == "active" || type == "inactive", is.character(id), as.numeric(id)%%1 == 0)
     
     # getting data from page with deputies
     deputies <- deputies_get_data(type)

@@ -95,9 +95,9 @@
 #' @importFrom dplyr collect
 #' 
 
-get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl", windows = .Platform$OS.type == 
-    "windows", clubs = character(0), dates = character(0), meetings = integer(0), votings = integer(0), deputies = character(0), 
-    topics = character(0)) {
+get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl", 
+                               windows = .Platform$OS.type == "windows", clubs = character(0), dates = character(0), 
+                               meetings = integer(0), votings = integer(0), deputies = character(0), topics = character(0)) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(windows), is.character(clubs), 
         is.character(dates), is.integer(meetings), is.integer(votings), is.character(deputies), is.character(topics))
     length_clubs <- length(clubs)
@@ -106,8 +106,8 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     length_votings <- length(votings)
     length_deputies <- length(deputies)
     length_topics <- length(topics)
-    stopifnot(length_clubs >= 0, length_dates == 0 | length_dates == 2, length_meetings == 0 | length_meetings == 2, length_votings == 
-        0 | length_votings == 2, length_deputies >= 0, length_topics >= 0)
+    stopifnot(length_clubs >= 0, length_dates == 0 | length_dates == 2, length_meetings == 0 | length_meetings == 2, 
+              length_votings == 0 | length_votings == 2, length_deputies >= 0, length_topics >= 0)
     
     # connecting to database to add information about new SELECT to the counter table
     drv <- dbDriver("PostgreSQL")
@@ -122,7 +122,9 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     database_diet <- src_postgres(dbname = dbname, user = user, password = password, host = host)
     
     # read data dodac potem
-    votes <- tbl(database_diet, sql("SELECT d.surname_name, v.club, v.vote, vv.id_voting, vv.nr_meeting, vv.nr_voting, vv.date_meeting, vv.topic_voting\n                      FROM votes v, votings vv, deputies d\n                      WHERE v.id_voting = vv.id_voting AND d.id_deputy = v.id_deputy"))
+    votes <- tbl(database_diet, sql("SELECT d.surname_name, v.club, v.vote, vv.id_voting, vv.nr_meeting, vv.nr_voting, vv.date_meeting, vv.topic_voting
+                                    FROM votes v, votings vv, deputies d
+                                    WHERE v.id_voting = vv.id_voting AND d.id_deputy = v.id_deputy"))
     
     # clubs filter
     if (length_clubs > 0) {

@@ -29,7 +29,8 @@
 #'
 
 statements_create_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/") {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(home_page))
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
+              is.character(home_page))
     
     # set meeting and day number to 1
     nr_meeting <- 1
