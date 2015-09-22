@@ -38,10 +38,10 @@
 #' @export
 #'
 
-get_deputies_table <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl", 
-                                sorted_by_id = TRUE, windows = .Platform$OS.type == "windows") {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-                is.logical(sorted_by_id), is.logical(windows))
+get_deputies_table <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl", sorted_by_id = TRUE, 
+    windows = .Platform$OS.type == "windows") {
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(sorted_by_id), 
+        is.logical(windows))
     
     # connecting to database
     drv <- dbDriver("PostgreSQL")

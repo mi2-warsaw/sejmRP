@@ -29,10 +29,8 @@
 #' @export
 #'
 
-votings_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
-                                    page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7") {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host),
-      is.character(home_page), is.character(page))
+votings_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/", page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7") {
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(home_page), is.character(page))
     
     # checking last nr_meeting, removing records with that number (if flag file doesn't exist) and checking last id_voting
     drv <- dbDriver("PostgreSQL")
@@ -61,7 +59,7 @@ votings_update_table <- function(dbname, user, password, host, home_page = "http
     meetings_links <- votings_get_meetings_links(home_page, page)
     
     # choosing the place from where we start update table
-    which_to_update <- which(meetings_table[, 1] >= last_nr_meeting)
+    which_to_update <- which(meetings_table[, 1] > last_nr_meeting)
     meetings_table <- meetings_table[which_to_update, ]
     meetings_links <- meetings_links[which_to_update]
     
@@ -82,10 +80,9 @@ votings_update_table <- function(dbname, user, password, host, home_page = "http
         drv <- dbDriver("PostgreSQL")
         database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
         for (j in rev(seq_len(length(votings_links)))) {
-            dbSendQuery(database_diet, paste0("INSERT INTO votings (id_voting, nr_meeting, date_meeting,",
-                            "nr_voting, topic_voting, link_results) VALUES (", id_voting, ",",
-                            meetings_table[i, 1], ",'", meetings_date, "',", votings_table[j, 1], ",'",
-                            votings_table[j, 3], "','", votings_links[j], "')"))
+            dbSendQuery(database_diet, paste0("INSERT INTO votings (id_voting, nr_meeting, date_meeting,", "nr_voting, topic_voting, link_results) VALUES (", 
+                id_voting, ",", meetings_table[i, 1], ",'", meetings_date, "',", votings_table[j, 1], ",'", votings_table[j, 3], 
+                "','", votings_links[j], "')"))
             
             id_voting <- id_voting + 1
         }

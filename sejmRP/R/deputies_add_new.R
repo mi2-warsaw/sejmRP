@@ -33,8 +33,8 @@
 #'
 
 deputies_add_new <- function(dbname, user, password, host, type, id) {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-                is.character(type), type == "active" || type == "inactive", is.character(id), as.numeric(id)%%1 == 0)
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(type), type == 
+        "active" || type == "inactive", is.character(id), as.numeric(id)%%1 == 0)
     
     # getting data from page with deputies
     deputies <- deputies_get_data(type)
@@ -55,8 +55,8 @@ deputies_add_new <- function(dbname, user, password, host, type, id) {
         database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
         n <- length(new_deputies)
         for (i in seq_len(n)) {
-            dbSendQuery(database_diet, paste0("INSERT INTO deputies (id_deputy, surname_name) VALUES ('", 
-                                                id_new_deputies[i], "','", new_deputies[i], "')"))
+            dbSendQuery(database_diet, paste0("INSERT INTO deputies (id_deputy, surname_name) VALUES ('", id_new_deputies[i], 
+                "','", new_deputies[i], "')"))
         }
         suppressWarnings(dbDisconnect(database_diet))
     }

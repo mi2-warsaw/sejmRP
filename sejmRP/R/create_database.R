@@ -63,29 +63,19 @@ create_database <- function(dbname, user, password, host) {
     database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
     
     # creating table with deputies data
-    dbSendQuery(database_diet, "CREATE TABLE deputies (id_deputy varchar(4) NOT NULL PRIMARY KEY,
-                     surname_name varchar(50) NOT NULL,
-                     CONSTRAINT uq_surname_name UNIQUE (surname_name))")
+    dbSendQuery(database_diet, "CREATE TABLE deputies (id_deputy varchar(4) NOT NULL PRIMARY KEY,\n               surname_name varchar(50) NOT NULL,\n               CONSTRAINT uq_surname_name UNIQUE (surname_name))")
     
     # creating table with voting data
-    dbSendQuery(database_diet, "CREATE TABLE votings (id_voting int NOT NULL PRIMARY KEY,
-                     nr_meeting int NOT NULL, date_meeting date NOT NULL,
-                     nr_voting int NOT NULL, topic_voting text NOT NULL,
-                     link_results varchar(200))")
+    dbSendQuery(database_diet, "CREATE TABLE votings (id_voting int NOT NULL PRIMARY KEY,\n               nr_meeting int NOT NULL, date_meeting date NOT NULL,\n               nr_voting int NOT NULL, topic_voting text NOT NULL,\n               link_results varchar(200))")
     
     # creating table with votes data
-    dbSendQuery(database_diet, "CREATE TABLE votes (id_vote int NOT NULL PRIMARY KEY,
-            id_deputy varchar(4) NOT NULL, id_voting int NOT NULL, vote varchar(20) NOT NULL,
-            club varchar(50), FOREIGN KEY (id_deputy) REFERENCES deputies(id_deputy),
-            FOREIGN KEY (id_voting) REFERENCES votings(id_voting))")
+    dbSendQuery(database_diet, "CREATE TABLE votes (id_vote int NOT NULL PRIMARY KEY,\n      id_deputy varchar(4) NOT NULL, id_voting int NOT NULL, vote varchar(20) NOT NULL,\n      club varchar(50), FOREIGN KEY (id_deputy) REFERENCES deputies(id_deputy),\n      FOREIGN KEY (id_voting) REFERENCES votings(id_voting))")
     
     # creating table with statements data
-    dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
-                  surname_name varchar(100) NOT NULL, date_statement date NOT NULL, statement text NOT NULL)")
+    dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,\n            surname_name varchar(100) NOT NULL, date_statement date NOT NULL, statement text NOT NULL)")
     
     # creating table with counter data
-    dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,
-                     date varchar(10) NOT NULL)")
+    dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,\n               date varchar(10) NOT NULL)")
     
     # disconnecting to database
     suppressWarnings(dbDisconnect(database_diet))

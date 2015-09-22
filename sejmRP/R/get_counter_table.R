@@ -27,10 +27,8 @@
 # @author Piotr Smuda
 
 
-get_counter_table <- function(dbname = "sejmrp", user = "reader", password = "qux94874", 
-                                host = "services.mini.pw.edu.pl", sorted_by_id = TRUE) {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host),
-                is.logical(sorted_by_id))
+get_counter_table <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl", sorted_by_id = TRUE) {
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(sorted_by_id))
     
     # connecting to database
     drv <- dbDriver("PostgreSQL")

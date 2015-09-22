@@ -34,8 +34,7 @@
 #'
 
 deputies_get_ids <- function(dbname, user, password, host, windows = .Platform$OS.type == "windows") {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host),
-                is.logical(windows))
+    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(windows))
     
     # getting deputies' ids
     drv <- dbDriver("PostgreSQL")

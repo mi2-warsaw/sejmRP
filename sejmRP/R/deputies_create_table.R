@@ -44,8 +44,8 @@ deputies_create_table <- function(dbname, user, password, host) {
     database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
     n <- length(deputies)
     for (i in seq_len(n)) {
-        dbSendQuery(database_diet, paste0("INSERT INTO deputies (id_deputy, surname_name) VALUES (", 
-                                            "'", id_deputies[i], "','", deputies[i], "')"))
+        dbSendQuery(database_diet, paste0("INSERT INTO deputies (id_deputy, surname_name) VALUES (", "'", id_deputies[i], "','", 
+            deputies[i], "')"))
     }
     suppressWarnings(dbDisconnect(database_diet))
     return(invisible(NULL))
