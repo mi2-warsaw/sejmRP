@@ -1,7 +1,7 @@
 Package: sejmRP
 Title: An information about deputies and votings in Polish diet
 Version: 1.0
-Date: 2015-09-22
+Date: 2015-09-23
 Author: 
    Piotr Smuda [aut, cre],
    Przemyslaw Biecek [aut],
@@ -13,6 +13,9 @@ Authors@R: c(
 Maintainer: Piotr Smuda <piotrsmuda@gmail.com>
 Description: Set of functions that access information about deputies and votings in Polish diet from webpage http://www.sejm.gov.pl/.
    The package was developed as a result of an internship in MI2 Group - http://mi2.mini.pw.edu.pl/, Faculty of Mathematics and Information Science, Warsaw University of Technology.
+URL: http://www.sejm.gov.pl/
+  http://mi2.mini.pw.edu.pl/
+BugReports: http://github.com/mi2-warsaw/sejmRP/issues
 Depends: R (>= 3.1.0)
 License: GPL-2
 LazyLoad: true
