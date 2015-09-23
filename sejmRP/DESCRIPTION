@@ -1,11 +1,7 @@
 Package: sejmRP
-Title: An information about deputies and votings in Polish diet
-Version: 1.0
+Title: An Information About Deputies and Votings in Polish Diet
+Version: 1.1
 Date: 2015-09-23
-Author: 
-   Piotr Smuda [aut, cre],
-   Przemyslaw Biecek [aut],
-   Tomasz Mikolajczyk [ctb]
 Authors@R: c(
    person("Piotr","Smuda",email="piotrsmuda@gmail.com",role=c("aut","cre")),
    person("Przemyslaw","Biecek",email="przemyslaw.biecek@gmail.com",role="aut"),
