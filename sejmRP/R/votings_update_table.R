@@ -61,7 +61,7 @@ votings_update_table <- function(dbname, user, password, host, home_page = "http
     meetings_links <- votings_get_meetings_links(home_page, page)
     
     # choosing the place from where we start update table
-    which_to_update <- which(meetings_table[, 1] > last_nr_meeting)
+    which_to_update <- which(as.numeric(meetings_table[, 1]) > last_nr_meeting)
     meetings_table <- meetings_table[which_to_update, ]
     meetings_links <- meetings_links[which_to_update]
     
