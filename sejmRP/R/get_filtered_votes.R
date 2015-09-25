@@ -125,6 +125,7 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     nr_voting <- NULL
     surname_name <- NULL
     topic_voting <- NULL
+    `%SIMILAR TO%` <- NULL
     
     # connecting to database with dplyr to get votes
     database_diet <- src_postgres(dbname = dbname, user = user, password = password, host = host)
