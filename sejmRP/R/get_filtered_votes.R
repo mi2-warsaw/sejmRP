@@ -118,6 +118,14 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     
     suppressWarnings(dbDisconnect(database_diet))
     
+    # fake variables in order to pass CRAN CHECK
+    club <- NULL
+    date_meeting <- NULL
+    nr_meeting <- NULL
+    nr_voting <- NULL
+    surname_name <- NULL
+    topic_voting <- NULL
+    
     # connecting to database with dplyr to get votes
     database_diet <- src_postgres(dbname = dbname, user = user, password = password, host = host)
     
