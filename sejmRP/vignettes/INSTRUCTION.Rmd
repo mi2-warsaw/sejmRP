@@ -11,15 +11,10 @@ about votings and deputies in actual term of office. All data is storaged in dat
 
 # Installation
 
-To get started, install the latest version of **sejmRP** from GitHub:
+To get started, install the latest version of **sejmRP** from CRAN:
 ```{r,eval=FALSE}
-if (!require(devtools)) {
-    install.packages("devtools")
-    require(devtools)
-}
-install_github("mi2-warsaw/sejmRP/sejmRP")
+install.packages("sejmRP")
 ```
-Make sure you have [rtools](http://cran.r-project.org/bin/windows/Rtools/) installed on your computer.
 
 # Creative functions
 
