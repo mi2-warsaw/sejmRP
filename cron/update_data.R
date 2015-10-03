@@ -16,7 +16,7 @@ tryCatch(deputies_update_table(dbname,user,password,host),
   })
 
 #updating votings table
-tryCatch(votings_update_table(dbname,user,password,host),
+tryCatch(votings_update_table(dbname,user,password,host, verbose=TRUE),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     #removing a flag file if error occured
@@ -25,7 +25,7 @@ tryCatch(votings_update_table(dbname,user,password,host),
   })
 
 #updating votes table
-tryCatch(votes_update_table(dbname,user,password,host),
+tryCatch(votes_update_table(dbname,user,password,host, verbose=TRUE),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     stop("Error during updating votes table")
