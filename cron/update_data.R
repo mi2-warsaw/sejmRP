@@ -1,4 +1,5 @@
 library("sejmRP")
+library(RPostgreSQL)
 
 #only arguments after --args
 args <- commandArgs(TRUE)
