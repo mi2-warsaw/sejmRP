@@ -32,7 +32,7 @@ tryCatch(votes_update_table(dbname,user,password,host, verbose=TRUE),
   })
 
 #updating statements table
-tryCatch(statements_update_table(dbname,user,password,host),
+tryCatch(statements_update_table(dbname,user,password,host, verbose=TRUE),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     stop("Error during updating statements table")
