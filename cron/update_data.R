@@ -6,7 +6,7 @@ args <- commandArgs(TRUE)
 
 #connecting to database
 drv <- dbDriver("PostgreSQL")
-database_diet <- dbConnect(drv,dbname,user,password,host)
+database_diet <- dbConnect(drv,dbname = dbname,user = user,password = password,host = host)
 
 #updating deputies table
 tryCatch(deputies_update_table(dbname,user,password,host),
