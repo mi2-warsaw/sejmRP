@@ -8,6 +8,8 @@ statements_get_statement(page)
 }
 \arguments{
 \item{page}{deputy's statement's page}
+
+\item{Nmax}{max number of tries (if there is a problem with connection)}
 }
 \value{
 character vector
