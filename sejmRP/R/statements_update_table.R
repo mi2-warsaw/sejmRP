@@ -10,6 +10,7 @@
 #' @param password password of database
 #' @param host name of host
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param verbose if TRUE then additional info will be printed
 #'
 #' @return invisible NULL
 #'
@@ -27,7 +28,8 @@
 
 statements_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/") {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-              is.character(home_page))
+              is.character(home_page),
+              verbose=FALSE)
     
     # checking last id of statements
     drv <- dbDriver("PostgreSQL")
@@ -45,6 +47,9 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
         repeat {
             # get statements links of first new day of a meeting
             page <- paste0(home_page, "wypowiedz.xsp?posiedzenie=", nr_meeting, "&dzien=", nr_day, "&wyp=0")
+            if (verbose) {
+              cat("\nDownloading", page, "\n")
+            }
             stenogram <- html_nodes(html(page), ".stenogram")
             statements_links <- html_nodes(stenogram, "h2 a")
             
@@ -69,6 +74,9 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
             database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
             
             for (i in seq_len(length(statements))) {
+                if (verbose) {
+                  cat(".")
+                }
                 id <- paste0(nr_meeting, ".", nr_day, ".", statements_data[i, 3])
                 dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, statement)", 
                   "VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", statements[i], "')"))

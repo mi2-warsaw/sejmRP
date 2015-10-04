@@ -10,6 +10,7 @@
 #' @usage statements_get_statement(page)
 #'
 #' @param page deputy's statement's page
+#' @param Nmax max number of tries (if there is a problem with connection)
 #'
 #' @return character vector
 #'
@@ -27,11 +28,21 @@
 #' @export
 #'
 
-statements_get_statement <- function(page) {
+statements_get_statement <- function(page, Nmax=20) {
     stopifnot(is.character(page))
     
-    page <- html(page)
-    page <- html_nodes(page, ".stenogram p")
+    repeat({
+      Nmax <- Nmax - 1
+      pageH <- try(html(page), silent=TRUE)
+      if (class(pageH) != "try-error")
+        break()
+      cat("No connection, ",page," trying again\n")
+      Sys.sleep("60")
+      if (Nmax < 0) {
+        stop("No internet connection")
+      }
+    })
+    page <- html_nodes(pageH, ".stenogram p")
     
     # getting statement content
     statement <- html_text(page)

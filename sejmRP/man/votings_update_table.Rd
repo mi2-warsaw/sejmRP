@@ -22,6 +22,8 @@ votings_update_table(dbname, user, password, host,
 \item{page}{page with votings in polish diet:
 http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
 symbol=posglos&NrKadencji=7}
+
+\item{verbose}{if TRUE then additional info will be printed}
 }
 \value{
 invisible NULL

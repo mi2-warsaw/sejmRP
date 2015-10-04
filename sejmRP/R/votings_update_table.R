@@ -14,6 +14,7 @@
 #' @param page page with votings in polish diet: 
 #' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
 #' symbol=posglos&NrKadencji=7
+#' @param verbose if TRUE then additional info will be printed
 #'
 #' @return invisible NULL
 #'
@@ -30,7 +31,8 @@
 #'
 
 votings_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/", 
-                                 page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7") {
+                                 page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7",
+                                 verbose=FALSE) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host),
               is.character(home_page), is.character(page))
     
@@ -71,6 +73,9 @@ votings_update_table <- function(dbname, user, password, host, home_page = "http
     for (i in rev(seq_len(length(meetings_links)))) {
         # getting meetings date
         meetings_date <- votings_get_date(meetings_links[i])
+        if (verbose) {
+          cat("Downloading",meetings_links[i],"\n")
+        }
         
         # getting votings table with votings' numbers and topics
         votings_table <- votings_get_votings_table(meetings_links[i])

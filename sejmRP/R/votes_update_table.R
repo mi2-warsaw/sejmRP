@@ -13,6 +13,7 @@
 #' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
 #' @param windows information of used operation system; 
 #' default: .Platform$OS.type == 'windows'
+#' @param verbose if TRUE then additional info will be printed
 #' 
 #' @return invisible NULL
 #'
@@ -35,7 +36,8 @@
 #'
 
 votes_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/", 
-                               windows = .Platform$OS.type == "windows") {
+                               windows = .Platform$OS.type == "windows",
+                               verbose=FALSE) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host),
               is.character(home_page), is.logical(windows))
     
@@ -61,7 +63,10 @@ votes_update_table <- function(dbname, user, password, host, home_page = "http:/
     
     for (i in seq_len(nrow(votings_ids_links))) {
         # getting clubs and links from voting
-        votes_get_clubs <- votes_get_clubs_links(home_page, votings_ids_links[i, 2])
+      if (verbose) {
+        cat("Downloading",votings_ids_links[i, 2],"\n")
+      }
+      votes_get_clubs <- votes_get_clubs_links(home_page, votings_ids_links[i, 2])
         
         # if there isn't table with results
         if (is.null(votes_get_clubs)) {

@@ -21,6 +21,8 @@ votes_update_table(dbname, user, password, host,
 
 \item{windows}{information of used operation system;
 default: .Platform$OS.type == 'windows'}
+
+\item{verbose}{if TRUE then additional info will be printed}
 }
 \value{
 invisible NULL

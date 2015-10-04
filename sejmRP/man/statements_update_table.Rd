@@ -17,6 +17,8 @@ statements_update_table(dbname, user, password, host,
 \item{host}{name of host}
 
 \item{home_page}{main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/}
+
+\item{verbose}{if TRUE then additional info will be printed}
 }
 \value{
 invisible NULL
