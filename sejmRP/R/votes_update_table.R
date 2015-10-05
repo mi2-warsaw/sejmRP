@@ -4,7 +4,8 @@
 #'
 #' @usage votes_update_table(dbname, user, password, host,
 #'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
-#'   windows = .Platform$OS.type == 'windows')
+#'   windows = .Platform$OS.type == 'windows',
+#'   verbose=FALSE)
 #'
 #' @param dbname name of database
 #' @param user name of user

@@ -6,7 +6,8 @@
 \usage{
 votings_update_table(dbname, user, password, host,
   home_page='http://www.sejm.gov.pl/Sejm7.nsf/', page=
-  'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
+  'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7',
+  verbose=FALSE)
 }
 \arguments{
 \item{dbname}{name of database}

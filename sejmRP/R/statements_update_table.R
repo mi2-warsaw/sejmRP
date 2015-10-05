@@ -3,7 +3,8 @@
 #' Function \code{statements_update_table} updates a table with deputies' statements.
 #'
 #' @usage statements_update_table(dbname, user, password, host,
-#'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/')
+#'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
+#'   verbose=FALSE)
 #'
 #' @param dbname name of database
 #' @param user name of user
