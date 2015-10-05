@@ -36,7 +36,7 @@ votes_get_clubs_links <- function(home_page = "http://www.sejm.gov.pl/Sejm7.nsf/
     stopifnot(is.character(home_page), is.character(page))
     
     # getting clubs
-    results_page <- html(page)
+    results_page <- safe_html(page)
     votes_info <- html_nodes(results_page, ".center .right")
     votes_clubs <- html_text(votes_info)
     

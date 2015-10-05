@@ -33,7 +33,7 @@ votings_get_votings_links <- function(home_page = "http://www.sejm.gov.pl/Sejm7.
     stopifnot(is.character(home_page), is.character(page))
     
     # getting votings links
-    votings_links <- html_nodes(html(page), ".bold a")
+    votings_links <- html_nodes(safe_html(page), ".bold a")
     votings_links <- unlist(html_attrs(votings_links), use.names = FALSE)
     
     # removing votings about positions

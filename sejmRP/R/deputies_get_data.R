@@ -38,7 +38,7 @@ deputies_get_data <- function(type) {
     }
     
     # getting data from page with deputies
-    page <- html(page)
+    page <- safe_html(page)
     deputies_data <- html_nodes(page, "#contentBody li")
     
     # getting ids of deputies

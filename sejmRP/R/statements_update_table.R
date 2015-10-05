@@ -51,7 +51,7 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
             if (verbose) {
               cat("\nDownloading", page, "\n")
             }
-            stenogram <- html_nodes(html(page), ".stenogram")
+            stenogram <- html_nodes(safe_html(page), ".stenogram")
             statements_links <- html_nodes(stenogram, "h2 a")
             
             # move to next day of meeting if empty page found
