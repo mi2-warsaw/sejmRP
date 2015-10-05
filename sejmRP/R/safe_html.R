@@ -23,6 +23,7 @@
 #' @author Przemyslaw Biecek
 #'
 #' @export
+#' @importFrom xml2 read_html
 #'
 
 safe_html <- function(page, time=60, attempts=10) {
@@ -32,7 +33,7 @@ safe_html <- function(page, time=60, attempts=10) {
   
   repeat({
     attempts <- attempts - 1
-    pageH <- try(xml2::read_html(page), silent=TRUE)
+    pageH <- try(read_html(page), silent=TRUE)
     if (class(pageH)[1] != "try-error")
       break()
     cat("No connection, trying again: ",page,"\n")

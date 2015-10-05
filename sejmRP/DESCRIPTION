@@ -20,4 +20,5 @@ Imports:
   RPostgreSQL,
   rvest, 
   stringi,
-  XML
+  XML,
+  xml2
