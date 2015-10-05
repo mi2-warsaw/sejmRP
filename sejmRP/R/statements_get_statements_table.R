@@ -35,6 +35,7 @@ statements_get_statements_table <- function(page) {
         
     # getting statements' table
     statements_table <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
+    statements_table[, 3] <- stri_replace_all_regex(statements_table[, 3], "'", "")
     
     # changing colnames to numbers
     names(statements_table) <- seq_len(ncol(statements_table))
