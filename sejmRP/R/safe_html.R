@@ -32,7 +32,7 @@ safe_html <- function(page, time=60, attempts=10) {
   
   repeat({
     attempts <- attempts - 1
-    pageH <- try(html(page), silent=TRUE)
+    pageH <- try(xml2::read_html(page), silent=TRUE)
     if (class(pageH)[1] != "try-error")
       break()
     cat("No connection, trying again: ",page,"\n")
