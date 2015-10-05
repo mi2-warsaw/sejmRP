@@ -25,9 +25,9 @@
 #' \dontrun{
 #' statements <- get_statements_table()
 #' dim(statements)
-#' # [1] 42169     4
+#' # [1] 42169     5
 #' names(statements)
-#' # [1] 'id_statement' 'surname_name' 'date_statement' 'statement'}
+#' # [1] 'id_statement' 'surname_name' 'date_statement' 'titles_order_points' 'statement'}
 #' 
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
@@ -61,7 +61,7 @@ get_statements_table <- function(dbname = "sejmrp", user = "reader", password = 
     # encoding for windows
     if (windows) {
         statements[, 2] <- iconv(statements[, 2], from = "UTF-8", to = "Windows-1250")
-        statements[, 4] <- iconv(statements[, 4], from = "UTF-8", to = "Windows-1250")
+        statements[, 5] <- iconv(statements[, 5], from = "UTF-8", to = "Windows-1250")
     }
     
     suppressWarnings(dbDisconnect(database_diet))

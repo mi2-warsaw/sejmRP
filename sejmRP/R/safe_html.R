@@ -36,7 +36,7 @@ safe_html <- function(page, time=60, attempts=10) {
     pageH <- try(read_html(page), silent=TRUE)
     if (class(pageH)[1] != "try-error")
       break()
-    cat("No connection, trying again: ",page,"\n")
+    cat("No connection, trying again: ", page, "\n")
     Sys.sleep(time)
     if (attempts < 0) {
       stop("No internet connection")

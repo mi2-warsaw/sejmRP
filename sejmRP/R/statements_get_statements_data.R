@@ -39,7 +39,7 @@ statements_get_statements_data <- function(statements_links, home_page = "http:/
     names <- html_text(statements_links)
     
     # Check whether the speaker is a deputy
-    if_deputy <- stri_detect_regex(names, "(Pose. )|(Minister )|([p|P]rezes Rady Ministr.w )")
+    if_deputy <- stri_detect_regex(names, "(Pose.{1,2} )|(Minister )|([p|P]rezes Rady Ministr.{1,2} )")
     names <- names[if_deputy]
     
     # Get links to statements

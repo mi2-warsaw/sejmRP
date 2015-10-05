@@ -47,7 +47,8 @@ Created tables:
     (meeting's number).(voting's number).(statement's number),
     2) surname_name - author of statement,
     3) date_statement - statement's date,
-    4) statement - content of statement.}
+    4) titles_order_points - title of order points,
+    5) statement - content of statement.}
 }
 \note{
 All information is stored in PostgreSQL database.

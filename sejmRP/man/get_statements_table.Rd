@@ -42,9 +42,9 @@ All information is stored in PostgreSQL database.
 \dontrun{
 statements <- get_statements_table()
 dim(statements)
-# [1] 42169     4
+# [1] 42169     5
 names(statements)
-# [1] 'id_statement' 'surname_name' 'date_statement' 'statement'}
+# [1] 'id_statement' 'surname_name' 'date_statement' 'titles_order_points' 'statement'}
 }
 \author{
 Piotr Smuda

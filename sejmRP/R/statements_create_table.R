@@ -39,13 +39,19 @@ statements_create_table <- function(dbname, user, password, host, home_page = "h
         repeat {
             # get statements links of first day of a meeting
             page <- paste0(home_page, "wypowiedz.xsp?posiedzenie=", nr_meeting, "&dzien=", nr_day, "&wyp=0")
-            stenogram <- html_nodes(html(page), ".stenogram")
+            stenogram <- html_nodes(read_html(page), ".stenogram")
             statements_links <- html_nodes(stenogram, "h2 a")
             
             # move to next day of meeting if empty page found
             if (length(statements_links) == 0) {
                 break
             }
+          
+            # get titles of order points during a meeting
+            page_meeting <- paste0(home_page, "posiedzenie.xsp?posiedzenie=", nr_meeting, "&dzien=", nr_day)
+            statements_table <- statements_get_statements_table(page_meeting)
+            if_deputy <- stri_detect_regex(statements_table[, 1], "(Pose.{1,2} )|(Minister )|([p|P]rezes Rady Ministr.{1,2} )")
+            titles_order_points <- statements_table[if_deputy, 3]
             
             # get date
             statements_date <- votings_get_date(page)
@@ -64,8 +70,9 @@ statements_create_table <- function(dbname, user, password, host, home_page = "h
             
             for (i in seq_len(length(statements))) {
                 id <- paste0(nr_meeting, ".", nr_day, ".", statements_data[i, 3])
-                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, statement)", 
-                  "VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", statements[i], "')"))
+                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, titles_order_points, ", 
+                  "statement) VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", titles_order_points[i], "','",
+                  statements[i], "')"))
             }
             
             suppressWarnings(dbDisconnect(database_diet))
@@ -73,6 +80,7 @@ statements_create_table <- function(dbname, user, password, host, home_page = "h
             # next day of meeting
             nr_day <- nr_day + 1
         }
+        
         # break if last meeting found
         if (nr_day == 1) {
             break

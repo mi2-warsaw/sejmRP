@@ -1,7 +1,7 @@
 Package: sejmRP
 Title: An Information About Deputies and Votings in Polish Diet
-Version: 1.1
-Date: 2015-09-23
+Version: 1.2
+Date: 2015-10-05
 Authors@R: c(
    person("Piotr","Smuda",email="piotrsmuda@gmail.com",role=c("aut","cre")),
    person("Przemyslaw","Biecek",email="przemyslaw.biecek@gmail.com",role="aut"),

@@ -28,7 +28,8 @@
 #'     (meeting's number).(voting's number).(statement's number),
 #'     2) surname_name - author of statement,
 #'     3) date_statement - statement's date,
-#'     4) statement - content of statement.}
+#'     4) titles_order_points - title of order points,
+#'     5) statement - content of statement.}
 #' 
 #' @usage create_database(dbname, user, password, host)
 #'
@@ -81,7 +82,8 @@ create_database <- function(dbname, user, password, host) {
     
     # creating table with statements data
     dbSendQuery(database_diet, "CREATE TABLE statements (id_statement varchar(11) NOT NULL PRIMARY KEY,
-                surname_name varchar(100) NOT NULL, date_statement date NOT NULL, statement text NOT NULL)")
+                surname_name varchar(100) NOT NULL, date_statement date NOT NULL, titles_order_points text NOT NULL,
+                statement text NOT NULL)")
     
     # creating table with counter data
     dbSendQuery(database_diet, "CREATE TABLE counter (id SERIAL PRIMARY KEY, what varchar(10) NOT NULL,

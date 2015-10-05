@@ -3,7 +3,7 @@ test_that("result of function", {
 })
 
 test_that("columns of table", {
-  expect_equal(ncol(get_statements_table(host = "192.168.137.38")), 4)
+  expect_equal(ncol(get_statements_table(host = "192.168.137.38")), 5)
 })
 
 test_that("rows of table", {

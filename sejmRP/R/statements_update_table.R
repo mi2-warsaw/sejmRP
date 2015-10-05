@@ -59,6 +59,12 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
                 break
             }
             
+            # get titles of order points during a meeting
+            page_meeting <- paste0(home_page, "posiedzenie.xsp?posiedzenie=", nr_meeting, "&dzien=", nr_day)
+            statements_table <- statements_get_statements_table(page_meeting)
+            if_deputy <- stri_detect_regex(statements_table[, 1], "(Pose.{1,2} )|(Minister )|([p|P]rezes Rady Ministr.{1,2} )")
+            titles_order_points <- statements_table[if_deputy, 3]
+            
             # get date
             statements_date <- votings_get_date(page)
             
@@ -79,8 +85,9 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
                   cat(".")
                 }
                 id <- paste0(nr_meeting, ".", nr_day, ".", statements_data[i, 3])
-                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, statement)", 
-                  "VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", statements[i], "')"))
+                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, titles_order_points, ", 
+                  "statement) VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", titles_order_points[i], "','",
+                  statements[i], "')"))
             }
             
             suppressWarnings(dbDisconnect(database_diet))
