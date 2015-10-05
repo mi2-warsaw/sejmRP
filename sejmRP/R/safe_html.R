@@ -37,7 +37,7 @@ safe_html <- function(page, time=60, attempts=10) {
       break()
     cat("No connection, trying again: ",page,"\n")
     Sys.sleep(time)
-    if (Nmax < 0) {
+    if (attempts < 0) {
       stop("No internet connection")
     }
   })

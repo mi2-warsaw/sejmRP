@@ -27,10 +27,10 @@
 #' @export
 #'
 
-statements_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/") {
+statements_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
+                                    verbose=FALSE) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-              is.character(home_page),
-              verbose=FALSE)
+              is.character(home_page))
     
     # checking last id of statements
     drv <- dbDriver("PostgreSQL")
