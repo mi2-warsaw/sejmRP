@@ -37,7 +37,7 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
     database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
     last_id <- dbGetQuery(database_diet, "SELECT SUBSTRING(id_statement, '[0-9]+\\.[0-9]+') FROM statements")
     last_id <- max(as.numeric(last_id[, 1]))
-    ids_numbers <- unlist(stri_extract_all_regex(last_id, "[0-9]+"))
+    ids_numbers <- unlist(strsplit(as.character(last_id), split = "[^0-9]+"))
     dbSendQuery(database_diet, paste0("DELETE FROM statements WHERE id_statement SIMILAR TO '", 
                                       ids_numbers[1], "\\.", ids_numbers[2], "\\.[0-9]{3,4}'"))
     suppressWarnings(dbDisconnect(database_diet))
