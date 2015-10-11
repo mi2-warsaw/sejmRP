@@ -85,6 +85,11 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
                   cat(".")
                 }
                 id <- paste0(nr_meeting, ".", nr_day, ".", statements_data[i, 3])
+                # remove '
+                statements_data[i, 1] <- gsub(statements_data[i, 1], pattern = "'", replacement = "")
+                titles_order_points[i] <- gsub(titles_order_points[i], pattern = "'", replacement = "")
+                statements[i] <- gsub(statements[i] , pattern = "'", replacement = "")
+                
                 dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, titles_order_points, ", 
                   "statement) VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", titles_order_points[i], "','",
                   statements[i], "')"))
