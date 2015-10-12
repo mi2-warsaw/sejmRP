@@ -61,6 +61,7 @@ get_statements_table <- function(dbname = "sejmrp", user = "reader", password = 
     # encoding for windows
     if (windows) {
         statements[, 2] <- iconv(statements[, 2], from = "UTF-8", to = "Windows-1250")
+        statements[, 4] <- iconv(statements[, 4], from = "UTF-8", to = "Windows-1250")
         statements[, 5] <- iconv(statements[, 5], from = "UTF-8", to = "Windows-1250")
     }
     
