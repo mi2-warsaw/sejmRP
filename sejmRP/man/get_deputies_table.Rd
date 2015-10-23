@@ -41,7 +41,7 @@ All information is stored in PostgreSQL database.
 \dontrun{
 deputies <- get_deputies_table()
 dim(deputies)
-# [1] 512   2
+# [1] 517   2
 names(deputies)
 # [1] 'id_deputy'    'surname_name'}
 }

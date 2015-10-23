@@ -92,12 +92,12 @@ All information is stored in PostgreSQL database.
 \dontrun{
 filtered_votes <- get_filtered_votes()
 dim(filtered_votes)
-# [1] 2741899       8
+# [1] 2826483       8
 names(filtered_votes)
 [1] 'surname_name' 'club' 'vote' 'id_voting' 'nr_meeting'
 [6] 'nr_voting' 'date_meeting' 'topic_voting'
 object.size(filtered_votes)
-# 144250888 bytes}
+# 148694336 bytes}
 }
 \author{
 Piotr Smuda

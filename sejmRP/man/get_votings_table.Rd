@@ -42,7 +42,7 @@ All information is stored in PostgreSQL database.
 \dontrun{
 votings <- get_votings_table()
 dim(votings)
-# [1] 5969    6
+# [1] 6212    6
 names(votings)
 # [1] 'id_voting'    'nr_meeting'   'date_meeting'
 # [4] 'nr_voting'    'topic_voting' 'link_results'}

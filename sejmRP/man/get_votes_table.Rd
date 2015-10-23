@@ -42,11 +42,11 @@ All information is stored in PostgreSQL database.
 \dontrun{
 votes <- get_votes_table()
 dim(votes)
-# [1] 2741899       5
+# [1] 2826483       5
 names(votes)
 # [1] 'id_vote'   'id_deputy' 'id_voting' 'vote'      'club'
-#' object.size(votes)
-# 87767112 bytes}
+object.size(votes)
+# 90474040 bytes}
 }
 \author{
 Piotr Smuda

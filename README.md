@@ -6,7 +6,7 @@ Scraping data from sejm.gov.pl
 about votings and deputies in actual term of office. All data is storaged in database.
 
 <h5> Usage: </h5>
-Please see [instruction](https://github.com/mi2-warsaw/sejmRP/blob/master/sejmRP/vignettes/INSTRUCTION.pdf) for information how to use sejmRP package.
+Please see [instruction](https://github.com/mi2-warsaw/sejmRP/blob/master/INSTRUCTION.pdf) for information how to use sejmRP package.
 
 <h5> Installation of the sejmRP package: </h5>
 To get started, install the latest version of **sejmRP** from GitHub:
