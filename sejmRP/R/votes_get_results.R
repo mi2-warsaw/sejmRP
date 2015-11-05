@@ -33,7 +33,7 @@ votes_get_results <- function(page) {
     stopifnot(is.character(page))
     
     # getting deputies and their votes
-    votes_clubs_results <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
+    votes_clubs_results <- safe_readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
     deputies <- c(votes_clubs_results[, 2], votes_clubs_results[, 5])
     deputies <- deputies[!is.na(deputies)]
     deputies_votes <- c(votes_clubs_results[, 3], votes_clubs_results[, 6])

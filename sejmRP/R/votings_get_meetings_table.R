@@ -33,7 +33,7 @@ votings_get_meetings_table <- function(page = "http://www.sejm.gov.pl/Sejm7.nsf/
     stopifnot(is.character(page))
     
     # getting meetings table
-    meetings_table <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
+    meetings_table <- safe_readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
     
     # filling first column where number of meeting is missing
     meeting_number <- meetings_table[1, 1]

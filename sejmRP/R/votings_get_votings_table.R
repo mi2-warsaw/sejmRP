@@ -34,7 +34,7 @@ votings_get_votings_table <- function(page) {
     stopifnot(is.character(page))
     
     # getting votings table
-    votings_table <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
+    votings_table <- safe_readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
     
     return(votings_table)
 } 

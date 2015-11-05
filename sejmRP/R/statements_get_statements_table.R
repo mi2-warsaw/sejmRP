@@ -34,7 +34,7 @@ statements_get_statements_table <- function(page) {
     stopifnot(is.character(page))
         
     # getting statements' table
-    statements_table <- readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
+    statements_table <- safe_readHTMLTable(page, encoding = "UTF-8", stringsAsFactors = FALSE)[[1]]
     statements_table[, 3] <- stri_replace_all_regex(statements_table[, 3], "'", "")
     
     # changing colnames to numbers
