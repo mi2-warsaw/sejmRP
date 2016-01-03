@@ -25,10 +25,11 @@
 #' \dontrun{
 #' votings <- get_votings_table()
 #' dim(votings)
-#' # [1] 6212    6
+#' # [1] 6212 7
 #' names(votings)
-#' # [1] 'id_voting'    'nr_meeting'   'date_meeting'
-#' # [4] 'nr_voting'    'topic_voting' 'link_results'}
+#' # [1] 'id_voting' 'nr_term_of_office' 'nr_meeting'   
+#' # [4] 'date_meeting' 'nr_voting' 'topic_voting' 
+#' # [7] 'link_results'}
 #'
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
@@ -54,14 +55,14 @@ get_votings_table <- function(dbname = "sejmrp", user = "reader", password = "qu
 
     # reading table
     if (sorted_by_id) {
-        votings <- dbGetQuery(database_diet, "SELECT * FROM votings ORDER BY id_voting")
+        votings <- dbGetQuery(database_diet, "SELECT * FROM votings ORDER BY nr_term_of_office, id_voting")
     } else {
         votings <- dbGetQuery(database_diet, "SELECT * FROM votings")
     }
 
     # encoding for windows
     if (windows) {
-        votings[, 5] <- iconv(votings[, 5], from = "UTF-8", to = "Windows-1250")
+        votings[, 6] <- iconv(votings[, 6], from = "UTF-8", to = "Windows-1250")
     }
 
     suppressWarnings(dbDisconnect(database_diet))

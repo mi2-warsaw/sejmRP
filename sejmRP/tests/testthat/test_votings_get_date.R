@@ -10,5 +10,5 @@ test_that("format YYYY-MM-DD", {
 
 
 test_that("length", {
-  expect_equal(length(votings_get_date("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1179")), 1)
+  expect_equal(length(votings_get_date("http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=listaglos&IdDnia=1491")), 1)
 })

@@ -17,7 +17,7 @@
 # \dontrun{
 # counter <- get_counter_table()
 # names(counter)
-# # [1] "id"   "what" "date"}
+# # [1] 'id' 'what' 'date'}
 #
 # @note
 # Default parameters use privilages of 'reader'. It can only SELECT data from database.

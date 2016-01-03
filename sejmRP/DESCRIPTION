@@ -1,24 +1,28 @@
 Package: sejmRP
-Title: An Information About Deputies and Votings in Polish Diet
-Version: 1.2
-Date: 2015-10-05
+Title: An Information About Deputies and Votings in Polish Diet from seventh to eighth term of office 
+Version: 1.3
+Date: 2016-01-03
 Authors@R: c(
    person("Piotr","Smuda",email="piotrsmuda@gmail.com",role=c("aut","cre")),
    person("Przemyslaw","Biecek",email="przemyslaw.biecek@gmail.com",role="aut"),
    person("Tomasz","Mikolajczyk",email="t.mikolajczyk@gmail.com",role="ctb"))
 Maintainer: Piotr Smuda <piotrsmuda@gmail.com>
-Description: Set of functions that access information about deputies and votings in Polish diet from webpage http://www.sejm.gov.pl/.
-   The package was developed as a result of an internship in MI2 Group - http://mi2.mini.pw.edu.pl/, Faculty of Mathematics and Information Science, Warsaw University of Technology.
+Description: Set of functions that access information about deputies and votings
+    in Polish diet from webpage http://www.sejm.gov.pl/. The package was developed
+    as a result of an internship in MI2 Group - http://mi2.mini.pw.edu.pl/,
+    Faculty of Mathematics and Information Science, Warsaw University of Technology.
 BugReports: http://github.com/mi2-warsaw/sejmRP/issues
-Depends: R (>= 3.1.0)
+Depends:
+    R (>= 3.1.0)
 License: GPL-2
 LazyLoad: true
 LazyData: true
 Imports:
-  DBI,
-  dplyr,
-  RPostgreSQL,
-  rvest, 
-  stringi,
-  XML,
-  xml2
+    DBI,
+    dplyr,
+    RPostgreSQL,
+    rvest,
+    stringi,
+    XML,
+    xml2
+RoxygenNote: 5.0.1

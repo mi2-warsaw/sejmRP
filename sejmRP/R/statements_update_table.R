@@ -3,14 +3,13 @@
 #' Function \code{statements_update_table} updates a table with deputies' statements.
 #'
 #' @usage statements_update_table(dbname, user, password, host,
-#'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/',
-#'   verbose=FALSE)
+#'   nr_term_of_office = 8, verbose = FALSE)
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
-#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param nr_term_of_office number of term of office of Polish Diet; default: 8
 #' @param verbose if TRUE then additional info will be printed
 #'
 #' @return invisible NULL
@@ -27,16 +26,30 @@
 #' @export
 #'
 
-statements_update_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
-                                    verbose=FALSE) {
+statements_update_table <- function(dbname, user, password, host, nr_term_of_office = 8, verbose = FALSE) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-              is.character(home_page))
+              is.numeric(nr_term_of_office), nr_term_of_office%%1 == 0, is.logical(verbose))
     
+    # set home page and pattern for css in statements_links
+    if (nr_term_of_office == 7) {
+      home_page <- home_page_links <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+      css_pattern <- "h2 a"
+    } else if (nr_term_of_office == 8){
+      home_page_links <- "http://www.sejm.gov.pl"
+      home_page <- paste0(home_page_links, "/Sejm8.nsf/")
+      css_pattern <- ".mowca-link a"
+    }
+  
     # checking last id of statements
     drv <- dbDriver("PostgreSQL")
     database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
-    last_id <- dbGetQuery(database_diet, "SELECT SUBSTRING(id_statement, '[0-9]+\\.[0-9]+') FROM statements")
-    last_id <- max(as.numeric(last_id[, 1]))
+    last_id <- dbGetQuery(database_diet, paste0("SELECT SUBSTRING(id_statement, '[0-9]+\\.[0-9]+') FROM statements ",
+                          "WHERE nr_term_of_office = ", nr_term_of_office))
+    if (length(last_id) > 0) {
+      last_id <- max(as.numeric(last_id[, 1]))
+    } else {
+      last_id <- 1.1
+    }
     ids_numbers <- unlist(strsplit(as.character(last_id), split = "[^0-9]+"))
     dbSendQuery(database_diet, paste0("DELETE FROM statements WHERE id_statement SIMILAR TO '", 
                                       ids_numbers[1], "\\.", ids_numbers[2], "\\.[0-9]{3,4}'"))
@@ -52,7 +65,7 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
               cat("\nDownloading", page, "\n")
             }
             stenogram <- html_nodes(safe_html(page), ".stenogram")
-            statements_links <- html_nodes(stenogram, "h2 a")
+            statements_links <- html_nodes(stenogram, css_pattern)
             
             # move to next day of meeting if empty page found
             if (length(statements_links) == 0) {
@@ -69,7 +82,7 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
             statements_date <- votings_get_date(page)
             
             # get deputies' names, statements and statements' ids
-            statements_data <- statements_get_statements_data(statements_links, home_page)
+            statements_data <- statements_get_statements_data(statements_links, home_page_links)
             
             # get statements
             statements <- unlist(lapply(statements_data[, 2], function(elem) {
@@ -90,9 +103,9 @@ statements_update_table <- function(dbname, user, password, host, home_page = "h
                 titles_order_points[i] <- gsub(titles_order_points[i], pattern = "'", replacement = "")
                 statements[i] <- gsub(statements[i] , pattern = "'", replacement = "")
                 
-                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, titles_order_points, ", 
-                  "statement) VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", titles_order_points[i], "','",
-                  statements[i], "')"))
+                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, nr_term_of_office, surname_name, date_statement, ", 
+                                                  "titles_order_points, statement) VALUES ('", id, "',", nr_term_of_office, ",'", statements_data[i, 1],
+                                                  "','", statements_date, "','", titles_order_points[i], "','", statements[i], "')"))
             }
             
             suppressWarnings(dbDisconnect(database_diet))

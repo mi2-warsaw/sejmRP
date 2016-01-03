@@ -8,7 +8,8 @@
 #' of Polish diet deputies are splitted into \emph{active} and \emph{inactive}.
 #' In addition id of the last added deputy in \emph{deputies} table is needed.
 #'
-#' @usage deputies_add_new(dbname, user, password, host, type, id)
+#' @usage deputies_add_new(dbname, user, password, host, type, id,
+#'   nr_term_of_office = 8)
 #'
 #' @param dbname name of database
 #' @param user name of user
@@ -16,6 +17,7 @@
 #' @param host name of host
 #' @param type type of deputies which be add to table with deputies: active, inactive
 #' @param id id of deputies from which we start add new deputies
+#' @param nr_term_of_office number of term of office of Polish Diet; default: 8
 #'
 #' @return invisible NULL
 #'
@@ -32,12 +34,13 @@
 #' @export
 #'
 
-deputies_add_new <- function(dbname, user, password, host, type, id) {
+deputies_add_new <- function(dbname, user, password, host, type, id, nr_term_of_office = 8) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.character(type), 
-              type == "active" || type == "inactive", is.character(id), as.numeric(id)%%1 == 0)
+              type == "active" || type == "inactive", is.character(id), as.numeric(id)%%1 == 0,
+              is.numeric(nr_term_of_office), nr_term_of_office%%1 == 0)
     
     # getting data from page with deputies
-    deputies <- deputies_get_data(type)
+    deputies <- deputies_get_data(type, nr_term_of_office)
     
     # finding maximum id of deputies
     max_id <- max(deputies[, 1])
@@ -55,8 +58,8 @@ deputies_add_new <- function(dbname, user, password, host, type, id) {
         database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
         n <- length(new_deputies)
         for (i in seq_len(n)) {
-            dbSendQuery(database_diet, paste0("INSERT INTO deputies (id_deputy, surname_name) VALUES ('", id_new_deputies[i], 
-                "','", new_deputies[i], "')"))
+            dbSendQuery(database_diet, paste0("INSERT INTO deputies (id_deputy, nr_term_of_office, surname_name) VALUES ('",
+                id_new_deputies[i], "',", nr_term_of_office, ",'", new_deputies[i], "')"))
         }
         suppressWarnings(dbDisconnect(database_diet))
     }

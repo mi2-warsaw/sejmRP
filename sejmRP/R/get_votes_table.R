@@ -25,9 +25,9 @@
 #' \dontrun{
 #' votes <- get_votes_table()
 #' dim(votes)
-#' # [1] 2826483       5
+#' # [1] 2826483 6
 #' names(votes)
-#' # [1] 'id_vote'   'id_deputy' 'id_voting' 'vote'      'club'
+#' # [1] 'id_vote' 'nr_term_of_office' 'id_deputy' 'id_voting' 'vote' 'club'
 #' object.size(votes)
 #' # 90474040 bytes}
 #'
@@ -55,14 +55,15 @@ get_votes_table <- function(dbname = "sejmrp", user = "reader", password = "qux9
 
     # reading table
     if (sorted_by_id) {
-        votes <- dbGetQuery(database_diet, "SELECT * FROM votes ORDER BY id_voting, id_vote")
+        votes <- dbGetQuery(database_diet, "SELECT * FROM votes ORDER BY nr_term_of_office, id_voting, id_vote")
     } else {
         votes <- dbGetQuery(database_diet, "SELECT * FROM votes")
     }
 
     # encoding for windows
     if (windows) {
-        votes[, 4] <- iconv(votes[, 4], from = "UTF-8", to = "Windows-1250")
+        votes[, 5] <- iconv(votes[, 5], from = "UTF-8", to = "Windows-1250")
+        votes[, 6] <- iconv(votes[, 6], from = "UTF-8", to = "Windows-1250")
     }
 
     suppressWarnings(dbDisconnect(database_diet))

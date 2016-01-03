@@ -6,7 +6,7 @@
 #' Function \code{safe_readHTMLTable} performes 10 (by default) attempts to download the URL
 #' and waits 60sec (by default) after each failure
 #'
-#' @usage safe_readHTMLTable(..., time=60, attempts=10)
+#' @usage safe_readHTMLTable(..., time = 60, attempts = 10)
 #'
 #' @param ... arguments that will be passed to readHTMLTable
 #' @param time sleep interval after each failure
@@ -17,7 +17,7 @@
 #' @examples
 #' \dontrun{
 #' page <- paste0('http://www.sejm.gov.pl/Sejm7.nsf/',
-#'                'wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=008')
+#'                'posiedzenie.xsp?posiedzenie=99&dzien=2')
 #' safe_readHTMLTable(page)}
 #'
 #' @author Przemyslaw Biecek
@@ -26,13 +26,13 @@
 #' @importFrom XML readHTMLTable
 #'
 
-safe_readHTMLTable <- function(..., time=60, attempts=10) {
+safe_readHTMLTable <- function(..., time = 60, attempts = 10) {
   stopifnot(is.numeric(time))
   stopifnot(is.numeric(attempts))
   
   repeat({
     attempts <- attempts - 1
-    pageH <- try(readHTMLTable(...), silent=TRUE)
+    pageH <- try(readHTMLTable(...), silent = TRUE)
     if (class(pageH)[1] != "try-error")
       break()
     cat("No connection, trying again: \n")

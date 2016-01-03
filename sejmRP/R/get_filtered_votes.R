@@ -14,6 +14,10 @@
 #' in date format 'YYYY-MM-DD', where the first describes left boundary of period and
 #' the second right boundary. It is possible to choose only one day, just try the same
 #' date as first and second element of vector.
+#' \item terms_of_office - range of terms of office's numbers. This filter is a integer
+#' vector with two elements, where the first describes a left boundary of range
+#' and the second a right boundary. It is possible to choose only one term of office,
+#' just try the same number as first and second element of vector.
 #' \item meetings - range of meetings' numbers. This filter is a integer vector with two
 #' elements, where the first describes a left boundary of range and the second a right
 #' boundary. It is possible to choose only one meeting, just try the same number
@@ -43,7 +47,8 @@
 #' @usage get_filtered_votes(dbname = 'sejmrp', user = 'reader',
 #'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
 #'   windows = .Platform$OS.type == 'windows', clubs = character(0),
-#'   dates = character(0), meetings = integer(0), votings = integer(0),
+#'   dates = character(0), terms_of_office = integer(0), 
+#'   meetings = integer(0), votings = integer(0),
 #'   deputies = character(0), topics = character(0))
 #'
 #' @param dbname name of database; default: 'sejmrp'
@@ -55,6 +60,8 @@
 #' default: character(0)
 #' @param dates period of time that will be taken to filter data from database;
 #' default: character(0)
+#' @param terms_of_office range of terms of office's numbers that will be taken to filter data
+#' from database; default: integer(0)
 #' @param meetings range of meetings' numbers that will be taken to filter data from database;
 #' default: integer(0)
 #' @param votings range of votings' numbers that will be taken to filter data from database;
@@ -70,10 +77,10 @@
 #' \dontrun{
 #' filtered_votes <- get_filtered_votes()
 #' dim(filtered_votes)
-#' # [1] 2826483       8
+#' # [1] 2826483       9
 #' names(filtered_votes)
-#' [1] 'surname_name' 'club' 'vote' 'id_voting' 'nr_meeting'
-#' [6] 'nr_voting' 'date_meeting' 'topic_voting'
+#' [1] 'surname_name' 'nr_term_of_office' 'club' 'vote' 'id_voting'
+#' [6] 'nr_meeting' 'nr_voting' 'date_meeting' 'topic_voting'
 #' object.size(filtered_votes)
 #' # 148694336 bytes}
 #'
@@ -97,17 +104,20 @@
 
 get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl",
                                windows = .Platform$OS.type == "windows", clubs = character(0), dates = character(0),
-                               meetings = integer(0), votings = integer(0), deputies = character(0), topics = character(0)) {
+                               terms_of_office = integer(0), meetings = integer(0), votings = integer(0), deputies = character(0),
+                               topics = character(0)) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(windows), is.character(clubs),
-        is.character(dates), is.integer(meetings), is.integer(votings), is.character(deputies), is.character(topics))
+        is.character(dates), is.numeric(terms_of_office), is.numeric(meetings), is.numeric(votings), is.character(deputies), is.character(topics),
+        all(c(terms_of_office, meetings, votings)%%1 == 0))
     length_clubs <- length(clubs)
     length_dates <- length(dates)
+    length_terms_of_office <- length(terms_of_office)
     length_meetings <- length(meetings)
     length_votings <- length(votings)
     length_deputies <- length(deputies)
     length_topics <- length(topics)
-    stopifnot(length_clubs >= 0, length_dates == 0 | length_dates == 2, length_meetings == 0 | length_meetings == 2,
-              length_votings == 0 | length_votings == 2, length_deputies >= 0, length_topics >= 0)
+    stopifnot(length_clubs >= 0, length_dates == 0 | length_dates == 2, length_terms_of_office == 0 | length_terms_of_office == 2,
+              length_meetings == 0 | length_meetings == 2, length_votings == 0 | length_votings == 2, length_deputies >= 0, length_topics >= 0)
 
     # connecting to database to add information about new SELECT to the counter table
     drv <- dbDriver("PostgreSQL")
@@ -121,6 +131,7 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     # fake variables in order to pass CRAN CHECK
     club <- NULL
     date_meeting <- NULL
+    nr_term_of_office <- NULL
     nr_meeting <- NULL
     nr_voting <- NULL
     surname_name <- NULL
@@ -131,9 +142,11 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     database_diet <- src_postgres(dbname = dbname, user = user, password = password, host = host)
 
     # read data dodac potem
-    votes <- tbl(database_diet, sql("SELECT d.surname_name, v.club, v.vote, vv.id_voting, vv.nr_meeting, vv.nr_voting, vv.date_meeting, vv.topic_voting
+    votes <- tbl(database_diet, sql("SELECT d.surname_name, d.nr_term_of_office, v.club, v.vote, vv.id_voting,
+                                    vv.nr_meeting, vv.nr_voting, vv.date_meeting, vv.topic_voting
                                     FROM votes v, votings vv, deputies d
-                                    WHERE v.id_voting = vv.id_voting AND d.id_deputy = v.id_deputy"))
+                                    WHERE v.id_voting = vv.id_voting AND v.nr_term_of_office = vv.nr_term_of_office
+                                    AND d.id_deputy = v.id_deputy AND d.nr_term_of_office = vv.nr_term_of_office"))
 
     # clubs filter
     if (length_clubs > 0) {
@@ -147,6 +160,11 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
         votes <- filter(votes, between(date_meeting, dates[1], dates[2]))
     }
 
+    # terms_of_office filter
+    if (length_terms_of_office == 2) {
+      votes <- filter(votes, between(nr_term_of_office, terms_of_office[1], terms_of_office[2]))
+    }
+    
     # meetings filter
     if (length_meetings == 2) {
         votes <- filter(votes, between(nr_meeting, meetings[1], meetings[2]))
@@ -188,7 +206,8 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     if (windows) {
         votes[, 1] <- iconv(votes[, 1], from = "UTF-8", to = "Windows-1250")
         votes[, 3] <- iconv(votes[, 3], from = "UTF-8", to = "Windows-1250")
-        votes[, 8] <- iconv(votes[, 8], from = "UTF-8", to = "Windows-1250")
+        votes[, 4] <- iconv(votes[, 4], from = "UTF-8", to = "Windows-1250")
+        votes[, 9] <- iconv(votes[, 9], from = "UTF-8", to = "Windows-1250")
     }
 
     suppressWarnings(dbDisconnect(database_diet$con))

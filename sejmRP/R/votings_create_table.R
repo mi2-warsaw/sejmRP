@@ -3,23 +3,19 @@
 #' Function \code{votings_create_table} creates a table with votings.
 #' 
 #' @usage votings_create_table(dbname, user, password, host,
-#'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/', page =
-#'   'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
+#'   nr_term_of_office = 8)
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
-#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
-#' @param page page with votings in polish diet: 
-#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
-#' symbol=posglos&NrKadencji=7
+#' @param nr_term_of_office number of term of office of Polish Diet; default: 8
 #'
 #' @return invisible NULL
 #'
 #' @examples
 #' \dontrun{
-#' votings_create_table(dbname,user,password,host)}
+#' votings_create_table(dbname, user, password, host)}
 #' 
 #' @note
 #' Use only this function for first time, when the \emph{votings} table
@@ -32,11 +28,15 @@
 #' @export
 #'
 
-votings_create_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
-                                 page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7") {
+votings_create_table <- function(dbname, user, password, host, nr_term_of_office = 8) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-              is.character(home_page), is.character(page))
+              is.numeric(nr_term_of_office), nr_term_of_office%%1 == 0)
     
+    # setting home page and page with votings
+    home_page <- paste0("http://www.sejm.gov.pl/Sejm", nr_term_of_office, ".nsf/")
+    page <- paste0("http://www.sejm.gov.pl/Sejm", nr_term_of_office,
+                   ".nsf/agent.xsp?symbol=posglos&NrKadencji=", nr_term_of_office)
+  
     # getting meetings table with meetings' numbers
     meetings_table <- votings_get_meetings_table(page)
     
@@ -60,9 +60,9 @@ votings_create_table <- function(dbname, user, password, host, home_page = "http
         drv <- dbDriver("PostgreSQL")
         database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
         for (j in rev(seq_len(length(votings_links)))) {
-            dbSendQuery(database_diet, paste0("INSERT INTO votings (id_voting, nr_meeting, date_meeting,",
-                                              "nr_voting, topic_voting, link_results) VALUES (", 
-                                              id_voting, ",", meetings_table[i, 1], ",'", meetings_date, "',", 
+            dbSendQuery(database_diet, paste0("INSERT INTO votings (id_voting, nr_term_of_office, nr_meeting, date_meeting, ",
+                                              "nr_voting, topic_voting, link_results) VALUES (", id_voting, ",",
+                                              nr_term_of_office, ",", meetings_table[i, 1], ",'", meetings_date, "',", 
                                               votings_table[j, 1], ",'", votings_table[j, 3], "','", votings_links[j], "')"))
             
             id_voting <- id_voting + 1

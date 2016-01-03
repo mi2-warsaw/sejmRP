@@ -9,11 +9,11 @@
 #' Polish and the third is with numbers of votings on each meeting.
 #'
 #' @usage votings_get_meetings_table(page = 
-#'   'http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7')
+#'   'http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=posglos&NrKadencji=8')
 #'
 #' @param page page with votings in polish diet: 
-#' http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?
-#' symbol=posglos&NrKadencji=7
+#' http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?
+#' symbol=posglos&NrKadencji=8
 #'
 #' @return data frame with three unnamed columns
 #'
@@ -29,7 +29,7 @@
 #' @export
 #'
 
-votings_get_meetings_table <- function(page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7") {
+votings_get_meetings_table <- function(page = "http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=posglos&NrKadencji=8") {
     stopifnot(is.character(page))
     
     # getting meetings table

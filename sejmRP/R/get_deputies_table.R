@@ -24,9 +24,9 @@
 #' \dontrun{
 #' deputies <- get_deputies_table()
 #' dim(deputies)
-#' # [1] 517   2
+#' # [1] 983 3
 #' names(deputies)
-#' # [1] 'id_deputy'    'surname_name'}
+#' # [1] 'id_deputy' 'nr_term_of_office' 'surname_name'}
 #'
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
@@ -52,14 +52,14 @@ get_deputies_table <- function(dbname = "sejmrp", user = "reader", password = "q
 
     # reading table
     if (sorted_by_id) {
-        deputies <- dbGetQuery(database_diet, "SELECT * FROM deputies ORDER BY id_deputy")
+        deputies <- dbGetQuery(database_diet, "SELECT * FROM deputies ORDER BY nr_term_of_office, id_deputy")
     } else {
         deputies <- dbGetQuery(database_diet, "SELECT * FROM deputies")
     }
 
     # encoding for windows
     if (windows) {
-        deputies[, 2] <- iconv(deputies[, 2], from = "UTF-8", to = "Windows-1250")
+        deputies[, 3] <- iconv(deputies[, 3], from = "UTF-8", to = "Windows-1250")
     }
 
     suppressWarnings(dbDisconnect(database_diet))

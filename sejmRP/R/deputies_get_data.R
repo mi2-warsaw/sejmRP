@@ -7,9 +7,10 @@
 #' name and surname. Also there is a choice between types of deputies, because
 #' on the page of Polish diet deputies are splitted into \emph{active} and \emph{inactive}.
 #'
-#' @usage deputies_get_data(type)
+#' @usage deputies_get_data(type, nr_term_of_office = 8)
 #'
 #' @param type type of deputies which be add to table with deputies: active, inactive
+#' @param nr_term_of_office number of term of office of Polish Diet; default: 8
 #'
 #' @return data frame with two columns: id_deputy, surname_name
 #'
@@ -26,15 +27,16 @@
 #' @export
 #'
 
-deputies_get_data <- function(type) {
+deputies_get_data <- function(type, nr_term_of_office = 8) {
     
-    stopifnot(is.character(type), type == "active" || type == "inactive")
+    stopifnot(is.character(type), type == "active" || type == "inactive",
+              is.numeric(nr_term_of_office), nr_term_of_office%%1 == 0)
     
     # choosing proper page of deputies
     if (type == "active") {
-        page <- "http://www.sejm.gov.pl/Sejm7.nsf/poslowie.xsp?type=A"
+        page <- paste0("http://www.sejm.gov.pl/Sejm", nr_term_of_office, ".nsf/poslowie.xsp?type=A")
     } else if (type == "inactive") {
-        page <- "http://www.sejm.gov.pl/Sejm7.nsf/poslowie.xsp?type=B"
+        page <- paste0("http://www.sejm.gov.pl/Sejm", nr_term_of_office, ".nsf/poslowie.xsp?type=B")
     }
     
     # getting data from page with deputies

@@ -7,7 +7,7 @@ output: pdf_document
 # Description
 
 **sejmRP** package enables scraping data from Polish Diet's webpage [sejm.gov.pl](http://www.sejm.gov.pl/)
-about votings and deputies in actual term of office. All data is storaged in database.
+about votings and deputies from seventh to eighth term of office. All data is storaged in database.
 
 # Installation
 
@@ -41,6 +41,7 @@ install.packages("sejmRP")
 * statements_update_table
 * statements_get_statement
 * statements_get_statements_data
+* statements_get_statements_table
 
 # Access functions
 
@@ -69,79 +70,79 @@ After that we will get four tables:
 
 1. *deputies* with columns:
     1) *id_deputy* - deputy's id,
-    2) *surname_name* - deputy's names and surnames,
+    2) *nr_term_of_office* - Polish Diet's number of term of office,
+    3) *surname_name* - deputy's names and surnames,
 2. *votings* with columns:
     1) *id_voting* - voting's id,
-    2) *nr_meeting* - meeting's number,
-    3) *date_meeting* - meeting's date,
-    4) *nr_voting* - voting's number,
-    5) *topic_voting* - voting's topic,
-    6) *link_results* - link with voting's results,
+    2) *nr_term_of_office* - Polish Diet's number of term of office,
+    3) *nr_meeting* - meeting's number,
+    4) *date_meeting* - meeting's date,
+    5) *nr_voting* - voting's number,
+    6) *topic_voting* - voting's topic,
+    7) *link_results* - link with voting's results,
 3. *votes* with columns:
     1) *id_vote* - vote's id,
-    2) *id_deputy* - deputy's id,
-    3) *id_voting* - voting's id,
-    4) *vote* - deputy's vote, one of: "Za","Przeciw","Wstrzymał się","Nieobecny",
-    5) *club* - deputy's club,
+    2) *nr_term_of_office* - Polish Diet's number of term of office,
+    3) *id_deputy* - deputy's id,
+    4) *id_voting* - voting's id,
+    5) *vote* - deputy's vote, one of: "Za","Przeciw","Wstrzymał się","Nieobecny",
+    6) *club* - deputy's club,
 4. *statements* with columns:
     1) *id_statement* - statement's id,
-    2) *surname_name* - author of statement,
-    3) *date_statement* - statement's date,
-    4) *titles_order_points* - title of order points,
-    5) *statement* - content of statement.
+    2) *nr_term_of_office* - Polish Diet's number of term of office,
+    3) *surname_name* - author of statement,
+    4) *date_statement* - statement's date,
+    5) *titles_order_points* - title of order points,
+    6) *statement* - content of statement.
 
 \newpage    
 Now when we have empty database, we can start completing it with data. First of all we complete the *deputies* table.
 To do that we use:
 ```{r, eval = FALSE}
-deputies_create_table(dbname, user, password, host)
+deputies_create_table(dbname, user, password, host, nr_term_of_office = 8)
 ```
 This function scraps active and inactive deputies' data from Polish Diet's webpage and put it to the table.
+If you want create *deputies* table with seventh term of office, choose *nr_term_of_office = 8*.
 In the case of you want get only deputies' data you can use:
 
 ```{r, eval = FALSE}
-deputies_get_data(type)
+deputies_get_data(type, nr_term_of_office = 8)
 ```
-where you can choose between active and inactive deputies.
+where you can choose between active and inactive deputies from eighth term of office.
 To update *deputies* table use:
 ```{r, eval = FALSE}
-deputies_update_table(dbname, user, password, host)
+deputies_update_table(dbname, user, password, host, nr_term_of_office = 8)
 ```
-
+Remember to choose a proper value of *nr_term_of_office* variable.
 After that we should complete *votings* table with:
 ```{r, eval = FALSE}
-votings_create_table(dbname, user, password, host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
-  page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+votings_create_table(dbname, user, password, host, nr_term_of_office = 8)
 ```
-This function scraps all information about votings from [http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7](http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7). If you want update *votings* table, try:
+This function scraps all information about votings from [http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7](http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7) for *nr_term_of_office = 7* and [http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=posglos&NrKadencji=8](http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=posglos&NrKadencji=8) for *nr_term_of_office = 8*. If you want update *votings* table, try:
 ```{r, eval = FALSE}
-votings_update_table(dbname, user, password, host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/",
-  page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+votings_update_table(dbname, user, password, host, nr_term_of_office = 8,
+                     verbose = FALSE)
 ```
-
-If you are interested in extra information, you can use additional functions:
+Again - remember to choose a proper value of *nr_term_of_office* variable. The last argument says function if you use want additional info be printed. If you are interested in extra information, you can use additional functions:
 ```{r, eval = FALSE}
 votings_get_meetings_table(
-  page = "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=posglos&NrKadencji=7")
+  page = "http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=posglos&NrKadencji=8")
 votings_get_votings_table(page)
 ```
-First of them enables downloading table with information about meetings during diet's term of office. The second one does the same with votings during meeting.
+First of them enables downloading table with information about meetings during eighth diet's term of office. The second one does the same with votings during meeting.
 
 Then we need to complete *votes* table. To do that we use:
 ```{r, eval = FALSE}
-votes_create_table(dbname, user, password, host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/", 
-  windows = .Platform$OS.type == 'windows')
+votes_create_table(dbname, user, password, host, nr_term_of_office = 8,
+                   windows = .Platform$OS.type == 'windows')
 ```
 The last argument says function if you use Windows, because of encoding issue on this operating system.
 
 To update *votes* table use:
 ```{r, eval = FALSE}
-votes_update_table(dbname, user, password, host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/", 
-  windows = .Platform$OS.type == 'windows')
+votes_update_table(dbname, user, password, host, nr_term_of_office = 8, 
+                   windows = .Platform$OS.type == "windows",
+                   verbose = FALSE)
 ```
 
 If you want to know how deputies from chosen club voted try:
@@ -152,15 +153,20 @@ As *page* argument you should put page with this club's voting's results ([examp
 
 Finally we should complete *statements* table with:
 ```{r, eval = FALSE}
-statements_create_table(dbname, user, password, host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/")
+statements_create_table(dbname, user, password, host, nr_term_of_office = 8)
 ```
 
 To update *statements* table use:
 ```{r, eval = FALSE}
-statements_update_table(dbname, user, password, host,
-  home_page = "http://www.sejm.gov.pl/Sejm7.nsf/")
+statements_update_table(dbname, user, password, host, nr_term_of_office = 8,
+                        verbose = FALSE)
 ```
+Like before if you are interested in extra information, you can use additional functions:
+```{r, eval = FALSE}
+statements_get_statements_table(page)
+statements_get_statement(page, ...)
+```
+First of them enables downloading table with information about statements during chosen meeting ([example](http://www.sejm.gov.pl/Sejm7.nsf/posiedzenie.xsp?posiedzenie=99&dzien=2)). The second one gets statement's content ([example](http://www.sejm.gov.pl/Sejm7.nsf/wypowiedz.xsp?posiedzenie=99&dzien=2&wyp=10)).
 
 # How to read tables from database
 
@@ -204,8 +210,9 @@ There is also a function:
 ```{r, eval = FALSE}
 get_filtered_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
   host = 'services.mini.pw.edu.pl', windows = .Platform$OS.type == 'windows',
-  clubs = character(0), dates = character(0), meetings = integer(0), 
-  votings = integer(0), deputies = character(0), topics = character(0))
+  clubs = character(0), dates = character(0), terms_of_office = integer(0),
+  meetings = integer(0), votings = integer(0), deputies = character(0),
+  topics = character(0))
 ```
 that retrieves joined *deputies*, *votes* and *votings* tables
 with filtred data. As you see there are few possible filters:
@@ -216,20 +223,24 @@ like for example: "PO", "PiS", "SLD". It is possible to choose more than one clu
 in date format "YYYY-MM-DD", where the first describes left boundary of period and
 the second right boundary. It is possible to choose only one day, just try the same
 date as first and second element of vector.
-3. *meetings* - range of meetings' numbers. This filter is a integer vector with two 
+3. *terms_of_office* - range of terms of office's numbers. This filter is a integer
+vector with two elements, where the first describes a left boundary of range
+and the second a right boundary. It is possible to choose only one term of office,
+just try the same number as first and second element of vector.
+4. *meetings* - range of meetings' numbers. This filter is a integer vector with two 
 elements, where the first describes a left boundary of range and the second a right
 boundary. It is possible to choose only one meeting, just try the same number
 as first and second element of vector.
-4. *votings* - range of votings' numbers. This filter is a integer vector with two 
+5. *votings* - range of votings' numbers. This filter is a integer vector with two 
 elements, where the first describes a left boundary of range and the second a right
 boundary. It is possible to choose only one voting, just try the same number
 as first and second element of vector.
-5. *deputies* - full names of deputies. This filter is a character vector with full
+6. *deputies* - full names of deputies. This filter is a character vector with full
 names of deputies in format: "surname first_name second_name". If you are not sure
 if the deputy you were thinking about has second name, try "surname first_name" or
 just "surname". There is high probability that proper deputy will be chosen. 
 It is possible to choose more than one deputy.
-6. *topics* - text patterns. This filter is a character vector with text patterns of
+7. *topics* - text patterns. This filter is a character vector with text patterns of
 topics that you are interested about. Note that the votings' topics are written like
 sentences, so remember about case inflection of nouns and adjectives and use stems of
 words as patterns. For example if you want to find votings about education (in Polish:

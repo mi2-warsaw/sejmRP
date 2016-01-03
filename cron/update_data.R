@@ -6,17 +6,17 @@ args <- commandArgs(TRUE)
 
 #connecting to database
 drv <- dbDriver("PostgreSQL")
-database_diet <- dbConnect(drv,dbname = dbname,user = user,password = password,host = host)
+database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
 
 #updating deputies table
-tryCatch(deputies_update_table(dbname,user,password,host),
+tryCatch(deputies_update_table(dbname = dbname, user = user, password = password, host = host, nr_term_of_office = 8),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     stop("Error during updating deputies table")
   })
 
 #updating votings table
-tryCatch(votings_update_table(dbname,user,password,host, verbose=TRUE),
+tryCatch(votings_update_table(dbname = dbname, user = user, password = password, host = host, nr_term_of_office = 8, verbose = TRUE),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     #removing a flag file if error occured
@@ -25,14 +25,14 @@ tryCatch(votings_update_table(dbname,user,password,host, verbose=TRUE),
   })
 
 #updating votes table
-tryCatch(votes_update_table(dbname,user,password,host, verbose=TRUE),
+tryCatch(votes_update_table(dbname = dbname, user = user, password = password, host = host, nr_term_of_office = 8, verbose = TRUE),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     stop("Error during updating votes table")
   })
 
 #updating statements table
-tryCatch(statements_update_table(dbname,user,password,host, verbose=TRUE),
+tryCatch(statements_update_table(dbname = dbname, user = user, password = password, host = host, nr_term_of_office = 8, verbose = TRUE),
   error = function(err){ 
     suppressWarnings(dbDisconnect(database_diet))
     stop("Error during updating statements table")

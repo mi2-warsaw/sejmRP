@@ -31,6 +31,7 @@ remove_database <- function(dbname, user, password, host) {
     database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
     
     # removing tables
+    dbRemoveTable(database_diet, "statements")
     dbRemoveTable(database_diet, "votes")
     dbRemoveTable(database_diet, "votings")
     dbRemoveTable(database_diet, "deputies")

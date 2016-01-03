@@ -7,18 +7,18 @@
 #' author, page with content of statement and it's id.
 #'
 #' @usage statements_get_statements_data(statements_links,
-#'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/')
+#'   home_page = 'http://www.sejm.gov.pl/')
 #'
 #' @param statements_links list of elements of XMLNodeSet class with statements' ids, links 
 #' and their's authors
-#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param home_page main page of polish diet: http://www.sejm.gov.pl/
 #'
 #' @return data frame with three columns: names, statements_links, ids
 #'
 #' @examples
 #' \dontrun{
-#' page <- html(paste0('http://www.sejm.gov.pl/Sejm7.nsf/',
-#'                'wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=0')
+#' page <- safe_html(paste0('http://www.sejm.gov.pl/Sejm7.nsf/',
+#'                'wypowiedz.xsp?posiedzenie=15&dzien=1&wyp=0'))
 #' page <- html_nodes(page, '.stenogram')
 #' statements_links <- html_nodes(page, 'h2 a')
 #' statements_get_statements_data(statements_links,
@@ -32,7 +32,7 @@
 #' @export
 #'
 
-statements_get_statements_data <- function(statements_links, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/") {
+statements_get_statements_data <- function(statements_links, home_page = "http://www.sejm.gov.pl/") {
     stopifnot(is.list(statements_links), length(statements_links) > 0)
     
     # Get speakers' names

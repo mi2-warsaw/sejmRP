@@ -3,13 +3,13 @@
 #' Function \code{statements_create_table} creates a table with deputies' statements.
 #'
 #' @usage statements_create_table(dbname, user, password, host,
-#'   home_page = 'http://www.sejm.gov.pl/Sejm7.nsf/')
+#'   nr_term_of_office = 8)
 #'
 #' @param dbname name of database
 #' @param user name of user
 #' @param password password of database
 #' @param host name of host
-#' @param home_page main page of polish diet: http://www.sejm.gov.pl/Sejm7.nsf/
+#' @param nr_term_of_office number of term of office of Polish Diet; default: 8
 #'
 #' @return invisible NULL
 #'
@@ -28,10 +28,20 @@
 #' @export
 #'
 
-statements_create_table <- function(dbname, user, password, host, home_page = "http://www.sejm.gov.pl/Sejm7.nsf/") {
+statements_create_table <- function(dbname, user, password, host, nr_term_of_office = 8) {
     stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), 
-              is.character(home_page))
+              is.numeric(nr_term_of_office), nr_term_of_office%%1 == 0)
     
+    # set home page and pattern for css in statements_links
+    if (nr_term_of_office == 7) {
+      home_page <- home_page_links <- "http://www.sejm.gov.pl/Sejm7.nsf/"
+      css_pattern <- "h2 a"
+    } else if (nr_term_of_office == 8){
+      home_page_links <- "http://www.sejm.gov.pl"
+      home_page <- paste0(home_page_links, "/Sejm8.nsf/")
+      css_pattern <- ".mowca-link a"
+    }
+  
     # set meeting and day number to 1
     nr_meeting <- 1
     nr_day <- 1
@@ -39,8 +49,8 @@ statements_create_table <- function(dbname, user, password, host, home_page = "h
         repeat {
             # get statements links of first day of a meeting
             page <- paste0(home_page, "wypowiedz.xsp?posiedzenie=", nr_meeting, "&dzien=", nr_day, "&wyp=0")
-            stenogram <- html_nodes(read_html(page), ".stenogram")
-            statements_links <- html_nodes(stenogram, "h2 a")
+            stenogram <- html_nodes(safe_html(page), ".stenogram")
+            statements_links <- html_nodes(stenogram, css_pattern)
             
             # move to next day of meeting if empty page found
             if (length(statements_links) == 0) {
@@ -57,7 +67,7 @@ statements_create_table <- function(dbname, user, password, host, home_page = "h
             statements_date <- votings_get_date(page)
             
             # get deputies' names, statements and statements' ids
-            statements_data <- statements_get_statements_data(statements_links, home_page)
+            statements_data <- statements_get_statements_data(statements_links, home_page_links)
             
             # get statements
             statements <- unlist(lapply(statements_data[, 2], function(elem) {
@@ -70,9 +80,9 @@ statements_create_table <- function(dbname, user, password, host, home_page = "h
             
             for (i in seq_len(length(statements))) {
                 id <- paste0(nr_meeting, ".", nr_day, ".", statements_data[i, 3])
-                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, surname_name, date_statement, titles_order_points, ", 
-                  "statement) VALUES ('", id, "','", statements_data[i, 1], "','", statements_date, "','", titles_order_points[i], "','",
-                  statements[i], "')"))
+                dbSendQuery(database_diet, paste0("INSERT INTO statements (id_statement, nr_term_of_office, surname_name, date_statement, ", 
+                  "titles_order_points, statement) VALUES ('", id, "',", nr_term_of_office, ",'", statements_data[i, 1], "','",
+                  statements_date, "','", titles_order_points[i], "','", statements[i], "')"))
             }
             
             suppressWarnings(dbDisconnect(database_diet))

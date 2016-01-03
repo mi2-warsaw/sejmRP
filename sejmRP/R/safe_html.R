@@ -6,7 +6,7 @@
 #' Function \code{safe_html} performes 10 (by default) attempts to download the URL
 #' and waits 60sec (by default) after each failure
 #'
-#' @usage safe_html(page, time=60, attempts=10)
+#' @usage safe_html(page, time = 60, attempts = 10)
 #'
 #' @param page requested URL
 #' @param time sleep interval after each failure
@@ -26,14 +26,14 @@
 #' @importFrom xml2 read_html
 #'
 
-safe_html <- function(page, time=60, attempts=10) {
+safe_html <- function(page, time = 60, attempts = 10) {
   stopifnot(is.character(page))
   stopifnot(is.numeric(time))
   stopifnot(is.numeric(attempts))
   
   repeat({
     attempts <- attempts - 1
-    pageH <- try(read_html(page), silent=TRUE)
+    pageH <- try(read_html(page), silent = TRUE)
     if (class(pageH)[1] != "try-error")
       break()
     cat("No connection, trying again: ", page, "\n")
