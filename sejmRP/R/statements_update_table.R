@@ -51,8 +51,9 @@ statements_update_table <- function(dbname, user, password, host, nr_term_of_off
       last_id <- 1.1
     }
     ids_numbers <- unlist(strsplit(as.character(last_id), split = "[^0-9]+"))
-    dbSendQuery(database_diet, paste0("DELETE FROM statements WHERE id_statement SIMILAR TO '", 
-                                      ids_numbers[1], "\\.", ids_numbers[2], "\\.[0-9]{3,4}'"))
+    dbSendQuery(database_diet, paste0("DELETE FROM statements WHERE nr_term_of_office = ", nr_term_of_office,
+                                      " and id_statement SIMILAR TO '", ids_numbers[1], "\\.", ids_numbers[2],
+                                      "\\.[0-9]{3,4}'"))
     suppressWarnings(dbDisconnect(database_diet))
     
     nr_meeting <- as.numeric(ids_numbers[1])
