@@ -14,6 +14,7 @@ library(ggplot2)
 library(sejmRP)
 library(dplyr)
 library(tidyr)
+library(DT)
 
 # options for chunks
 opts_chunk$set(comment=NA, fig.width=6, fig.height=6, results='asis', warning=FALSE, message=FALSE, cache=FALSE)
@@ -73,7 +74,8 @@ table <- results %>%
   spread(pattern, count, fill=0)
 
 table <- table[order(-rowSums(table[,-1])),]
-kable(as.data.frame(table))
+#kable(as.data.frame(table))
+datatable(as.data.frame(table))
 ```
 
 # Tabela z liczbą słow per debata
@@ -84,7 +86,9 @@ table2 <- results %>%
   spread(pattern, sum, fill=0)
 
 table2 <- table2[order(-rowSums(table2[,-1])),]
-kable(as.data.frame(table2))
+#kable(as.data.frame(table2))
+datatable(as.data.frame(table2))
+
 ```
 
 
