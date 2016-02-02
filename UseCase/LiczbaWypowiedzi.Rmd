@@ -27,7 +27,7 @@ addArchivistHook(class="ggplot",
 ```
 
 
-```{r, cache=TRUE, echo=FALSE}
+```{r, cache=FALSE, echo=FALSE}
 allDep <- get_deputies_table()
 allStatements <- get_statements_table() %>% filter(nr_term_of_office == "8")
 ```
@@ -44,6 +44,7 @@ getDepWithPatterns <- function(pattern, allStatements) {
     mutate(surname_name=gsub(surname_name, pattern="Minister Sprawiedliwości ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Edukacji Narodowej ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Finansów ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Spraw Zagranicznych ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Spraw Wewnętrznych i Administracji ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Rodziny, Pracy i Polityki Społecznej ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Energii ", replacement="")) %>%
@@ -60,7 +61,7 @@ getDepWithPatterns <- function(pattern, allStatements) {
     arrange(desc(sum), desc(count))
 }
   
-topics <- c("o służbie cywilnej", "o Trybunale Konstytucyjnym", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej", "")
+topics <- c("o służbie cywilnej", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej", "polskiej polityki zagranicznej", "o Trybunale Konstytucyjnym", "Trybunału Konstytucyjnego", "")
 
 results <- lapply(topics, getDepWithPatterns, allStatements=allStatements)
 results <- do.call(rbind, results)
@@ -91,14 +92,25 @@ datatable(as.data.frame(table2))
 
 ```
 
+## Didaskalia
 
-```{r, echo=FALSE, eval=FALSE}
-library(ggplot2)
+```{r, echo=FALSE}
+# library(ggplot2)
+# 
+# table <- table[rowSums(table[,-1]) > 3,]
+# 
+# ggplot(results, aes(surname_name, y=count, fill=pattern)) +
+#   geom_bar(stat = "identity") + 
+#   coord_flip() + theme(legend.position="top")
 
-table <- table[rowSums(table[,-1]) > 3,]
 
-ggplot(results, aes(surname_name, y=count, fill=pattern)) +
-  geom_bar(stat = "identity") + 
-  coord_flip() + theme(legend.position="top")
+wszystko <- paste(allStatements$statement, collapse = "\nNEXT")
+wszystkoL <- strsplit(wszystko, split="(", fixed = TRUE)[[1]]
+wszystkoL <- gsub(wszystkoL, pattern="\\).*$", replacement="")
+wszystkoL <- grep(wszystkoL, pattern="^Poseł", value = TRUE)
+
+cat(paste((sort(wszystkoL)), collapse = "\n\n"))
+
+#head(rev(sort(table(gsub(wszystkoL, pattern=":.*$", replacement="")))),25)
 
 ```
