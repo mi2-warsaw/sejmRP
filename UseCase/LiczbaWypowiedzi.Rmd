@@ -43,15 +43,23 @@ getDepWithPatterns <- function(pattern, allStatements) {
     mutate(surname_name=gsub(surname_name, pattern="Minister Sprawiedliwości ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Edukacji Narodowej ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Finansów ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Spraw Wewnętrznych i Administracji ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Rodziny, Pracy i Polityki Społecznej ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Energii ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Zdrowia ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Rolnictwa i Rozwoju Wsi ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Gospodarki Morskiej i Żeglugi Śródlądowej ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Sportu i Turystyki ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Prezes Rady Ministrów ", replacement="")) %>%
     group_by(surname_name) %>%
     summarise(count=n(),
               sum = sum(length),
               statement = paste(statement, collapse="\n[NEXT]\n")) %>%
-    mutate(pattern=pattern) %>%
+    mutate(pattern=ifelse(pattern=="", "wszystko", pattern)) %>%
     arrange(desc(sum), desc(count))
 }
   
-topics <- c("o służbie cywilnej", "o Trybunale Konstytucyjnym", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej")
+topics <- c("o służbie cywilnej", "o Trybunale Konstytucyjnym", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej", "")
 
 results <- lapply(topics, getDepWithPatterns, allStatements=allStatements)
 results <- do.call(rbind, results)
