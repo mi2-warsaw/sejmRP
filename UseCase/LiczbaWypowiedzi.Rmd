@@ -1,0 +1,92 @@
+---
+title: "Number of statements"
+author: "Przemyslaw Biecek"
+date: "2 February 2016"
+output: 
+  html_document:
+    toc: TRUE
+---
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(knitr)
+library(archivist)
+library(ggplot2)
+library(sejmRP)
+library(dplyr)
+library(tidyr)
+
+# options for chunks
+opts_chunk$set(comment=NA, fig.width=6, fig.height=6, results='asis', warning=FALSE, message=FALSE, cache=FALSE)
+
+# store everything in the archivist repo
+addArchivistHook(class="ggplot",
+                 repoDir = "arepo", 
+                 repo = "sejmRP", user = "mi2-warsaw", repoDirGit = "UseCase/arepo")
+
+```
+
+
+```{r, cache=TRUE, echo=FALSE}
+allDep <- get_deputies_table()
+allStatements <- get_statements_table() %>% filter(nr_term_of_office == "8")
+```
+
+```{r, cache=TRUE, echo=FALSE}
+getDepWithPatterns <- function(pattern, allStatements) {
+  allStatements %>% 
+    filter(grepl(titles_order_points, pattern=pattern)) %>%
+    mutate(length = sapply(strsplit(statement, split=" +"), length)) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Poseł Sprawozdawca ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Poseł ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Infrastruktury i Budownictwa ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Nauki i Szkolnictwa Wyższego ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Sprawiedliwości ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Edukacji Narodowej ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Minister Finansów ", replacement="")) %>%
+    group_by(surname_name) %>%
+    summarise(count=n(),
+              sum = sum(length),
+              statement = paste(statement, collapse="\n[NEXT]\n")) %>%
+    mutate(pattern=pattern) %>%
+    arrange(desc(sum), desc(count))
+}
+  
+topics <- c("o służbie cywilnej", "o Trybunale Konstytucyjnym", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej")
+
+results <- lapply(topics, getDepWithPatterns, allStatements=allStatements)
+results <- do.call(rbind, results)
+```
+
+# Tabela z liczbą wystąpień per debata
+
+```{r, echo=FALSE}
+table <- results %>% 
+  select(-statement, -sum) %>%
+  spread(pattern, count, fill=0)
+
+table <- table[order(-rowSums(table[,-1])),]
+kable(as.data.frame(table))
+```
+
+# Tabela z liczbą słow per debata
+
+```{r, echo=FALSE}
+table2 <- results %>% 
+  select(-statement, -count) %>%
+  spread(pattern, sum, fill=0)
+
+table2 <- table2[order(-rowSums(table2[,-1])),]
+kable(as.data.frame(table2))
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(ggplot2)
+
+table <- table[rowSums(table[,-1]) > 3,]
+
+ggplot(results, aes(surname_name, y=count, fill=pattern)) +
+  geom_bar(stat = "identity") + 
+  coord_flip() + theme(legend.position="top")
+
+```

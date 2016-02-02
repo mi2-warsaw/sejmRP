@@ -1,0 +1,11 @@
+Source: local data frame [6 x 5]
+
+              surname_name count   sum
+                     (chr) (int) (int)
+1    Małgorzata Wassermann     3  3087
+2   Andżelika Możdżanowska     9  3036
+3    Arkadiusz Czartoryski     7  2405
+4             Artur Górski     3  1981
+5 Maria Małgorzata Janyska     4  1818
+6         Zbigniew Gryglas     4  1707
+Variables not shown: statement (chr), pattern (chr)
