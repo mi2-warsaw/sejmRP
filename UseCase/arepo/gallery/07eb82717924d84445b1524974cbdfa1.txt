@@ -1,0 +1,7 @@
+                surname_name wszystko wtracenia
+40               Anna Paluch       14       155
+135        Izabela Leszczyna       23       117
+145           Jakub Rutnicki       10       116
+173        Jerzy Meysztowicz       37         0
+186 Joanna Scheuring-Wielgus       40         5
+197   Kamila Gasiuk-Pihowicz       40         9

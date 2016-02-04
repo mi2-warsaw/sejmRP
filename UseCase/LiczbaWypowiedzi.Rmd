@@ -20,7 +20,7 @@ library(DT)
 opts_chunk$set(comment=NA, fig.width=6, fig.height=6, results='asis', warning=FALSE, message=FALSE, cache=FALSE)
 
 # store everything in the archivist repo
-addArchivistHook(class="ggplot",
+addHooksToPrint(class="ggplot",
                  repoDir = "arepo", 
                  repo = "sejmRP", user = "mi2-warsaw", repoDirGit = "UseCase/arepo")
 
@@ -109,6 +109,27 @@ wszystkoL <- strsplit(wszystko, split="(", fixed = TRUE)[[1]]
 wszystkoL <- gsub(wszystkoL, pattern="\\).*$", replacement="")
 wszystkoL <- grep(wszystkoL, pattern="^Poseł", value = TRUE)
 
+didask <- data.frame(
+  table(gsub(gsub(wszystkoL, 
+          pattern="Poseł ", replacement=""), 
+     pattern=":.*$", replacement="")))
+colnames(didask) = c("surname_name", "wtracenia")
+
+mer <- merge(table[,c(1,11)], didask, all=TRUE)
+mer[is.na(mer[,3]),3]=0
+mer[is.na(mer[,2]),2]=0
+
+library(ggrepel)
+
+mer2 <- mer[mer$wtracenia>100 | mer$wszystko > 30, ]
+ggplot(mer2, aes(wtracenia, wszystko)) +
+  geom_point(data=mer, color="red") +
+  geom_text_repel(aes(label=surname_name)) +
+#  coord_trans("sqrt", "sqrt") +
+  xlab("Liczba wypowiedzi z sali") +
+  ylab("Liczba wypowiedzi z mównicy") +
+  theme_classic(base_size = 16)
+  
 cat(paste((sort(wszystkoL)), collapse = "\n\n"))
 
 #head(rev(sort(table(gsub(wszystkoL, pattern=":.*$", replacement="")))),25)
