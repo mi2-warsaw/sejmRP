@@ -138,7 +138,7 @@ kluby <- sapply(mer$surname_name, function(sn) {
 
 mer$kluby <- kluby
 
-mer2 <- mer[mer$wtracenia>100 | mer$wszystko > 30, ]
+mer2 <- mer[mer$wtracenia > 70 | mer$wszystko > 25, ]
 ggplot(mer2, aes(wtracenia, wszystko, color=kluby)) +
   geom_point(data=mer) +
   geom_text_repel(aes(label=surname_name)) +
