@@ -29,6 +29,12 @@ addHooksToPrint(class="ggplot",
 
 ```{r, cache=FALSE, echo=FALSE}
 allDep <- get_deputies_table()
+allVotes <- get_filtered_votes(terms_of_office = c(8,8))
+MCclubs <- sapply(unique(allVotes$surname_name), function(sn) {
+  tmp <- allVotes[allVotes$surname_name == sn, ]
+  names(tail(sort(table(tmp$club)), 1))
+})
+
 allStatements <- get_statements_table() %>% filter(nr_term_of_office == "8")
 ```
 
@@ -121,9 +127,20 @@ mer[is.na(mer[,2]),2]=0
 
 library(ggrepel)
 
+kluby <- sapply(mer$surname_name, function(sn) {
+  nam1 <- strsplit(sn, split=" ")[[1]]
+  wm <- sapply(names(MCclubs), function(mc) {
+    nam2 <- strsplit(mc, split=" ")[[1]]
+    length(intersect(nam1, nam2))
+  }) 
+  MCclubs[which.max(wm)]
+})
+
+mer$kluby <- kluby
+
 mer2 <- mer[mer$wtracenia>100 | mer$wszystko > 30, ]
-ggplot(mer2, aes(wtracenia, wszystko)) +
-  geom_point(data=mer, color="red") +
+ggplot(mer2, aes(wtracenia, wszystko, color=kluby)) +
+  geom_point(data=mer) +
   geom_text_repel(aes(label=surname_name)) +
 #  coord_trans("sqrt", "sqrt") +
   xlab("Liczba wypowiedzi z sali") +
