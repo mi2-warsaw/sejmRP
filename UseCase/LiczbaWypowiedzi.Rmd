@@ -22,7 +22,7 @@ opts_chunk$set(comment=NA, fig.width=6, fig.height=6, results='asis', warning=FA
 # store everything in the archivist repo
 addHooksToPrint(class="ggplot",
                  repoDir = "arepo", 
-                 repo = "sejmRP", user = "mi2-warsaw", repoDirGit = "UseCase/arepo")
+                 repo = "sejmRP", user = "mi2-warsaw", subdir = "UseCase/arepo")
 
 ```
 
@@ -80,8 +80,19 @@ table <- results %>%
   select(-statement, -sum) %>%
   spread(pattern, count, fill=0)
 
-table <- table[order(-rowSums(table[,-1])),]
+table <- table[order(-table[,ncol(table)]),]
 #kable(as.data.frame(table))
+
+kluby <- sapply(table$surname_name, function(sn) {
+  nam1 <- strsplit(sn, split=" ")[[1]]
+  wm <- sapply(names(MCclubs), function(mc) {
+    nam2 <- strsplit(mc, split=" ")[[1]]
+    length(intersect(nam1, nam2))
+  }) 
+  MCclubs[which.max(wm)]
+})
+
+table$kluby <- kluby
 datatable(as.data.frame(table))
 ```
 
@@ -92,8 +103,19 @@ table2 <- results %>%
   select(-statement, -count) %>%
   spread(pattern, sum, fill=0)
 
-table2 <- table2[order(-rowSums(table2[,-1])),]
-#kable(as.data.frame(table2))
+table2 <- table[order(-table2[,ncol(table2)]),]
+#kable(as.data.frame(table))
+
+kluby <- sapply(table2$surname_name, function(sn) {
+  nam1 <- strsplit(sn, split=" ")[[1]]
+  wm <- sapply(names(MCclubs), function(mc) {
+    nam2 <- strsplit(mc, split=" ")[[1]]
+    length(intersect(nam1, nam2))
+  }) 
+  MCclubs[which.max(wm)]
+})
+
+table2$kluby <- kluby
 datatable(as.data.frame(table2))
 
 ```
