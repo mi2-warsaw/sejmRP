@@ -27,7 +27,7 @@ addHooksToPrint(class="ggplot",
 ```
 
 
-```{r, cache=FALSE, echo=FALSE}
+```{r, cache=TRUE, echo=FALSE}
 allDep <- get_deputies_table()
 allVotes <- get_filtered_votes(terms_of_office = c(8,8))
 MCclubs <- sapply(unique(allVotes$surname_name), function(sn) {
@@ -177,6 +177,45 @@ ggplot(mer2, aes(wtracenia, wszystko, color=kluby)) +
 
 cat(paste((sort(wszystkoL)), collapse = "\n\n"))
 
-#head(rev(sort(table(gsub(wszystkoL, pattern=":.*$", replacement="")))),25)
+getOff <- function(pattern, allStatements) {
+  allStatements2 <- allStatements %>% 
+    filter(grepl(titles_order_points, pattern=pattern))
+
+  wszystko <- paste(allStatements2$statement, collapse = "\nNEXT")
+  wszystkoL <- strsplit(wszystko, split="(", fixed = TRUE)[[1]]
+  wszystkoL <- gsub(wszystkoL, pattern="\\).*$", replacement="")
+  wszystkoL <- grep(wszystkoL, pattern="^Poseł", value = TRUE)
+
+  didask <- data.frame(
+  table(gsub(gsub(wszystkoL, 
+          pattern="Poseł ", replacement=""), 
+     pattern=":.*$", replacement="")))
+  didask <- cbind(didask, topic=pattern)
+  colnames(didask) = c("surname_name", "wtracenia", "debata")
+  didask
+}
+  
+results <- lapply(topics, getOff, allStatements=allStatements)
+results <- do.call(rbind, results)
+results$debata <- as.character(results$debata)
+results$debata[results$debata == ""] <- "wszystko"
+
+table3 <- results %>% 
+  spread(debata, wtracenia, fill=0)
+
+table3 <- table3[order(-table3[,ncol(table3)]),]
+table3$surname_name <- as.character(table3$surname_name)
+
+kluby <- sapply(table3$surname_name, function(sn) {
+  nam1 <- strsplit(sn, split=" ")[[1]]
+  wm <- sapply(names(MCclubs), function(mc) {
+    nam2 <- strsplit(mc, split=" ")[[1]]
+    length(intersect(nam1, nam2))
+  }) 
+  MCclubs[which.max(wm)]
+})
+
+table3$kluby <- kluby
+datatable(as.data.frame(table3))
 
 ```
