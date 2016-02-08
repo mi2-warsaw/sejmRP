@@ -175,8 +175,6 @@ ggplot(mer2, aes(wtracenia, wszystko, color=kluby)) +
 
 ```{r, echo=FALSE}
 
-cat(paste((sort(wszystkoL)), collapse = "\n\n"))
-
 getOff <- function(pattern, allStatements) {
   allStatements2 <- allStatements %>% 
     filter(grepl(titles_order_points, pattern=pattern))
@@ -217,5 +215,7 @@ kluby <- sapply(table3$surname_name, function(sn) {
 
 table3$kluby <- kluby
 datatable(as.data.frame(table3))
+
+cat(paste((sort(wszystkoL)), collapse = "\n\n"))
 
 ```
