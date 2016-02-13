@@ -1,7 +1,0 @@
-                surname_name wszystko wtracenia kluby
-40               Anna Paluch       14       155   PiS
-135        Izabela Leszczyna       23       117    PO
-145           Jakub Rutnicki       10       116    PO
-173        Jerzy Meysztowicz       37         0     N
-186 Joanna Scheuring-Wielgus       40         5     N
-197   Kamila Gasiuk-Pihowicz       40         9     N
