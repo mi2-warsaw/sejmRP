@@ -36,13 +36,8 @@ MCclubs <- sapply(unique(allVotes$surname_name), function(sn) {
 })
 
 allStatements <- get_statements_table() %>% filter(nr_term_of_office == "8")
-```
 
-```{r, cache=TRUE, echo=FALSE}
-getDepWithPatterns <- function(pattern, allStatements) {
-  allStatements %>% 
-    filter(grepl(titles_order_points, pattern=pattern)) %>%
-    mutate(length = sapply(strsplit(statement, split=" +"), length)) %>%
+allStatements <- allStatements %>%
     mutate(surname_name=gsub(surname_name, pattern="Poseł Sprawozdawca ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Poseł ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Infrastruktury i Budownictwa ", replacement="")) %>%
@@ -58,7 +53,14 @@ getDepWithPatterns <- function(pattern, allStatements) {
     mutate(surname_name=gsub(surname_name, pattern="Minister Rolnictwa i Rozwoju Wsi ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Gospodarki Morskiej i Żeglugi Śródlądowej ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Sportu i Turystyki ", replacement="")) %>%
-    mutate(surname_name=gsub(surname_name, pattern="Prezes Rady Ministrów ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Prezes Rady Ministrów ", replacement=""))
+```
+
+```{r, cache=TRUE, echo=FALSE}
+getDepWithPatterns <- function(pattern, allStatements) {
+  allStatements %>% 
+    filter(grepl(titles_order_points, pattern=pattern)) %>%
+    mutate(length = sapply(strsplit(statement, split=" +"), length)) %>%
     group_by(surname_name) %>%
     summarise(count=n(),
               sum = sum(length),
@@ -67,7 +69,7 @@ getDepWithPatterns <- function(pattern, allStatements) {
     arrange(desc(sum), desc(count))
 }
   
-topics <- c("o służbie cywilnej", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej", "polskiej polityki zagranicznej", "o Trybunale Konstytucyjnym", "Trybunału Konstytucyjnego", "")
+topics <- c("o służbie cywilnej", "w wychowywaniu dzieci", "o systemie oświaty", "o Policji", "o podatku od niektórych instytucji finansowych", "o radiofonii i telewizji", "o rządowym projekcie ustawy budżetowej", "polskiej polityki zagranicznej", "o Trybunale Konstytucyjnym", "Trybunału Konstytucyjnego", "")
 
 results <- lapply(topics, getDepWithPatterns, allStatements=allStatements)
 results <- do.call(rbind, results)
@@ -143,7 +145,7 @@ didask <- data.frame(
      pattern=":.*$", replacement="")))
 colnames(didask) = c("surname_name", "wtracenia")
 
-mer <- merge(table[,c(1,11)], didask, all=TRUE)
+mer <- merge(table[,c("surname_name","wszystko")], didask, all=TRUE)
 mer[is.na(mer[,3]),3]=0
 mer[is.na(mer[,2]),2]=0
 
@@ -217,5 +219,82 @@ table3$kluby <- kluby
 datatable(as.data.frame(table3))
 
 cat(paste((sort(wszystkoL)), collapse = "\n\n"))
+
+```
+
+## Kto komu przerywa
+
+```{r, echo=FALSE}
+
+getPre <- function(pattern, allStatements) {
+  allStatements2 <- allStatements %>% 
+    filter(grepl(surname_name, pattern=pattern))
+
+  wszystko <- paste(allStatements2$statement, collapse = "\nNEXT")
+  wszystkoL <- strsplit(wszystko, split="(", fixed = TRUE)[[1]]
+  wszystkoL <- gsub(wszystkoL, pattern="\\).*$", replacement="")
+  wszystkoL <- grep(wszystkoL, pattern="^Poseł", value = TRUE)
+
+  didask <- data.frame(
+  table(gsub(gsub(wszystkoL, 
+          pattern="Poseł ", replacement=""), 
+     pattern=":.*$", replacement="")))
+  if (nrow(didask) == 0) return(NULL)
+  didask <- cbind(didask, topic=pattern)
+  colnames(didask) = c("komu", "ile", "kto")
+  didask
+}
+  
+results <- lapply(unique(allStatements$surname_name), 
+                  getPre, allStatements=allStatements)
+results <- do.call(rbind, results)
+results$komu <- as.character(results$komu)
+results$kto <- as.character(results$kto)
+
+#results2 <- spread(results, surname_name, wtracenia, fill = 0)
+
+kluby <- sapply(results$kto, function(sn) {
+  nam1 <- strsplit(sn, split=" ")[[1]]
+  wm <- sapply(names(MCclubs), function(mc) {
+    nam2 <- strsplit(mc, split=" ")[[1]]
+    length(intersect(nam1, nam2))
+  }) 
+  MCclubs[which.max(wm)]
+})
+
+findStatements <- function(kto, komu) {
+  allStatements %>%
+    filter(grepl(surname_name, pattern=komu)) %>%
+    filter(grepl(statement, pattern=kto)) 
+}
+#findStatements("Krystyna Pawłowicz", "Stanisław Piotrowicz")
+#findStatements("Magdalena Kochan", "Kornelia Wróblewska")
+
+results$kto_klub <- kluby
+
+kluby <- sapply(results$komu, function(sn) {
+  nam1 <- strsplit(sn, split=" ")[[1]]
+  wm <- sapply(names(MCclubs), function(mc) {
+    nam2 <- strsplit(mc, split=" ")[[1]]
+    length(intersect(nam1, nam2))
+  }) 
+  MCclubs[which.max(wm)]
+})
+
+results$komu_klub <- kluby
+
+
+resultsAA <- results %>% 
+  group_by(kto_klub, komu_klub) %>%
+  summarise(sw = sum(ile)) %>%
+  spread(komu_klub, sw, fill=0)
+resultsAA
+
+resultsAA <- as.data.frame(resultsAA)
+rownames(resultsAA) <- resultsAA[,1]
+resultsAA <- resultsAA[,-1]
+
+library(ca)
+plot(ca(resultsAA), mass = T, arrow=c(T,F))
 
 ```
