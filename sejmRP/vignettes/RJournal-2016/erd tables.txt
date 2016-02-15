@@ -1,0 +1,37 @@
+\begin{tabular}{|ll|} \hline
+\multicolumn{2}{|c|}{deputies}\\ \hline
+id\_deputy (PK) & \textit{varchar(4)} \\
+nr\_term\_of\_office (PK) & \textit{int} \\
+surname\_name & \textit{varchar(50)} \\ \hline
+\end{tabular}
+
+\begin{tabular}{|ll|} \hline
+\multicolumn{2}{|c|}{votings}\\ \hline
+id\_voting (PK) & \textit{int} \\
+nr\_term\_of\_office (PK) & \textit{int} \\
+nr\_meeting & \textit{int} \\
+date\_meeting & \textit{date} \\ 
+nr\_voting & \textit{int} \\ 
+topic\_voting & \textit{text} \\ 
+link\_results & \textit{varchar(200)}\\ \hline
+\end{tabular}
+
+\begin{tabular}{|ll|} \hline
+\multicolumn{2}{|c|}{votes}\\ \hline
+id\_vote (PK) & \textit{int} \\
+nr\_term\_of\_office (PK, FK) & \textit{int} \\
+id\_deputy (FK) & \textit{varchar(4)} \\
+id\_voting (FK) & \textit{int} \\ 
+vote & \textit{varchar(20)} \\ 
+club & \textit{varchar(50)} \\ \hline
+\end{tabular}
+
+\begin{tabular}{|ll|} \hline
+\multicolumn{2}{|c|}{statements}\\ \hline
+id\_statement (PK) & \textit{varchar(11)} \\
+nr\_term\_of\_office (PK) & \textit{int} \\
+surname\_name & \textit{varchar(100)} \\
+date\_statement & \textit{date} \\ 
+titles\_order\_points & \textit{text} \\ 
+statement & \textit{text} \\ \hline
+\end{tabular}
