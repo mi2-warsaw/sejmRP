@@ -1,0 +1,7 @@
+             surname_name wszystko wtracenia kluby
+6            Adam Szłapka       31         1     N
+21        Andrzej Halicki       12        74    PO
+30 Andżelika Możdżanowska       34        26   PSL
+40            Anna Paluch       15       269   PiS
+49    Arkadiusz Marchewka       27         6    PO
+51       Arkadiusz Myrcha       30        52    PO
