@@ -1,7 +1,7 @@
 ---
 title: "Number of statements"
 author: "Przemyslaw Biecek"
-date: "2 February 2016"
+date: "17 February 2016"
 output: 
   html_document:
     toc: TRUE
@@ -26,8 +26,9 @@ addHooksToPrint(class="ggplot",
 
 ```
 
+Z jakich dat są debaty?
 
-```{r, cache=TRUE, echo=FALSE}
+```{r, cache=FALSE, echo=FALSE}
 allDep <- get_deputies_table()
 allVotes <- get_filtered_votes(terms_of_office = c(8,8))
 MCclubs <- sapply(unique(allVotes$surname_name), function(sn) {
@@ -36,6 +37,10 @@ MCclubs <- sapply(unique(allVotes$surname_name), function(sn) {
 })
 
 allStatements <- get_statements_table() %>% filter(nr_term_of_office == "8")
+
+df <- data.frame(table(allStatements$date_statement))
+colnames(df) = c("data", "liczba wypowiedzi")
+datatable(df)
 
 allStatements <- allStatements %>%
     mutate(surname_name=gsub(surname_name, pattern="Poseł Sprawozdawca ", replacement="")) %>%
@@ -50,13 +55,16 @@ allStatements <- allStatements %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Rodziny, Pracy i Polityki Społecznej ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Energii ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Zdrowia ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Sekretarz ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Rolnictwa i Rozwoju Wsi ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Gospodarki Morskiej i Żeglugi Śródlądowej ", replacement="")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Minister Sportu i Turystyki ", replacement="")) %>%
+    mutate(surname_name=gsub(surname_name, pattern="Iwona Ewa Arent", replacement="Iwona Arent")) %>%
     mutate(surname_name=gsub(surname_name, pattern="Prezes Rady Ministrów ", replacement=""))
+
 ```
 
-```{r, cache=TRUE, echo=FALSE}
+```{r, cache=FALSE, echo=FALSE}
 getDepWithPatterns <- function(pattern, allStatements) {
   allStatements %>% 
     filter(grepl(titles_order_points, pattern=pattern)) %>%
@@ -288,7 +296,8 @@ resultsAA <- results %>%
   group_by(kto_klub, komu_klub) %>%
   summarise(sw = sum(ile)) %>%
   spread(komu_klub, sw, fill=0)
-resultsAA
+
+datatable(as.data.frame(resultsAA))
 
 resultsAA <- as.data.frame(resultsAA)
 rownames(resultsAA) <- resultsAA[,1]
