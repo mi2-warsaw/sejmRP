@@ -179,6 +179,20 @@ ggplot(mer2, aes(wtracenia, wszystko, color=kluby)) +
   ylab("Liczba wypowiedzi z mównicy") +
   theme_classic(base_size = 16)
   
+mer$kluby <- reorder(mer$kluby, mer$wszystko, mean)
+ggplot(mer, aes(kluby, wszystko, fill=kluby, color=kluby)) +
+  geom_boxplot(data=mer, alpha=0.3,coef=1000) +
+  geom_point(data=mer, position=position_jitter(0.5,0)) +
+  ylab("Liczba wypowiedzi z mównicy (per poseł)") +
+  theme_classic(base_size = 16)
+  
+mer$kluby <- reorder(mer$kluby, mer$wtracenia, mean)
+ggplot(mer, aes(kluby, wtracenia, color=kluby, fill=kluby)) +
+  geom_boxplot(data=mer, alpha=0.3,coef=1000) +
+  geom_point(data=mer, position=position_jitter(0.5,0)) +
+  ylab("Liczba wypowiedzi z sali (oś sqrt)") +
+  coord_trans(y="sqrt")+
+  theme_classic(base_size = 16)
 ```
 
 ## Wtrącenia z sali
