@@ -305,6 +305,7 @@ kluby <- sapply(results$komu, function(sn) {
 
 results$komu_klub <- kluby
 
+#write.csv(results, file = "przewania2.csv")
 
 resultsAA <- results %>% 
   group_by(kto_klub, komu_klub) %>%
