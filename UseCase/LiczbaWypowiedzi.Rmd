@@ -169,29 +169,38 @@ kluby <- sapply(mer$surname_name, function(sn) {
 })
 
 mer$kluby <- kluby
+kolory <- c("black", "lightblue3", "grey80", "blue2", "orange3", "green4")
 
 mer2 <- mer[mer$wtracenia > 70 | mer$wszystko > 25, ]
 ggplot(mer2, aes(wtracenia, wszystko, color=kluby)) +
-  geom_point(data=mer) +
+  geom_point(data=mer, size=4) +
   geom_text_repel(aes(label=surname_name)) +
-#  coord_trans("sqrt", "sqrt") +
+  scale_color_manual(values=kolory) +
   xlab("Liczba wypowiedzi z sali") +
   ylab("Liczba wypowiedzi z mównicy") +
   theme_classic(base_size = 16)
-  
+```
+
+```{r, echo=FALSE, fig.width=6, fig.height=6}
 mer$kluby <- reorder(mer$kluby, mer$wszystko, mean)
 ggplot(mer, aes(kluby, wszystko, fill=kluby, color=kluby)) +
   geom_boxplot(data=mer, alpha=0.3,coef=1000) +
   geom_point(data=mer, position=position_jitter(0.5,0)) +
+  scale_color_manual(values=kolory[c(4,1,5,3,2,6)]) +
+  scale_fill_manual(values=kolory[c(4,1,5,3,2,6)]) +
   ylab("Liczba wypowiedzi z mównicy (per poseł)") +
+  xlab("")+
   theme_classic(base_size = 16)
   
 mer$kluby <- reorder(mer$kluby, mer$wtracenia, mean)
 ggplot(mer, aes(kluby, wtracenia, color=kluby, fill=kluby)) +
   geom_boxplot(data=mer, alpha=0.3,coef=1000) +
   geom_point(data=mer, position=position_jitter(0.5,0)) +
+  scale_color_manual(values=kolory[c(3,1,2,6,4,5)]) +
+  scale_fill_manual(values=kolory[c(3,1,2,6,4,5)]) +
   ylab("Liczba wypowiedzi z sali (oś sqrt)") +
   coord_trans(y="sqrt")+
+  xlab("")+
   theme_classic(base_size = 16)
 ```
 
