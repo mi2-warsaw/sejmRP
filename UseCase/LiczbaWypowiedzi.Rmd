@@ -186,8 +186,8 @@ mer$kluby <- reorder(mer$kluby, mer$wszystko, mean)
 ggplot(mer, aes(kluby, wszystko, fill=kluby, color=kluby)) +
   geom_boxplot(data=mer, alpha=0.3,coef=1000) +
   geom_point(data=mer, position=position_jitter(0.5,0)) +
-  scale_color_manual(values=kolory[c(4,1,5,3,2,6)]) +
-  scale_fill_manual(values=kolory[c(4,1,5,3,2,6)]) +
+  scale_color_manual(values=kolory[c(4,1,5,3,2,6)],guide = guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=kolory[c(4,1,5,3,2,6)],guide = guide_legend(reverse=TRUE)) +
   ylab("Liczba wypowiedzi z mównicy (per poseł)") +
   xlab("")+
   theme_classic(base_size = 16)
@@ -196,8 +196,8 @@ mer$kluby <- reorder(mer$kluby, mer$wtracenia, mean)
 ggplot(mer, aes(kluby, wtracenia, color=kluby, fill=kluby)) +
   geom_boxplot(data=mer, alpha=0.3,coef=1000) +
   geom_point(data=mer, position=position_jitter(0.5,0)) +
-  scale_color_manual(values=kolory[c(3,1,2,6,4,5)]) +
-  scale_fill_manual(values=kolory[c(3,1,2,6,4,5)]) +
+  scale_color_manual(values=kolory[c(3,1,2,6,4,5)],guide = guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=kolory[c(3,1,2,6,4,5)],guide = guide_legend(reverse=TRUE)) +
   ylab("Liczba wypowiedzi z sali (oś sqrt)") +
   coord_trans(y="sqrt")+
   xlab("")+
