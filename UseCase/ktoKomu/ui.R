@@ -7,17 +7,18 @@ library(shiny)
 shinyUI(fluidPage(
 
   fluidRow(
-    column(6,
+    column(4,
            selectInput("kto",
                        "Kto przerywa:",
-                       c("---",sort(unique(dat$komu))),
+                       c("-wszyscy-",sort(unique(dat$komu))),
                        "Imię Nazwisko")),
-    column(6,
+    column(2, uiOutput("ktoZdjecie")),
+    column(2, uiOutput("komuZdjecie")),
+    column(4,
            selectInput("komu",
                        "Komu przerywa:",
-                       c("---",sort(unique(dat$komu))),
+                       c("-wszyscy-",sort(unique(dat$komu))),
                        "Imię Nazwisko"))
-    
   ),
   uiOutput("distPlot")
 ))
