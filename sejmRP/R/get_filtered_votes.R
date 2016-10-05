@@ -194,7 +194,7 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     }
 
     # reading data
-    votes <- as.data.frame(collect(votes, stringsAsFactors = FALSE))
+    votes <- as.data.frame(collect(votes, stringsAsFactors = FALSE, n=Inf))
 
     # if empty result of query
     if (nrow(votes) == 0) {
