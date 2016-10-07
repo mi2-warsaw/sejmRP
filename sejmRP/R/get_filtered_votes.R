@@ -70,6 +70,7 @@
 #' default: character(0)
 #' @param topics text patterns that will be taken to filter data from database;
 #' default: character(0)
+#' @param max_rows maximum number of rows to download
 #'
 #' @return data frame with NULL
 #'
@@ -105,8 +106,8 @@
 get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl",
                                windows = .Platform$OS.type == "windows", clubs = character(0), dates = character(0),
                                terms_of_office = integer(0), meetings = integer(0), votings = integer(0), deputies = character(0),
-                               topics = character(0)) {
-    stopifnot(is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(windows), is.character(clubs),
+                               topics = character(0), max_rows=Inf) {
+    stopifnot(is.numeric(max_rows), is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(windows), is.character(clubs),
         is.character(dates), is.numeric(terms_of_office), is.numeric(meetings), is.numeric(votings), is.character(deputies), is.character(topics),
         all(c(terms_of_office, meetings, votings)%%1 == 0))
     length_clubs <- length(clubs)
@@ -194,7 +195,7 @@ get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "q
     }
 
     # reading data
-    votes <- as.data.frame(collect(votes, stringsAsFactors = FALSE, n=Inf))
+    votes <- as.data.frame(collect(votes, stringsAsFactors = FALSE, n=max_rows))
 
     # if empty result of query
     if (nrow(votes) == 0) {
