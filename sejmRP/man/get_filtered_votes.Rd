@@ -42,6 +42,8 @@ default: character(0)}
 
 \item{topics}{text patterns that will be taken to filter data from database;
 default: character(0)}
+
+\item{max_rows}{maximum number of rows to download}
 }
 \value{
 data frame with NULL
