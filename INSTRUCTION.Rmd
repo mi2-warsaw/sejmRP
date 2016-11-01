@@ -102,7 +102,7 @@ To do that we use:
 deputies_create_table(dbname, user, password, host, nr_term_of_office = 8)
 ```
 This function scraps active and inactive deputies' data from Polish Diet's webpage and put it to the table.
-If you want create *deputies* table with seventh term of office, choose *nr_term_of_office = 8*.
+If you want create *deputies* table with eighth term of office, choose *nr_term_of_office = 8*.
 In the case of you want get only deputies' data you can use:
 
 ```{r, eval = FALSE}
