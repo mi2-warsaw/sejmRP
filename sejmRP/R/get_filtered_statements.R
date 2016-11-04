@@ -4,7 +4,7 @@
 #'
 #' @details
 #' Function \code{get_filtered_statements} reads filtered statements from a database.
-?   #' The result of this function is an invisible data frame with statements' data.
+#' The result of this function is an invisible data frame with statements' data.
 #'
 #' Possible filters:
 #' \enumerate{
@@ -25,7 +25,7 @@
 #' topics in order points. Note that the order points are written like
 #' sentences, so remember about case inflection of nouns and adjectives and use stems of
 #' words as patterns. For example if you want to find order points about education (in Polish:
-#' szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.}
+#' szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.
 #' \item content - text patterns. This filter is a character vector with text patterns
 #' in statements. Note that strings with statements are sentences, so remember about case
 #' inflection of nouns and adjectives and use stems of words as patterns. 
@@ -69,11 +69,11 @@
 #' filtered_statements <- get_filtered_statements()
 #' dim(filtered_statements)
 #' # [1] 234483       6
-?#' names(filtered_statements)
-?   #' [1] 'id_statement' 'nr_term_of_office' 'surname_name' 'date_statement'
-?   #' [5] 'titles_order_points' 'statement'
-?#' object.size(filtered_statements)
-?#' # 148694336 bytes}
+#' names(filtered_statements)
+#' [1] 'id_statement' 'nr_term_of_office' 'surname_name' 'date_statement'
+#' [5] 'titles_order_points' 'statement'
+#' object.size(filtered_statements)
+#' # 148694336 bytes}
 #'
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
