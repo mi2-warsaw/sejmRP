@@ -37,6 +37,9 @@ default: character(0)}
 default: character(0)}
 
 \item{max_rows}{maximum number of rows to download}
+
+\item{terms_of_office}{range of terms of office's numbers that will be taken to filter data
+from database; default: integer(0)}
 }
 \value{
 data frame with NULL
@@ -66,8 +69,8 @@ date as first and second element of vector.
 \item topics - text patterns. This filter is a character vector with text patterns of
 topics in order points. Note that the order points are written like
 sentences, so remember about case inflection of nouns and adjectives and use stems of
-words as patterns. For example if you want to find order points about education (in Polish:
-szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.
+words as patterns. For example if you want to find order points about education 
+(in Polish: szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.
 \item content - text patterns. This filter is a character vector with text patterns
 in statements. Note that strings with statements are sentences, so remember about case
 inflection of nouns and adjectives and use stems of words as patterns. 
@@ -90,12 +93,12 @@ All information is stored in PostgreSQL database.
 \dontrun{
 filtered_statements <- get_filtered_statements()
 dim(filtered_statements)
-# [1] 234483       6
+# [1] 2568       6
 names(filtered_statements)
 [1] 'id_statement' 'nr_term_of_office' 'surname_name' 'date_statement'
 [5] 'titles_order_points' 'statement'
 object.size(filtered_statements)
-# 148694336 bytes}
+# 6488552 bytes}
 
 }
 \author{

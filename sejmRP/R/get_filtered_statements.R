@@ -24,8 +24,8 @@
 #' \item topics - text patterns. This filter is a character vector with text patterns of
 #' topics in order points. Note that the order points are written like
 #' sentences, so remember about case inflection of nouns and adjectives and use stems of
-#' words as patterns. For example if you want to find order points about education (in Polish:
-#' szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.
+#' words as patterns. For example if you want to find order points about education 
+#' (in Polish: szkolnictwo) try 'szkolnictw'. It is possible to choose more than one pattern.
 #' \item content - text patterns. This filter is a character vector with text patterns
 #' in statements. Note that strings with statements are sentences, so remember about case
 #' inflection of nouns and adjectives and use stems of words as patterns. 
@@ -52,6 +52,8 @@
 #' @param windows information of used operation system; default: .Platform$OS.type == 'windows'
 #' @param terms_of_office range of terms of office's numbers that will be taken to filter data
 #' from database; default: integer(0)
+#' @param terms_of_office range of terms of office's numbers that will be taken to filter data
+#' from database; default: integer(0)
 #' @param deputies full names of deputies that will be taken to filter data from database;
 #' default: character(0)
 #' @param dates period of time that will be taken to filter data from database;
@@ -68,12 +70,12 @@
 #' \dontrun{
 #' filtered_statements <- get_filtered_statements()
 #' dim(filtered_statements)
-#' # [1] 234483       6
+#' # [1] 2568       6
 #' names(filtered_statements)
 #' [1] 'id_statement' 'nr_term_of_office' 'surname_name' 'date_statement'
 #' [5] 'titles_order_points' 'statement'
 #' object.size(filtered_statements)
-#' # 148694336 bytes}
+#' # 6488552 bytes}
 #'
 #' @note
 #' Default parameters use privilages of 'reader'. It can only SELECT data from database.
@@ -109,7 +111,7 @@ get_filtered_statements <- function(dbname = "sejmrp", user = "reader", password
   length_topics <- length(topics)
   length_content <- length(content)
   
-  stopifnot(length_terms_of_office >= 0, length_deputies >= 0, length_dates == 0 | length_dates == 2, 
+  stopifnot(length_terms_of_office == 0 | length_terms_of_office == 2, length_deputies >= 0, length_dates == 0 | length_dates == 2, 
             length_topics >= 0, length_content >= 0)
   
   # connecting to database with dplyr to get statements
@@ -136,11 +138,9 @@ get_filtered_statements <- function(dbname = "sejmrp", user = "reader", password
   statements <- tbl(database_diet, sql("SELECT * FROM statements"))
   
   # terms_of_office filter
-  if (length_terms_of_office == 1) {
-    statements <- filter(statements, between(nr_term_of_office, terms_of_office[1]))
-  } else if (length_terms_of_office == 2) {
+  if (length_terms_of_office == 2) {
     statements <- filter(statements, between(nr_term_of_office, terms_of_office[1], terms_of_office[2]))
-  }
+  } 
   
   # deputies filter
   if (length_deputies > 0) {
@@ -165,7 +165,7 @@ get_filtered_statements <- function(dbname = "sejmrp", user = "reader", password
     statements <- filter(statements, titles_order_points %SIMILAR TO% topics)
   }
   
-  # topics filter
+  # content filter
   if (length_content > 0) {
     # changing polish characters for any character
     content <- stri_replace_all_regex(content, "[^a-zA-Z %]", "_")
