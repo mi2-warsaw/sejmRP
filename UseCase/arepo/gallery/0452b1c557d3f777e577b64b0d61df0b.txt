@@ -1,0 +1,7 @@
+         surname_name wszystko wtracenia   kluby
+1     Adam Abramowicz       29        58     PiS
+2 Adam Andruszkiewicz       16         0 Kukiz15
+3       Adam Cyrański       17         0       N
+4          Adam Korol        8         0      PO
+5     Adam Ołdakowski       13         5     PiS
+6        Adam Szłapka       66        18       N

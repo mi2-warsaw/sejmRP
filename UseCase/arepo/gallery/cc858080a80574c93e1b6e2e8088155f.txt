@@ -1,0 +1,7 @@
+        surname_name wszystko wtracenia   kluby
+1    Adam Abramowicz       29        58     PiS
+6       Adam Szłapka       66        18       N
+10 Agnieszka Pomaska       32        62      PO
+14  Agnieszka Ścigaj       30         0 Kukiz15
+22   Andrzej Halicki       28       166      PO
+23  Andrzej Jaworski       30         3     PiS

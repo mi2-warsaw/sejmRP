@@ -1,0 +1,7 @@
+               nam        fra                kto
+2015-11 2015-11-01 0.10629067 Krystyna Pawłowicz
+2015-12 2015-12-01 0.07179487 Krystyna Pawłowicz
+2016-01 2016-01-01 0.05871725 Krystyna Pawłowicz
+2016-02 2016-02-01 0.05637255 Krystyna Pawłowicz
+2016-03 2016-03-01 0.05225864 Krystyna Pawłowicz
+2016-04 2016-04-01 0.03627570 Krystyna Pawłowicz
