@@ -12,7 +12,7 @@ test_that("columns of table", {
 })
 
 test_that("rows of table", {
-  expect_more_than(nrow(votes_match_deputies_ids("sejmrp", "reader", "qux94874", "services.mini.pw.edu.pl",
+  expect_gt(nrow(votes_match_deputies_ids("sejmrp", "reader", "qux94874", "services.mini.pw.edu.pl",
     "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=37494&KodKlubu=PiS", 7,
     .Platform$OS.type == "windows")), 0)
 })

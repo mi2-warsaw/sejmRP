@@ -9,5 +9,5 @@ test_that("columns of table", {
 
 
 test_that("rows of table", {
-  expect_more_than(nrow(statements_get_statements_table("http://www.sejm.gov.pl/Sejm8.nsf/posiedzenie.xsp?view=1&posiedzenie=2&dzien=1")), 0)
+  expect_gt(nrow(statements_get_statements_table("http://www.sejm.gov.pl/Sejm8.nsf/posiedzenie.xsp?view=1&posiedzenie=2&dzien=1")), 0)
 })

@@ -8,5 +8,5 @@ test_that("columns of table", {
 
 
 test_that("rows of table", {
-  expect_more_than(nrow(get_deputies_table(host = "services.mini.pw.edu.pl")), 0)
+  expect_gt(nrow(get_deputies_table(host = "services.mini.pw.edu.pl")), 0)
 })

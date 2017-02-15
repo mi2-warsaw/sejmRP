@@ -23,7 +23,7 @@ test_that("columns of table", {
 })
 
 test_that("rows of table", {
-  expect_more_than(nrow(get_filtered_votes(host = "services.mini.pw.edu.pl",
+  expect_gt(nrow(get_filtered_votes(host = "services.mini.pw.edu.pl",
     clubs = c("PO", "PiS"), dates = c("2014-01-01", "2014-12-31"),
     topics = "referendum", deputies = c("Kopacz Ewa", "Rostowski"),
     meetings = c(1, 100), votings = c(1, 200))), 0)

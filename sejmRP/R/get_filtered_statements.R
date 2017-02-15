@@ -42,16 +42,14 @@
 #' @usage get_filtered_statements(dbname = 'sejmrp', user = 'reader',
 #'   password = 'qux94874', host = 'services.mini.pw.edu.pl',
 #'   windows = .Platform$OS.type == 'windows', terms_of_office = integer(0), 
-#'   deputies = character(0), dates = character(0), topics = character(0))
-#'   content = integer(0)
+#'   deputies = character(0), dates = character(0), topics = character(0),
+#'   content = character(0), max_rows = Inf)
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
 #' @param password password of database; default: 'qux94874'
 #' @param host name of host; default: 'services.mini.pw.edu.pl'
 #' @param windows information of used operation system; default: .Platform$OS.type == 'windows'
-#' @param terms_of_office range of terms of office's numbers that will be taken to filter data
-#' from database; default: integer(0)
 #' @param terms_of_office range of terms of office's numbers that will be taken to filter data
 #' from database; default: integer(0)
 #' @param deputies full names of deputies that will be taken to filter data from database;
@@ -62,7 +60,7 @@
 #' default: character(0)
 #' @param content text patterns that will be taken to filter data from database;
 #' default: character(0)
-#' @param max_rows maximum number of rows to download
+#' @param max_rows maximum number of rows to download; default: Inf
 #'
 #' @return data frame with NULL
 #'
@@ -99,7 +97,7 @@ get_filtered_statements <- function(dbname = "sejmrp", user = "reader", password
                                     host = "services.mini.pw.edu.pl", windows = .Platform$OS.type == "windows", 
                                     terms_of_office = integer(0), deputies = character(0), 
                                     dates = character(0), topics = character(0), content = character(0), 
-                                    max_rows=Inf) {
+                                    max_rows = Inf) {
   stopifnot(is.numeric(max_rows), is.character(dbname), is.character(user), is.character(password), 
             is.character(host), is.logical(windows), is.numeric(terms_of_office), is.character(deputies), 
             is.character(dates), is.character(topics), is.character(content), 

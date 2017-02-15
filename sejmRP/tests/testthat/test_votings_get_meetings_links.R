@@ -12,6 +12,6 @@ test_that("format like link", {
 
 
 test_that("length", {
-  expect_more_than(length(votings_get_meetings_links("http://www.sejm.gov.pl/Sejm8.nsf/",
+  expect_gt(length(votings_get_meetings_links("http://www.sejm.gov.pl/Sejm8.nsf/",
     "http://www.sejm.gov.pl/Sejm8.nsf/agent.xsp?symbol=posglos&NrKadencji=8")), 0)
 })

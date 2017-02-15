@@ -15,9 +15,9 @@ test_that("columns of table", {
 })
 
 test_that("rows of table", {
-  expect_more_than(nrow(deputies_get_data("active", 7)), 0)
+  expect_gt(nrow(deputies_get_data("active", 7)), 0)
 })
 
 test_that("rows of table", {
-  expect_more_than(nrow(deputies_get_data("inactive", 8)), 0)
+  expect_gt(nrow(deputies_get_data("inactive", 8)), 0)
 })

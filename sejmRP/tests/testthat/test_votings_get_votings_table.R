@@ -8,5 +8,5 @@ test_that("columns of table", {
 })
 
 test_that("rows of table", {
-  expect_more_than(nrow(votings_get_votings_table("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1324")), 0)
+  expect_gt(nrow(votings_get_votings_table("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=listaglos&IdDnia=1324")), 0)
 })

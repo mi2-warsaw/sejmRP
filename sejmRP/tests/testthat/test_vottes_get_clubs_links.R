@@ -11,6 +11,6 @@ test_that("columns of table", {
 
 
 test_that("rows of table", {
-  expect_more_than(nrow(votes_get_clubs_links("http://www.sejm.gov.pl/Sejm7.nsf/",
+  expect_gt(nrow(votes_get_clubs_links("http://www.sejm.gov.pl/Sejm7.nsf/",
     "http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=glosowania&NrKadencji=7&NrPosiedzenia=1&NrGlosowania=1")), 0)
 })

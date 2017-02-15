@@ -9,5 +9,5 @@ test_that("names", {
 
 
 test_that("length", {
-  expect_more_than(length(deputies_get_ids("sejmrp", "reader", "qux94874", "services.mini.pw.edu.pl", 7, .Platform$OS.type == "windows")), 0)
+  expect_gt(length(deputies_get_ids("sejmrp", "reader", "qux94874", "services.mini.pw.edu.pl", 7, .Platform$OS.type == "windows")), 0)
 })

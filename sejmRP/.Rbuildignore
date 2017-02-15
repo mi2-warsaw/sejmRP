@@ -1,3 +1,4 @@
 ^sejmRP_votings_flag$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^vignettes$

@@ -12,5 +12,5 @@ test_that("columns of table", {
 
 
 test_that("rows of table", {
-  expect_more_than(nrow(statements_get_statements_data(statements_links)), 0)
+  expect_gt(nrow(statements_get_statements_data(statements_links)), 0)
 })

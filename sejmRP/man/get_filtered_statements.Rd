@@ -7,8 +7,8 @@
 get_filtered_statements(dbname = 'sejmrp', user = 'reader',
   password = 'qux94874', host = 'services.mini.pw.edu.pl',
   windows = .Platform$OS.type == 'windows', terms_of_office = integer(0), 
-  deputies = character(0), dates = character(0), topics = character(0))
-  content = integer(0)
+  deputies = character(0), dates = character(0), topics = character(0),
+  content = character(0), max_rows = Inf)
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -36,10 +36,7 @@ default: character(0)}
 \item{content}{text patterns that will be taken to filter data from database;
 default: character(0)}
 
-\item{max_rows}{maximum number of rows to download}
-
-\item{terms_of_office}{range of terms of office's numbers that will be taken to filter data
-from database; default: integer(0)}
+\item{max_rows}{maximum number of rows to download; default: Inf}
 }
 \value{
 data frame with NULL

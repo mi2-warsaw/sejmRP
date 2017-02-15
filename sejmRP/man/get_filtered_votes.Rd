@@ -9,7 +9,7 @@ get_filtered_votes(dbname = 'sejmrp', user = 'reader',
   windows = .Platform$OS.type == 'windows', clubs = character(0),
   dates = character(0), terms_of_office = integer(0), 
   meetings = integer(0), votings = integer(0),
-  deputies = character(0), topics = character(0))
+  deputies = character(0), topics = character(0), max_rows = Inf)
 }
 \arguments{
 \item{dbname}{name of database; default: 'sejmrp'}
@@ -43,7 +43,7 @@ default: character(0)}
 \item{topics}{text patterns that will be taken to filter data from database;
 default: character(0)}
 
-\item{max_rows}{maximum number of rows to download}
+\item{max_rows}{maximum number of rows to download; default: Inf}
 }
 \value{
 data frame with NULL

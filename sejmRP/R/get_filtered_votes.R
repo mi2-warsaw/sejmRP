@@ -49,7 +49,7 @@
 #'   windows = .Platform$OS.type == 'windows', clubs = character(0),
 #'   dates = character(0), terms_of_office = integer(0), 
 #'   meetings = integer(0), votings = integer(0),
-#'   deputies = character(0), topics = character(0))
+#'   deputies = character(0), topics = character(0), max_rows = Inf)
 #'
 #' @param dbname name of database; default: 'sejmrp'
 #' @param user name of user; default: 'reader'
@@ -70,7 +70,7 @@
 #' default: character(0)
 #' @param topics text patterns that will be taken to filter data from database;
 #' default: character(0)
-#' @param max_rows maximum number of rows to download
+#' @param max_rows maximum number of rows to download; default: Inf
 #'
 #' @return data frame with NULL
 #'
@@ -106,7 +106,7 @@
 get_filtered_votes <- function(dbname = "sejmrp", user = "reader", password = "qux94874", host = "services.mini.pw.edu.pl",
                                windows = .Platform$OS.type == "windows", clubs = character(0), dates = character(0),
                                terms_of_office = integer(0), meetings = integer(0), votings = integer(0), deputies = character(0),
-                               topics = character(0), max_rows=Inf) {
+                               topics = character(0), max_rows = Inf) {
     stopifnot(is.numeric(max_rows), is.character(dbname), is.character(user), is.character(password), is.character(host), is.logical(windows), is.character(clubs),
         is.character(dates), is.numeric(terms_of_office), is.numeric(meetings), is.numeric(votings), is.character(deputies), is.character(topics),
         all(c(terms_of_office, meetings, votings)%%1 == 0))

@@ -8,5 +8,5 @@ test_that("columns of table", {
 })
 
 test_that("rows of table", {
-  expect_more_than(nrow(votes_get_results("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=32453&KodKlubu=PiS")), 0)
+  expect_gt(nrow(votes_get_results("http://www.sejm.gov.pl/Sejm7.nsf/agent.xsp?symbol=klubglos&IdGlosowania=32453&KodKlubu=PiS")), 0)
 })
