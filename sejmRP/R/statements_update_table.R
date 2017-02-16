@@ -24,6 +24,8 @@
 #' @author Piotr Smuda, Tomasz Mikolajczyk
 #'
 #' @export
+#' 
+#' @importFrom stringi stri_length
 #'
 
 statements_update_table <- function(dbname, user, password, host, nr_term_of_office = 8, verbose = FALSE) {
@@ -69,8 +71,15 @@ statements_update_table <- function(dbname, user, password, host, nr_term_of_off
             statements_links <- html_nodes(stenogram, css_pattern)
             
             # move to next day of meeting if empty page found
-            if (length(statements_links) == 0) {
-                break
+            length_statements_links <- length(statements_links)
+            length_of_stenogram <- stri_length(stenogram)
+            if (length_statements_links == 0 && length_of_stenogram <= 30) {
+              break
+            } else if (length_statements_links == 0 && length_of_stenogram > 30) {
+              # none of deputies made a statement
+              # next day of meeting
+              nr_day <- nr_day + 1
+              next
             }
             
             # get titles of order points during a meeting
