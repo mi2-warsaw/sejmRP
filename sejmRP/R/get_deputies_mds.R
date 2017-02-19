@@ -28,7 +28,7 @@
 #' }
 #' 
 #' @author Przemyslaw Biecek
-#' @import MASS
+#' @importFrom MASS isoMDS
 #' @export
 get_deputies_mds <- function(distances, clubs = NULL, plot = TRUE) {
   stopifnot(any(c("dist","matrix") %in% class(distances)),
