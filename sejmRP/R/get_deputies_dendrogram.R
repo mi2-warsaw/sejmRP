@@ -12,7 +12,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' votes <- get_filtered_votes(terms_of_office = c(7,7))
+#' # votes <- get_filtered_votes(terms_of_office = c(7,7))
+#' data(votes)
 #' v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
 #' mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
 #' get_deputies_dendrogram(mat2, k=5)

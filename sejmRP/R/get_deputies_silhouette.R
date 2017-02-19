@@ -32,7 +32,7 @@
 #' 
 #' @author Przemyslaw Biecek
 #' @export
-get_deputies_silhouette <- function(distances, clubs = NULL, plot = TRUE) {
+get_deputies_silhouette <- function(distances, clubs = NULL, plot = TRUE, remove_missing_clubs = TRUE) {
   stopifnot(any(c("dist","matrix") %in% class(distances)),
             is.logical(plot))
   
@@ -46,10 +46,13 @@ get_deputies_silhouette <- function(distances, clubs = NULL, plot = TRUE) {
     cluster <- cluster[idx]
   }
   
-  sil <- silhouette(cluster, distances)
+  fcluster <- factor(cluster)
+  sil <- silhouette(as.numeric(fcluster), dmatrix = distances)
   # return last value
   if (plot) {
-    fviz_silhouette(sil)
+    fviz_silhouette(sil) + 
+      scale_color_discrete(labels=levels(fcluster)) + 
+      scale_fill_discrete(labels=levels(fcluster))
   } else {
     sil  
   }

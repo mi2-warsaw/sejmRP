@@ -4,7 +4,8 @@
 \alias{get_deputies_silhouette}
 \title{Converts Deputies Distance Matrix into a Silhouette Plot}
 \usage{
-get_deputies_silhouette(distances, clubs = NULL, plot = TRUE)
+get_deputies_silhouette(distances, clubs = NULL, plot = TRUE,
+  remove_missing_clubs = TRUE)
 }
 \arguments{
 \item{distances}{a distance matrix, preferably created with \code{get_distance_matrix}}
@@ -25,7 +26,8 @@ and their clubs into a silhouette plot
 }
 \examples{
 \dontrun{
-votes <- get_filtered_votes(terms_of_office = c(7,7))
+# votes <- get_filtered_votes(terms_of_office = c(7,7))
+data(votes)
 v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
 mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
 df <- votes[,c("surname_name","club")]
