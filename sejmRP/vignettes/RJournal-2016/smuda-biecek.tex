@@ -286,6 +286,30 @@ or if you are only looking for votings with referendum use:
 \section{Use-cases}
 
 
+\begin{example}
+> library(dplyr)
+> data(votes)
+> v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
+> mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
+> get_deputies_dendrogram(mat2, k=5)
+
+> df <- votes[,c("surname_name","club")]
+> df %>%
++   group_by(surname_name, club) %>%
++   summarise(n = n()) %>% 
++   arrange(-n) %>%
++   group_by(surname_name) %>%
++   top_n(1) %>%
++   as.data.frame() -> clubs
+> row.names(clubs) <- clubs[,1]
+> clubs$club[clubs$club == "niez."] = "cross-bencher"
+
+> get_deputies_silhouette(mat2, clubs)
+> get_deputies_mds(mat2, clubs2)
+
+\end{example}
+
+
 \section{Summary}
 
 \CRANpkg{sejmRP} package provides easy-to-use tools to scrap and access open data from Polish Diet's webpage. Combining these tools with its further analysis and visualization
