@@ -4,14 +4,18 @@
 \alias{get_deputies_mds}
 \title{Converts Deputies Distance Matrix into a Multidimensional Scaling Plot}
 \usage{
-get_deputies_mds(distances, clubs = NULL, plot = TRUE)
+get_deputies_mds(distances, clubs = NULL, plot = TRUE,
+  remove_missing_clubs = TRUE)
 }
 \arguments{
 \item{distances}{a distance matrix, preferably created with \code{get_distance_matrix}}
 
-\item{clubs}{a matrix that maps \code{deputy_id} (names from \code{distances}) on clubs}
+\item{clubs}{a data.frame that maps \code{deputy_id} (names from \code{distances}) on clubs. 
+It should contain at least one column - \code{club} and rows should have names corresponding to names in the \code{distances}.}
 
 \item{plot}{if \code{TRUE} then the \code{ggplot} object will be returned instead of the dendrogram itself}
+
+\item{remove_missing_clubs}{if TRUE then rows of \code{distances} that are not mapped in \code{clubs} will be removed}
 }
 \value{
 MDS coordinates or a ggplot
@@ -22,7 +26,7 @@ into a 2D representation (Multidimensional Scaling)
 }
 \examples{
 \dontrun{
-votes <- get_deputies_mds(terms_of_office = c(7,7))
+votes <- get_filtered_votes(terms_of_office = c(7,7))
 v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
 mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
 df <- votes[,c("surname_name","club")]
@@ -34,6 +38,7 @@ df \%>\%
   top_n(1) \%>\%
   as.data.frame() -> clubs
 row.names(clubs) <- clubs[,1]
+clubs$club[clubs$club == "niez."] = "cross-bencher"
 
 get_deputies_mds(mat2, clubs)
 }

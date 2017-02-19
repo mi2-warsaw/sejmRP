@@ -9,9 +9,12 @@ get_deputies_silhouette(distances, clubs = NULL, plot = TRUE)
 \arguments{
 \item{distances}{a distance matrix, preferably created with \code{get_distance_matrix}}
 
-\item{clubs}{a matrix that maps \code{deputy_id} (names from \code{distances}) on clubs}
+\item{clubs}{a data.frame that maps \code{deputy_id} (names from \code{distances}) on clubs. 
+It should contain at least one column - \code{club} and rows should have names corresponding to names in the \code{distances}.}
 
 \item{plot}{if \code{TRUE} then the \code{ggplot} object will be returned instead of the dendrogram itself}
+
+\item{remove_missing_clubs}{if TRUE then rows of \code{distances} that are not mapped in \code{clubs} will be removed}
 }
 \value{
 silhouette object or a ggplot
@@ -22,7 +25,7 @@ and their clubs into a silhouette plot
 }
 \examples{
 \dontrun{
-votes <- get_deputies_mds(terms_of_office = c(7,7))
+votes <- get_filtered_votes(terms_of_office = c(7,7))
 v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
 mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
 df <- votes[,c("surname_name","club")]
