@@ -6,15 +6,19 @@
 
 %An abstract of less than 150 words.
 \abstract{
-\CRANpkg{sejmRP} package provides a set of functions, that can be used to scrap data from Polish Diet's webpage \url{http://www.sejm.gov.pl/} about deputies, votings and deputies' statements from seventh to eighth term of office. All data is storaged in PostgreSQL database, which enables easier access to it and possibility of its analysis.}
+Open government initiatives aim to collect and expose data about functioning of public institutions, like parliament. In this article we present the \CRANpkg{sejmRP} package that provides functions to scrap, access and analyze data from Polish Parliament as well as the infrastructure for storing the scrapped data. All applications presented here are related to data from Polish Diet's webpage but could be repeated on data from other parliaments.}
 
 \section{Introduction}
 
-\strong{Open goverment} is a concept of public institutions whose aim is to provide access to public information and proceedings of the government, as well as efforts to increase the transparency of public administration. The development of open goverment is closely linked to technological change and the availability of digital tools to facilitate communication.
+\strong{Open government} is a concept of public institutions whose aim is to provide access to public information and proceedings of the government, as well as efforts to increase the transparency of public administration. The development of open government is closely linked to technological change and the availability of digital tools to facilitate communication.
 
-However, hardly ever this information is released in a form, which is easy to analysis. Hence there is a need for tools that make it easier. One of these tools is \CRANpkg{sejmRP} package, which contains functions to scrap data from Polish Diet's webpage about deputies, votings and deputies' statements from seventh to eighth term of office and insert this data into database. As is generally known databases enable facile access to data, so its analysis becomes easier.
+For United States the availability of data is exceptional due to the Voteview database \url{https://voteview.polisci.ucla.edu/about} and the R package \CRANpkg{Rvoteview}. But for many other countries hardly ever this information is released in a form, which is easy to analysis. Hence there is a need for tools that make it easier. One of these tools is \CRANpkg{sejmRP} package, which contains functions to scrap data from Polish Diet's webpage about deputies, votings and deputies' statements from seventh to eighth term of office and insert this data into database. As is generally known databases enable facile access to data, so its analysis becomes easier.
 
 At the end of 2015 there was a change of the party in power in Polish Diet. Since that time, many things happened in Polish politics that have been received both positively and negatively. Thanks to \CRANpkg{sejmRP} package there is a possibility to compare present situation in Polish politics to that from four years ago. Without a doubt the results of this analysis would be very interesting.
+
+The rest of this article has following structure. In the section ... we present general overview of the package, in the section ... we present the structure of the database in which the scrapped data is stored, in the section ... we present functions for scrapping and accessing the data and in the section ... we present selected use cases.
+
+
 
 \section{Structure of database}
 
