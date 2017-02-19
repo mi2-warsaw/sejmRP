@@ -12,7 +12,6 @@
 #' @return silhouette object or a ggplot 
 #'
 #' @examples
-#' \dontrun{
 #' # votes <- get_filtered_votes(terms_of_office = c(7,7))
 #' data(votes)
 #' v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
@@ -26,9 +25,9 @@
 #'   top_n(1) %>%
 #'   as.data.frame() -> clubs
 #' row.names(clubs) <- clubs[,1]
+#' clubs$club[clubs$club == "niez."] = "cross-bencher"
 #' 
 #' get_deputies_silhouette(mat2, clubs)
-#' }
 #' 
 #' @author Przemyslaw Biecek
 #' @export
@@ -52,7 +51,8 @@ get_deputies_silhouette <- function(distances, clubs = NULL, plot = TRUE, remove
   if (plot) {
     fviz_silhouette(sil) + 
       scale_color_discrete(labels=levels(fcluster)) + 
-      scale_fill_discrete(labels=levels(fcluster))
+      scale_fill_discrete(labels=levels(fcluster)) + 
+      ggtitle("Silhouette plot for deputies voting profiles")
   } else {
     sil  
   }

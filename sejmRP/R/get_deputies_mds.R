@@ -12,8 +12,9 @@
 #' @return MDS coordinates or a ggplot 
 #'
 #' @examples
-#' \dontrun{
 #' # votes <- get_filtered_votes(terms_of_office = c(7,7))
+#' library(dplyr)
+#' library(ggplot2)
 #' data(votes)
 #' v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
 #' mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
@@ -27,9 +28,11 @@
 #'   as.data.frame() -> clubs
 #' row.names(clubs) <- clubs[,1]
 #' clubs$club[clubs$club == "niez."] = "cross-bencher"
-#' 
 #' get_deputies_mds(mat2, clubs)
-#' }
+#' 
+#' # without cross bencher deputies
+#' clubs2 <- clubs[clubs$club != "cross-bencher",]
+#' get_deputies_mds(mat2, clubs2)
 #' 
 #' @author Przemyslaw Biecek
 #' @importFrom MASS isoMDS
@@ -57,7 +60,7 @@ get_deputies_mds <- function(distances, clubs = NULL, plot = TRUE, remove_missin
     object <- list(data = as.data.frame(nv$points), cluster = cluster)
     fviz_cluster(object, geom="point") + 
        coord_fixed() + xlab("") + ylab("") + theme_minimal() + 
-       ggtitle("MDS plot for deputies profiles")
+       ggtitle("MDS plot for deputies voting profiles")
   } else {
     nv
   }

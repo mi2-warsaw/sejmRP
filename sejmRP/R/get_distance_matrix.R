@@ -14,12 +14,12 @@
 #' @return distance matrix
 #'
 #' @examples
-#' \dontrun{
 #' # votes <- get_filtered_votes(terms_of_office = c(7,7))
 #' data(votes)
-#' mat1 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")])
 #' v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
 #' mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
+#' \dontrun{
+#' mat1 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")])
 #' }
 #' 
 #' @author Przemyslaw Biecek

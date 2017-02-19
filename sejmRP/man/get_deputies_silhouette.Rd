@@ -25,7 +25,6 @@ Function \code{get_deputies_silhouette} converts the distance matrix between dep
 and their clubs into a silhouette plot
 }
 \examples{
-\dontrun{
 # votes <- get_filtered_votes(terms_of_office = c(7,7))
 data(votes)
 v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
@@ -39,9 +38,9 @@ df \%>\%
   top_n(1) \%>\%
   as.data.frame() -> clubs
 row.names(clubs) <- clubs[,1]
+clubs$club[clubs$club == "niez."] = "cross-bencher"
 
 get_deputies_silhouette(mat2, clubs)
-}
 
 }
 \author{
