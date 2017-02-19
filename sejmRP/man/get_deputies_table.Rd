@@ -49,4 +49,3 @@ names(deputies)
 \author{
 Piotr Smuda
 }
-

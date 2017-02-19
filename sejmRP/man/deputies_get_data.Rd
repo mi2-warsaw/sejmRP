@@ -34,4 +34,3 @@ deputies_get_data('inactive')}
 \author{
 Piotr Smuda
 }
-

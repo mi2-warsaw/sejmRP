@@ -39,4 +39,3 @@ votes_get_clubs_links(home_page, page)}
 \author{
 Piotr Smuda
 }
-

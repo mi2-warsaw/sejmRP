@@ -52,4 +52,3 @@ object.size(votes)
 \author{
 Piotr Smuda
 }
-

@@ -35,4 +35,3 @@ statements_get_statement(page)}
 \author{
 Piotr Smuda, Tomasz Mikolajczyk
 }
-

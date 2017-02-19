@@ -34,4 +34,3 @@ votes_get_results(page)}
 \author{
 Piotr Smuda
 }
-

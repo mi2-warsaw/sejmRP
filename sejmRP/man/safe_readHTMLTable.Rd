@@ -33,4 +33,3 @@ safe_readHTMLTable(page)}
 \author{
 Przemyslaw Biecek
 }
-
