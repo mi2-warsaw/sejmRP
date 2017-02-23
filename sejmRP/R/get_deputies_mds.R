@@ -52,6 +52,7 @@ get_deputies_mds <- function(distances, clubs = NULL, plot = TRUE, remove_missin
     distances <- distances[idx, idx]
     cluster <- cluster[idx]
   }
+  cluster <- droplevels(cluster)
   
   nv <- isoMDS(distances, k=2)
 

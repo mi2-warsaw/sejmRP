@@ -315,7 +315,7 @@ Adamczyk Andrzej        17.80337          0.00000        27.95532
 Ajchler Romuald         28.28675         27.95532         0.00000
 \end{example}
 
-
+Graphical presentation
 
 \begin{example}
 > library("ggplot2")
@@ -331,22 +331,22 @@ Ajchler Romuald         28.28675         27.95532         0.00000
 
 
 \begin{example}
-> df <- votes[,c("surname_name","club")]
-> df %>%
-+   group_by(surname_name, club) %>%
-+   summarise(n = n()) %>% 
-+   arrange(-n) %>%
-+   group_by(surname_name) %>%
-+   top_n(1) %>%
-+   as.data.frame() -> clubs
-> row.names(clubs) <- clubs[,1]
-> clubs$club[clubs$club == "niez."] = "cross-bencher"
-
-> get_deputies_silhouette(mat2, clubs)
-> get_deputies_mds(mat2, clubs2)
-
+> clubs <- get_most_frequent_club(votes$surname_name, votes$club)
+> # remove cross-benchers
+> clubs <- clubs[clubs$club != "niez.",]
+> get_deputies_silhouette(dmatrix, clubs)
+> get_deputies_mds(dmatrix, clubs)
 \end{example}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{ggsilhouette01}
+  \caption{Dendrogram created with the function \texttt{get\_deputies\_silhouette}}
+  \label{figure:ggsilhouette}
+  \includegraphics[width=0.8\textwidth]{ggmds01}
+  \caption{Dendrogram created with the function \texttt{get\_deputies\_mds}}
+  \label{figure:ggmds}
+\end{figure}
 
 \section{Summary}
 
