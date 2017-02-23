@@ -86,7 +86,7 @@ get\_filtered\_votes & \\ \hline
 
 \subsection{Database managing functions}
 
-There are two functions intended for database managment in \CRANpkg{sejmRP} package: \code{create\_database()} and \code{remove\_database()}. The first function creates a database with four empty tables: \emph{deputies, votings, votes, statements}; where the second removes whole database, so be careful with using it. To create the database just type in R:
+There are two functions intended for database management in \CRANpkg{sejmRP} package: \code{create\_database()} and \code{remove\_database()}. The first function creates a database with four empty tables: \emph{deputies, votings, votes, statements}; where the second removes whole database, so be careful with using it. To create the database just type in R:
 
 \begin{example}
 > create_database(dbname, user, password, host)
@@ -120,7 +120,7 @@ In the case of you want to get only deputies' data as a data frame you can try:
 > deputies_get_data(type, nr_term_of_office = 7)
 \end{example}
 
-where \code{type} describes deputies' acivity, so you can choose between active and inactive deputies from seventh or eighth term of office. To update \emph{deputies} table use:
+where \code{type} describes deputies' activity, so you can choose between active and inactive deputies from seventh or eighth term of office. To update \emph{deputies} table use:
 
 \begin{example}
 > deputies_update_table(dbname, user, password, host, nr_term_of_office = 7)
@@ -253,7 +253,7 @@ get_filtered_votes(dbname = 'sejmrp', user = 'reader', password = 'qux94874',
 %$
 
 that retrieves joined deputies, votes and votings tables
-with filtred data. As you see there are few possible filters:
+with filtered data. As you see there are few possible filters:
 
 \begin{enumerate}
 \item \code{clubs} - names of clubs. This filter is a character vector with elements like for example: \samp{PO}, \samp{PiS}, \samp{SLD}. It is possible to choose more than one club.
@@ -286,11 +286,38 @@ or if you are only looking for votings with referendum use:
 \section{Use-cases}
 
 
+Loading votes from 7th office
+
 \begin{example}
-> library(dplyr)
-> data(votes)
-> v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
-> mat2 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")], weights = v)
+> library("sejmRP")
+> data("votes")
+> votes_selected <- votes[,c("surname_name", "id_voting", "vote")]
+> votes_selected$vote <- factor(votes_selected$vote, labels = c("For", "Absent", "Abstain", "Against"))
+> head(votes_selected)
+        surname_name id_voting vote
+1      Arkit Tadeusz      1556   For
+2   Aziewicz Tadeusz      1556   For
+3    Biernat Andrzej      1556   For
+4    Bobowska Joanna      1556   For
+5    Brzezinka Jacek      1556   For
+6        Budka Borys      1556   For
+\end{example}
+
+Calculations of distance matrix with given weights
+
+\begin{example}
+> vweights <- c(For = .5, Against = -.5, Abstain = .2, Absent = 0)
+> dmatrix <- get_distance_matrix(votes_selected, weights = vweights)
+> as.matrix(dmatrix)[1:3,1:3]
+                 Abramowicz Adam Adamczyk Andrzej Ajchler Romuald
+Abramowicz Adam          0.00000         17.80337        28.28675
+Adamczyk Andrzej        17.80337          0.00000        27.95532
+Ajchler Romuald         28.28675         27.95532         0.00000
+\end{example}
+
+
+\begin{example}
+> library("dplyr")
 > get_deputies_dendrogram(mat2, k=5)
 
 > df <- votes[,c("surname_name","club")]

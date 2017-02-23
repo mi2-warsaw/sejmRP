@@ -53,7 +53,7 @@ get_distance_matrix <- function(votes, weights = NULL, allowMissings = 0) {
     }
   } else { 
     # convert to numbers 
-    tmp2 <- apply(tmp, 2, function(x) v[x])
+    tmp2 <- apply(tmp, 2, function(x) weights[x])
     mat <- as.matrix(dist(tmp2))
   }
   colnames(mat) <- votesSpread[,1]
