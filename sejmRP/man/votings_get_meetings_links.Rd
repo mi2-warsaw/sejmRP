@@ -32,3 +32,4 @@ votings_get_meetings_links()}
 \author{
 Piotr Smuda
 }
+

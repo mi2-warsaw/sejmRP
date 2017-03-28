@@ -35,3 +35,4 @@ votings_get_meetings_table()}
 \author{
 Piotr Smuda
 }
+

@@ -20,6 +20,7 @@
 #' @author Przemyslaw Biecek
 #' @import factoextra
 #' @export
+ 
 get_deputies_dendrogram <- function(distances, plot = TRUE, method = "ward", k = NULL) {
   stopifnot(any(c("dist","matrix") %in% class(distances)),
             is.logical(plot))

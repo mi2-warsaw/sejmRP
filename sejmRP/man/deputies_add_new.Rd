@@ -46,3 +46,4 @@ deputies_add_new(dbname, user, password, host, 'inactive', id)}
 \author{
 Piotr Smuda
 }
+

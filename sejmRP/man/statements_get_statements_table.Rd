@@ -36,3 +36,4 @@ statements_get_statements_table(page)}
 \author{
 Piotr Smuda
 }
+

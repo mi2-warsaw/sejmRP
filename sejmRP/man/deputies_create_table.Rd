@@ -38,3 +38,4 @@ deputies_create_table(dbname, user, password, host)}
 \author{
 Piotr Smuda
 }
+

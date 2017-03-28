@@ -46,3 +46,4 @@ votes_create_table(dbname, user, password, host, 7, FALSE)}
 \author{
 Piotr Smuda
 }
+

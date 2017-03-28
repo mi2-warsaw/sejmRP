@@ -101,3 +101,4 @@ object.size(filtered_statements)
 \author{
 Tomasz Mikolajczyk, Piotr Smuda
 }
+

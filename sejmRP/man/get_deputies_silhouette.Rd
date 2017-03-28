@@ -46,3 +46,4 @@ get_deputies_silhouette(mat2, clubs)
 \author{
 Przemyslaw Biecek
 }
+

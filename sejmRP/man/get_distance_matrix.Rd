@@ -37,3 +37,4 @@ mat1 <- get_distance_matrix(votes[,c("surname_name", "id_voting", "vote")])
 \author{
 Przemyslaw Biecek
 }
+
