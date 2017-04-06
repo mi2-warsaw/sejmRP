@@ -9,8 +9,11 @@ about votings and deputies in actual term of office. All data is storaged in dat
 Please see [instruction](https://github.com/mi2-warsaw/sejmRP/blob/master/INSTRUCTION.pdf) for information how to use sejmRP package.
 
 <h5> Installation of the sejmRP package: </h5>
+
 To get started, install the latest version of **sejmRP** from GitHub:
+
 ```
 devtools::install_github("mi2-warsaw/sejmRP/sejmRP")
 ```
+
 Make sure you have [rtools](http://cran.r-project.org/bin/windows/Rtools/) installed on your computer.
