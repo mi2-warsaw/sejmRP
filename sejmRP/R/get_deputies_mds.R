@@ -36,6 +36,8 @@
 #' 
 #' @author Przemyslaw Biecek
 #' @importFrom MASS isoMDS
+#' @importFrom stats dist as.dist
+#' @importFrom ggplot2 coord_fixed xlab ylab theme_minimal scale_color_discrete ggtitle
 #' @export
 get_deputies_mds <- function(distances, clubs = NULL, plot = TRUE, remove_missing_clubs = TRUE) {
   stopifnot(any(c("dist","matrix") %in% class(distances)),

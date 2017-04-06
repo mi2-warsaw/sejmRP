@@ -36,4 +36,3 @@ votings_get_votings_table(page)}
 \author{
 Piotr Smuda
 }
-

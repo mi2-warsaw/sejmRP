@@ -31,4 +31,3 @@ votings_get_date(page)}
 \author{
 Piotr Smuda
 }
-

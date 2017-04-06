@@ -39,4 +39,3 @@ statements_get_statements_data(statements_links,
 \author{
 Piotr Smuda, Tomasz Mikolajczyk
 }
-

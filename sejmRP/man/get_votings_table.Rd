@@ -52,4 +52,3 @@ names(votings)
 \author{
 Piotr Smuda
 }
-

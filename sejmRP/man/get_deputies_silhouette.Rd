@@ -25,6 +25,7 @@ Function \code{get_deputies_silhouette} converts the distance matrix between dep
 and their clubs into a silhouette plot
 }
 \examples{
+library("dplyr")
 # votes <- get_filtered_votes(terms_of_office = c(7,7))
 data(votes)
 v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
@@ -46,4 +47,3 @@ get_deputies_silhouette(mat2, clubs)
 \author{
 Przemyslaw Biecek
 }
-

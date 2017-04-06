@@ -19,6 +19,8 @@
 #' @export
 
 get_most_frequent_club <- function(deputy_id, club) {
+  surname_name <- NULL
+  
   df <- data.frame(surname_name = deputy_id, club = club)
   df %>%
        group_by(surname_name, club) %>%

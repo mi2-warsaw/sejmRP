@@ -51,4 +51,3 @@ names(statements)
 \author{
 Piotr Smuda
 }
-

@@ -113,4 +113,3 @@ object.size(filtered_votes)
 \author{
 Piotr Smuda
 }
-

@@ -12,6 +12,7 @@
 #' @return silhouette object or a ggplot 
 #'
 #' @examples
+#' library("dplyr")
 #' # votes <- get_filtered_votes(terms_of_office = c(7,7))
 #' data(votes)
 #' v <- c(`Za` = 5, `Przeciw` = -5, `Wstrzymał się` = 2, `Nieobecny` = 0)/10
@@ -30,11 +31,12 @@
 #' get_deputies_silhouette(mat2, clubs)
 #' 
 #' @author Przemyslaw Biecek
+#' @importFrom ggplot2 scale_fill_discrete
 #' @export
 get_deputies_silhouette <- function(distances, clubs = NULL, plot = TRUE, remove_missing_clubs = TRUE) {
   stopifnot(any(c("dist","matrix") %in% class(distances)),
             is.logical(plot))
-  
+
   # remove zeros
   distances <- as.matrix(distances)
   rnam <- rownames(distances)

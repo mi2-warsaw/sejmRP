@@ -38,4 +38,3 @@ statements_create_table(dbname, user, password, host)}
 \author{
 Piotr Smuda, Tomasz Mikolajczyk
 }
-

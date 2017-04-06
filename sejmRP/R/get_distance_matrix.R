@@ -30,6 +30,8 @@
 get_distance_matrix <- function(votes, weights = NULL, allowMissings = 0) {
   stopifnot(is.data.frame(votes), ncol(votes) == 3)
   
+  id_voting <- vote <- NULL
+  
   colnames(votes) = c("id_deputy", "id_voting", "vote")
   votesSpread <- spread(votes, id_voting, vote)
   

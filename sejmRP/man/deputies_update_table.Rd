@@ -35,4 +35,3 @@ deputies_update_table(dbname, user, password, host)}
 \author{
 Piotr Smuda
 }
-
