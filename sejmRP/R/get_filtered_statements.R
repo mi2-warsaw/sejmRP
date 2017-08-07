@@ -117,7 +117,7 @@ get_filtered_statements <- function(dbname = "sejmrp", user = "reader", password
   database_diet <- dbConnect(drv, dbname = dbname, user = user, password = password, host = host)
   
   # add information about new SELECT to the counter table
-  dbSendQuery(database_diet, paste0("INSERT INTO counter (what, date) VALUES ('filt_statements','", Sys.Date(), "')"))
+  dbSendQuery(database_diet, paste0("INSERT INTO counter (what, date) VALUES ('filt_state','", Sys.Date(), "')"))
   
   suppressWarnings(dbDisconnect(database_diet))
   
