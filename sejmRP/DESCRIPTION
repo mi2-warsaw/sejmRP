@@ -20,6 +20,7 @@ LazyLoad: true
 LazyData: true
 Imports:
     DBI,
+    dbplyr,
     dplyr,
     tidyr,
     cluster,
